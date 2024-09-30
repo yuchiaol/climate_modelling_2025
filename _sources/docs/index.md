@@ -17,21 +17,22 @@ Some materials were also from "The Climate Modelling Primer" by Kendal McGuffie 
 - Curriculum Number: xxx
 - Curriculum Id Number: xxx
 - Credit: 2
-- Time: Wednesday, 3,4 (10:20 am - 12:10)
+- Time: Wednesday, 3,4 (10:20 am - 12:10 pm)
 - Place: xxx
 - Co-teach with Professor xxx
 - Requirements: basic knowledge in calculus, programming skills, radiation, weather and climate dynamics.
 - Office hours: Wednesday 12:10-1:20 pm at xxx or by appointment
 - Grading (100%): homework assignments (70%); final presentation (25%); class interaction (5%)
 - Homework assignments:
-1. Homework due is every Wednesday at 1:20 pm.
-2. 50% off before Wednesday’s class ends at 15:10 pm.
+1. Homework due is every Wednesday at 10:00 am.
+2. 50% off before Wednesday’s class ends at 12:10 pm.
 3. No credit after Wednesday's class.
 4. 借別人參考的作業也強制適用以上規則！
-- Course website: [here](https://yuchiaol.github.io/math1_2024/docs/index.html)
+- Course website: [here](https://yuchiaol.github.io/climate_modelling_2025/docs/index.html)
 
 ## Teaching assistants
 - xxx
+
 
 
 
