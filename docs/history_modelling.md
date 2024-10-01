@@ -13,14 +13,22 @@ kernelspec:
 
 # The History of Climate Modelling
 
-hahahaha!!!
+In this lecture, we briefly go over the history of climate modelling.
+
+### 1896 - Svante August Arrhenius 
+
+- Wikipedia link: [here](https://en.wikipedia.org/wiki/Svante_Arrhenius)
+- On the Influence of Carbonic Acid in the Air upon the Temperature of the Ground ([here](https://www.rsc.org/images/Arrhenius1896_tcm18-173546.pdf))
+- Fourier (1827)
+- Pouillet (1838)
+- Tyndail (1865)
+- Langley (1884, 1890)
 
 
-We're about ready to wrap up this brief course on Python for scientific
-computing.
+### The trun of 20th century - Vilhelm Bjerknes
 
-In this last lecture we give some pointers to the major scientific libraries
-and suggestions for further reading.
+### 1922 - Lewis Fry Richardson 
+
 
 
 ## NumPy
