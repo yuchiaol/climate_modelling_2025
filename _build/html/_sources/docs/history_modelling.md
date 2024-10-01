@@ -15,7 +15,7 @@ kernelspec:
 
 In this lecture, we briefly go over the history of climate modelling.
 
-### 1896 - Svante August Arrhenius 
+## 1896 - Svante August Arrhenius 
 
 - Wikipedia link: [here](https://en.wikipedia.org/wiki/Svante_Arrhenius)
 - On the Influence of Carbonic Acid in the Air upon the Temperature of the Ground ([here](https://www.rsc.org/images/Arrhenius1896_tcm18-173546.pdf))
@@ -24,10 +24,16 @@ In this lecture, we briefly go over the history of climate modelling.
 - Tyndail (1865)
 - Langley (1884, 1890)
 
+In Particular, Arrhenius' Table VII impressed me most becasue it shows polar amplified temperature increase:
 
-### The trun of 20th century - Vilhelm Bjerknes
+```{figure} /_static/lecture_specific/lecture1_figures/arrhenius_table.png
+:scale: 85%
+```
 
-### 1922 - Lewis Fry Richardson 
+
+## The trun of 20th century - Vilhelm Bjerknes
+
+## 1922 - Lewis Fry Richardson 
 
 
 
