@@ -13,7 +13,41 @@ kernelspec:
 
 # The History of Climate Modelling
 
-In this lecture, we briefly go over the history of climate modelling.
+In this lecture, we briefly go over the history of climate modelling. I follow the timeline organized by [a CarbonBrief online article](https://www.carbonbrief.org/timeline-history-climate-modelling/)
+and use materials written by [Dr. Yi-Hsuan Chen](https://pb.ps-taiwan.org/modules/news/article.php?storyid=648) and [Dr. Yen-Ting Hwang](https://pb.ps-taiwan.org/modules/news/article.php?storyid=647). 
+
+## What is climate modelling?
+Ask ChatGPT:
+
+> Climate modeling is the use of mathematical models to simulate and understand the Earth's climate system. These models are built using equations that represent the physical, chemical, and biological processes that govern climate dynamics. By incorporating key elements such as the atmosphere, oceans, land surface, ice, and human influences, climate models help scientists study past, present, and future climate conditions.
+
+> Key Components of Climate Models 
+> 1. Atmospheric Dynamics: Movements of air, heat, and moisture through processes like wind, convection, and cloud formation.
+> 2. Ocean Dynamics: Currents, heat exchange, and the movement of salinity within the ocean.
+> 3. Land Surface: The effects of vegetation, soil moisture, and albedo (reflectivity) on climate.
+> 4. Cryosphere: The role of ice sheets, glaciers, and sea ice in reflecting sunlight and regulating heat.
+> 5. Radiative Transfer: The movement of solar and terrestrial radiation, influencing temperature and weather patterns.
+> 6. Greenhouse Gas Emissions and Aerosols: The role of CO2, methane, and other pollutants in warming or cooling the atmosphere.
+
+> Types of Climate Models
+> 1. Simple Climate Models: Often used for specific questions, these models simplify the system, focusing on just a few elements like temperature and carbon cycle dynamics.
+> 2. General Circulation Models (GCMs): Complex three-dimensional models that simulate the entire climate system, including interactions between the atmosphere, oceans, land surface, and ice.
+> 3. Earth System Models (ESMs): Advanced GCMs that also include processes like the carbon cycle, biogeochemistry, and the role of vegetation and ecosystems.
+
+> Purposes of Climate Modeling
+> 1. Understanding Climate Change: Models help predict how the Earth's climate will respond to increasing greenhouse gas concentrations, enabling scientists to project future temperature rise, sea-level changes, and extreme weather events.
+> 2. Paleoclimate Studies: By modeling past climates, scientists can understand how the Earth’s climate has changed over millennia and how it might behave in the future.
+> 3. Scenario Planning: Climate models are used to test different policy scenarios, such as reducing carbon emissions, and their potential impacts on global and regional climates.
+> 4. Short-Term Forecasting: Seasonal and decadal climate models can predict patterns like El Niño, monsoons, or droughts.
+
+> Limitations of Climate Models
+> 1. Resolution: Models often have a coarse resolution, making it difficult to simulate fine-scale processes like local weather patterns or regional topography.
+> 2. Uncertainty: There is inherent uncertainty in projections due to unknown future human activities, natural variability, and incomplete understanding of certain climate processes.
+> 3. Complex Interactions: The climate system is highly complex, and not all interactions—especially those involving clouds, aerosols, and ocean circulation—are fully understood.
+
+```{note}
+George E. P. Box (statistician): Essentially, all models are wrong, but some are useful.
+```
 
 ## 1896 - Svante August Arrhenius 
 
@@ -31,7 +65,7 @@ In Particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 ```
 
 
-## The trun of 20th century - Vilhelm Bjerknes
+## 1904 - Vilhelm Bjerknes
 
 ## 1922 - Lewis Fry Richardson 
 
