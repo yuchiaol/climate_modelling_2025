@@ -311,8 +311,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-climate-modelling">What is climate modelling?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#svante-august-arrhenius">1896 - Svante August Arrhenius</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-trun-of-20th-century-vilhelm-bjerknes">The trun of 20th century - Vilhelm Bjerknes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vilhelm-bjerknes">1904 - Vilhelm Bjerknes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lewis-fry-richardson">1922 - Lewis Fry Richardson</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">NumPy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy">SciPy</a></li>
@@ -333,7 +334,55 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-history-of-climate-modelling">
 <span id="history-modelling"></span><h1>The History of Climate Modelling<a class="headerlink" href="#the-history-of-climate-modelling" title="Permalink to this heading">#</a></h1>
-<p>In this lecture, we briefly go over the history of climate modelling.</p>
+<p>In this lecture, we briefly go over the history of climate modelling. I follow the timeline organized by <a class="reference external" href="https://www.carbonbrief.org/timeline-history-climate-modelling/">a CarbonBrief online article</a>
+and use materials written by <a class="reference external" href="https://pb.ps-taiwan.org/modules/news/article.php?storyid=648">Dr. Yi-Hsuan Chen</a> and <a class="reference external" href="https://pb.ps-taiwan.org/modules/news/article.php?storyid=647">Dr. Yen-Ting Hwang</a>.</p>
+<section id="what-is-climate-modelling">
+<h2>What is climate modelling?<a class="headerlink" href="#what-is-climate-modelling" title="Permalink to this heading">#</a></h2>
+<p>Ask ChatGPT:</p>
+<blockquote>
+<div><p>Climate modeling is the use of mathematical models to simulate and understand the Earth’s climate system. These models are built using equations that represent the physical, chemical, and biological processes that govern climate dynamics. By incorporating key elements such as the atmosphere, oceans, land surface, ice, and human influences, climate models help scientists study past, present, and future climate conditions.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Key Components of Climate Models</p>
+<ol class="arabic simple">
+<li><p>Atmospheric Dynamics: Movements of air, heat, and moisture through processes like wind, convection, and cloud formation.</p></li>
+<li><p>Ocean Dynamics: Currents, heat exchange, and the movement of salinity within the ocean.</p></li>
+<li><p>Land Surface: The effects of vegetation, soil moisture, and albedo (reflectivity) on climate.</p></li>
+<li><p>Cryosphere: The role of ice sheets, glaciers, and sea ice in reflecting sunlight and regulating heat.</p></li>
+<li><p>Radiative Transfer: The movement of solar and terrestrial radiation, influencing temperature and weather patterns.</p></li>
+<li><p>Greenhouse Gas Emissions and Aerosols: The role of CO2, methane, and other pollutants in warming or cooling the atmosphere.</p></li>
+</ol>
+</div></blockquote>
+<blockquote>
+<div><p>Types of Climate Models</p>
+<ol class="arabic simple">
+<li><p>Simple Climate Models: Often used for specific questions, these models simplify the system, focusing on just a few elements like temperature and carbon cycle dynamics.</p></li>
+<li><p>General Circulation Models (GCMs): Complex three-dimensional models that simulate the entire climate system, including interactions between the atmosphere, oceans, land surface, and ice.</p></li>
+<li><p>Earth System Models (ESMs): Advanced GCMs that also include processes like the carbon cycle, biogeochemistry, and the role of vegetation and ecosystems.</p></li>
+</ol>
+</div></blockquote>
+<blockquote>
+<div><p>Purposes of Climate Modeling</p>
+<ol class="arabic simple">
+<li><p>Understanding Climate Change: Models help predict how the Earth’s climate will respond to increasing greenhouse gas concentrations, enabling scientists to project future temperature rise, sea-level changes, and extreme weather events.</p></li>
+<li><p>Paleoclimate Studies: By modeling past climates, scientists can understand how the Earth’s climate has changed over millennia and how it might behave in the future.</p></li>
+<li><p>Scenario Planning: Climate models are used to test different policy scenarios, such as reducing carbon emissions, and their potential impacts on global and regional climates.</p></li>
+<li><p>Short-Term Forecasting: Seasonal and decadal climate models can predict patterns like El Niño, monsoons, or droughts.</p></li>
+</ol>
+</div></blockquote>
+<blockquote>
+<div><p>Limitations of Climate Models</p>
+<ol class="arabic simple">
+<li><p>Resolution: Models often have a coarse resolution, making it difficult to simulate fine-scale processes like local weather patterns or regional topography.</p></li>
+<li><p>Uncertainty: There is inherent uncertainty in projections due to unknown future human activities, natural variability, and incomplete understanding of certain climate processes.</p></li>
+<li><p>Complex Interactions: The climate system is highly complex, and not all interactions—especially those involving clouds, aerosols, and ocean circulation—are fully understood.</p></li>
+</ol>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>George E. P. Box (statistician): Essentially, all models are wrong, but some are useful.</p>
+</div>
+</section>
 <section id="svante-august-arrhenius">
 <h2>1896 - Svante August Arrhenius<a class="headerlink" href="#svante-august-arrhenius" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
@@ -349,8 +398,8 @@ document.write(`
 <a class="reference internal image-reference" href="../_images/arrhenius_table.png"><img alt="../_images/arrhenius_table.png" src="../_images/arrhenius_table.png" style="width: 745.4499999999999px; height: 441.15px;" /></a>
 </figure>
 </section>
-<section id="the-trun-of-20th-century-vilhelm-bjerknes">
-<h2>The trun of 20th century - Vilhelm Bjerknes<a class="headerlink" href="#the-trun-of-20th-century-vilhelm-bjerknes" title="Permalink to this heading">#</a></h2>
+<section id="vilhelm-bjerknes">
+<h2>1904 - Vilhelm Bjerknes<a class="headerlink" href="#vilhelm-bjerknes" title="Permalink to this heading">#</a></h2>
 </section>
 <section id="lewis-fry-richardson">
 <h2>1922 - Lewis Fry Richardson<a class="headerlink" href="#lewis-fry-richardson" title="Permalink to this heading">#</a></h2>
@@ -661,8 +710,9 @@ useful as the next step of your study.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-climate-modelling">What is climate modelling?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#svante-august-arrhenius">1896 - Svante August Arrhenius</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-trun-of-20th-century-vilhelm-bjerknes">The trun of 20th century - Vilhelm Bjerknes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vilhelm-bjerknes">1904 - Vilhelm Bjerknes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lewis-fry-richardson">1922 - Lewis Fry Richardson</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy">NumPy</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scipy">SciPy</a></li>
