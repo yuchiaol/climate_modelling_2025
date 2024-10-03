@@ -11,12 +11,12 @@ kernelspec:
 
 (history_modelling)=
 
-# The History of Climate Modelling
+# The History of Climate Modeling
 
-In this lecture, we briefly go over the history of climate modelling. I follow the timeline organized by [a CarbonBrief online article](https://www.carbonbrief.org/timeline-history-climate-modelling/)
-and use materials written by [Dr. Yi-Hsuan Chen](https://pb.ps-taiwan.org/modules/news/article.php?storyid=648) and [Dr. Yen-Ting Hwang](https://pb.ps-taiwan.org/modules/news/article.php?storyid=647). 
+In this lecture, we briefly go over the history of climate modeling. I follow the timeline organized by [a CarbonBrief online article](https://www.carbonbrief.org/timeline-history-climate-modelling/)
+and use materials from articles written by [Dr. Yi-Hsuan Chen](https://pb.ps-taiwan.org/modules/news/article.php?storyid=648) and [Dr. Yen-Ting Hwang](https://pb.ps-taiwan.org/modules/news/article.php?storyid=647). 
 
-## What is climate modelling?
+## What is climate modeling?
 Ask ChatGPT:
 
 > Climate modeling is the use of mathematical models to simulate and understand the Earth's climate system. These models are built using equations that represent the physical, chemical, and biological processes that govern climate dynamics. By incorporating key elements such as the atmosphere, oceans, land surface, ice, and human influences, climate models help scientists study past, present, and future climate conditions.
@@ -49,6 +49,12 @@ Ask ChatGPT:
 George E. P. Box (statistician): Essentially, all models are wrong, but some are useful.
 ```
 
+A minimal definition of a climate model by Professor Brian E. J. Rose:
+> A representation of the exchange of energy between the Earth system and space, and its effects on average surface temperature.
+
+What is the average? And the planetary energy budget is the to all climate modeling.
+
+
 ## 1896 - Svante August Arrhenius 
 
 - Wikipedia link: [here](https://en.wikipedia.org/wiki/Svante_Arrhenius)
@@ -58,16 +64,53 @@ George E. P. Box (statistician): Essentially, all models are wrong, but some are
 - Tyndail (1865)
 - Langley (1884, 1890)
 
-In Particular, Arrhenius' Table VII impressed me most becasue it shows polar amplified temperature increase:
+In particular, Arrhenius' Table VII impressed me most becasue it shows polar amplified temperature increase:
 
 ```{figure} /_static/lecture_specific/lecture1_figures/arrhenius_table.png
 :scale: 85%
 ```
 
-
 ## 1904 - Vilhelm Bjerknes
+- Wikipedia link: [here](https://en.wikipedia.org/wiki/Vilhelm_Bjerknes)
+- [Das Problem der Wettervorhersage, betrachtet von Standpunkt der Mechanik und Physik](https://books.google.com.tw/books/about/Das_Problem_der_Wettervorhersage_betrach.html?id=Pib0HAAACAAJ&redir_esc=y)
+- “Atmospheric changes could be calculated from a set of seven “primitive equations”. CarbonBrief
+- Ask ChatGPT:
+```{figure} /_static/lecture_specific/lecture1_figures/chatgpt_preimitive_eqns.png
+:scale: 50%
+```
+- [Jacob Bjerknes](https://en.wikipedia.org/wiki/Jacob_Bjerknes) - ENSO
+
 
 ## 1922 - Lewis Fry Richardson 
+
+## 1938 - Guy Callendar
+
+## 1946 - John von Neumann
+
+## 1950 - ENIAC
+- [Electronic Numerical Integrator and Computer](https://en.wikipedia.org/wiki/ENIAC)
+- completed in 1945, put to work on December 10, 1945, and retired at 11:45 p.m. on October 2, 1955
+```{figure} /_static/lecture_specific/lecture1_figures/eniac_women.png
+:scale: 50%
+```
+## 1954 - JNWPU and BESK
+- Joint Numerical Weather Prediction Unit (JNWPU) July 1, 1954 (Jule Gregory Charney?)
+- Binary Electronic Sequence Calculator (BESK) - December, 1954 (Carl-Gustav Rossby)
+
+## 1955 - Joseph Smagorinsky
+- General Circulation Research Section under both von Neumann and Charney.
+- to create a 3D general circulation model (GCM) of the global atmosphere based on “primitive equations”.
+- the General Circulation Research Laboratory in 1959.
+- the Geophysical Fluid Dynamics Laboratory (GFDL) in 1963.
+- a paper by Norman Phillips 1956 - the first GCM: [here](https://empslocal.ex.ac.uk/people/staff/gv219/classics.d/Phillips56.pdf) and [here](https://celebrating200years.noaa.gov/breakthroughs/climate_model/welcome.html#model), a 2-layer, hemispheric, quasi-geostrophic computer model.
+
+## 1956 - Mikhail Budyko 
+- [The Heat Balance of the Earth’s Surface](https://www.cia.gov/readingroom/docs/CIA-RDP81-01043R002500010003-6.pdf)
+- He Used a simple energy-balance model, and calculated the Earth’s average global temperature by balancing incoming solar energy with outgoing thermal energy.
+
+```{figure} /_static/lecture_specific/lecture1_figures/budyko_plot.png
+:scale: 50%
+```
 
 
 
