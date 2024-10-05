@@ -82,10 +82,25 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 
 
 ## 1922 - Lewis Fry Richardson 
+- Began climate modelling using numerical methods.
+- [Weather Prediction by Numerical Process](https://archive.org/details/weatherpredictio00richrich/weatherpredictio00richrich/page/n7/mode/2up?view=theater)
+- It took him six weeks to produce an eight-hour forecast.
+- “Weather Forecasting Factory” by Stephen Conlin (1986, [here](https://www.emetsoc.org/resources/rff/)):
+```{figure} /_static/lecture_specific/lecture1_figures/weather_factory.png
+:scale: 75%
+```
 
 ## 1938 - Guy Callendar
+- He used a 1D radiative transfer model to show warming by rising CO2 levels.
+- He did all the calculations by hand.
+- [The artificial production of carbon dioxide and its influence on temperature](https://www.met.reading.ac.uk/~ed/callendar_1938.pdf)
+- A later paper (Hawkins and Jones, 2013) reproduced Guy Callendar's results and Ed Hawkins' [article](https://www.climate-lab-book.ac.uk/2013/75-years-after-callendar/):
+```{figure} /_static/lecture_specific/lecture1_figures/rising_temperature.png
+:scale: 95%
+```
 
 ## 1946 - John von Neumann
+- He proposed that new computers, such as the ENIAC at the University of Pennsylvania, can be used to forecast weather. 
 
 ## 1950 - ENIAC
 - [Electronic Numerical Integrator and Computer](https://en.wikipedia.org/wiki/ENIAC)
@@ -93,6 +108,11 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 ```{figure} /_static/lecture_specific/lecture1_figures/eniac_women.png
 :scale: 50%
 ```
+
+## 1953 - Gilbert Plass 
+- The warming influence of human-caused CO2 emissions
+- Time magazine: [here](https://time.com/archive/6825643/science-invisible-blanket/)
+
 ## 1954 - JNWPU and BESK
 - Joint Numerical Weather Prediction Unit (JNWPU) July 1, 1954 (Jule Gregory Charney?)
 - Binary Electronic Sequence Calculator (BESK) - December, 1954 (Carl-Gustav Rossby)
@@ -102,15 +122,44 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 - to create a 3D general circulation model (GCM) of the global atmosphere based on “primitive equations”.
 - the General Circulation Research Laboratory in 1959.
 - the Geophysical Fluid Dynamics Laboratory (GFDL) in 1963.
-- a paper by Norman Phillips 1956 - the first GCM: [here](https://empslocal.ex.ac.uk/people/staff/gv219/classics.d/Phillips56.pdf) and [here](https://celebrating200years.noaa.gov/breakthroughs/climate_model/welcome.html#model), a 2-layer, hemispheric, quasi-geostrophic computer model.
+- a paper later by Norman Phillips 1956 - the first GCM: [here](https://empslocal.ex.ac.uk/people/staff/gv219/classics.d/Phillips56.pdf) and [here](https://celebrating200years.noaa.gov/breakthroughs/climate_model/welcome.html#model), a 2-layer, hemispheric, quasi-geostrophic computer model.
 
 ## 1956 - Mikhail Budyko 
 - [The Heat Balance of the Earth’s Surface](https://www.cia.gov/readingroom/docs/CIA-RDP81-01043R002500010003-6.pdf)
-- He Used a simple energy-balance model, and calculated the Earth’s average global temperature by balancing incoming solar energy with outgoing thermal energy.
+- He used a simple energy-balance model, and calculated the Earth’s average global temperature by balancing incoming solar energy with outgoing thermal energy.
 
 ```{figure} /_static/lecture_specific/lecture1_figures/budyko_plot.png
 :scale: 50%
 ```
+## 1956 - Syukuro Manabe
+- Smagorinsky invited Syukuro Manabe from the University of Tokyo to join his lab at the US Weather Bureau.
+- They work together to gradually add complexity to the models.
+
+## 1956 - Norman Phillips 
+- a paper by Norman Phillips 1956 - the first GCM: [here](https://empslocal.ex.ac.uk/people/staff/gv219/classics.d/Phillips56.pdf) and [here](https://celebrating200years.noaa.gov/breakthroughs/climate_model/welcome.html#model), a 2-layer, hemispheric, quasi-geostrophic computer model.
+
+## 1963 - Fritz Möller 
+- [On the Influence of Changes in the CO2 Concentration in Air on the Radiation Balance of the Earth's Surface and on the Climate](https://www.patarnott.com/SimpleScience/docs/MOLLER_1963_CO2_NotForcingClimate.pdf)
+- To disprove Gilbert Plass’s influential 1953 paper on the warming influence of human-caused CO2 emissions.
+- He ignored certain physical processes such as atmospheric convection, but encouraged other researchers (Manabe and Wetherald in 1967) to develop more reliable climate models.
+
+## 1964 - Akio Arakawa 
+- [Computational design for long-term numerical integration of the equations of fluid motion: Two-dimensional incompressible flow. Part I](https://people.bath.ac.uk/ensdasr/PAPERS/arakawa_1966.pdf)
+- Mintz-Arakawa Model can run longer!!!
+- Additional adevection term to represent grid-scale subgrid-scale interactions.
+
+## 1964 - NCAR
+- Warren Washington and Akira Kasahara 
+- NCAR as a leading climate modelling centre from the 1960s onwards.
+
+## 1966 - National Academy of Science
+- [Weather and Climate Modification: Problems and Prospects](https://nap.nationalacademies.org/read/21330/chapter/1#iii)
+- the modellers need more powerful, faster computers
+
+## 1967 - Kirk Bryan 
+- the first ocean general circulation model
+- [A numerical investigation of the oceanic general circulation](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.2153-3490.1967.tb01459.x)
+
 
 
 
