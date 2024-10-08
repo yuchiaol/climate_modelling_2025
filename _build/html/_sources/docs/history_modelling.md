@@ -160,8 +160,92 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 - the first ocean general circulation model
 - [A numerical investigation of the oceanic general circulation](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.2153-3490.1967.tb01459.x)
 
+## 1967 - Manabe and Wetherald
+```{figure} /_static/lecture_specific/lecture1_figures/mw_1976.png
+:scale: 50%
+```
+- [Thermal Equilibrium of the Atmosphere with a Given Distribution of Relative Humidity](https://journals.ametsoc.org/view/journals/atsc/24/3/1520-0469_1967_024_0241_teotaw_2_0_co_2.xml)
+- They produced the first credible prediction, using a 1D radiative-convective model, of what would happen to the atmosphere if CO2 levels were changed.
+- “what will happen to the global average temperature if the radiative transfer of energy between the surface and the troposphere is altered by an increase in CO2 levels?” CarbonBrief.
+- “they want to know what the potential feedbacks from water vapour and clouds might be, which they discover strongly influence the CO2 effect.” CarbonBrief
+- “They estimate the effect of doubling CO2 levels – a metric which later becomes known as “climate sensitivity” – and settle on a value of 2.4C.” CarbonBrief
+- A post by Professor John Mitchell: [here](https://www.carbonbrief.org/prof-john-mitchell-how-a-1967-study-greatly-influenced-climate-change-science/)
+- An interview with Syukuro Manabe: [here](https://www.carbonbrief.org/the-carbon-brief-interview-syukuro-manabe/)
+```{figure} /_static/lecture_specific/lecture1_figures/mw_1976_flowchart.png
+:scale: 50%
+```
 
+## 1969 - William D Sellers
+- [A Global Climatic Model Based on the Energy Balance of the Earth-Atmosphere System](https://journals.ametsoc.org/view/journals/apme/8/3/1520-0450_1969_008_0392_agcmbo_2_0_co_2.xml)
+- I think Sellers' model is a prototype of (moist) energy balance model.
+```{figure} /_static/lecture_specific/lecture1_figures/seller_ebm.png
+:scale: 50%
+```
 
+## 1969 - Nimbus3
+- NASA's Nimbus3 satellite was launched April 14, 1969 [(here)](https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-037A).
+- The era of climate scientists relying on satellite data to test and validate their models has begun.
+```{figure} /_static/lecture_specific/lecture1_figures/nimbus3_1969.png
+:scale: 50%
+```
+
+## 1969 - Manabe and Bryan
+- [Climate calculations with a combined ocean-atmosphere model](https://www.gfdl.noaa.gov/bibliography/related_files/sm6903.pdf)
+- the first “coupled” atmosphere-ocean GCM
+- The computing time issue: it takes 1,100 hours (about 46 days) to do just one run of the model.
+- Simplified land and ocean domains.
+```{figure} /_static/lecture_specific/lecture1_figures/coupled_gcm.png
+:scale: 50%
+```
+
+## 1970 - two meetings on human's impact on climate
+- Study of Critical Environmental Problems (SCEP) [here](https://mitpress.mit.edu/9780262690270/mans-impact-on-the-global-environment/)
+- Inadvertent Climate Modification: Report of the Study of Man’s Impact on Climate” (SMIC) [here](https://mitpress.mit.edu/9780262690331/inadvertent-climate-modification/)
+- "Global climate models are presented as being “indispensable” for researching human-caused climate change." CarbonBrief
+
+## 1970 - NOAA
+- President Richard Nixon: "serve a national need for better protection of life and property from natural hazards…for a better understanding of the total environment".
+
+## 1972 - the United Nations Conference on the Human Environment
+- the UN Environment Program.
+- Human-caused climate change is now turn to the radar of politicians.
+
+## 1972 - UK Met Office 
+- The first UK coupled GCM, developed since 1963.
+- They used the UK-based ATLAS computer, led by George Corby.
+- Five-layer atmospheric GCM
+- [A general circulation model of the atmosphere suitable forlong period integrations](https://rmets.onlinelibrary.wiley.com/doi/epdf/10.1002/qj.49709841808)
+- [A numerical experiment using a general circulation modelof the atmosphere](https://rmets.onlinelibrary.wiley.com/doi/epdf/10.1002/qj.49709941903)
+
+## 1975 - Manabe and Wetherald 
+- Another seminal paper for climate modeling: [The Effects of Doubling the CO2 Concentration on the climate of a General Circulation Model](https://journals.ametsoc.org/view/journals/atsc/32/1/1520-0469_1975_032_0003_teodtc_2_0_co_2.xml)
+- For the first time the effects of doubling atmospheric CO2 levels.
+- polar amplification
+- climate sensitivity of 2.9C
+```{figure} /_static/lecture_specific/lecture1_figures/mb1_1975.png
+:scale: 70%
+```
+```{figure} /_static/lecture_specific/lecture1_figures/mw2_1975.png
+:scale: 70%
+```
+
+## 1975 - Manabe, Bryan, Spelman
+- the first coupled atmosphere-ocean GCM (AOGCM)
+- [A Global Ocean-Atmosphere Climate Model. Part I. The Atmospheric Circulation](https://journals.ametsoc.org/view/journals/phoc/5/1/1520-0485_1975_005_0003_agoacm_2_0_co_2.xml)
+```{figure} /_static/lecture_specific/lecture1_figures/manabe_topography.png
+:scale: 70%
+```
+
+## 1975 - National Academy of Sciences
+- the US Committee for the Global Atmospheric Research Program (GARP) 
+- [Understanding Climatic Change: A Program for Action](https://archive.org/stream/understandingcli00unit#page/n5/mode/2up)
+
+## 1975 - Wally Broecker
+- first coined the term "global warming".
+- [Climatic Change: Are We on the Brink of aPronounced Global Warming?](https://www.science.org/doi/epdf/10.1126/science.189.4201.460)
+```{figure} /_static/lecture_specific/lecture1_figures/global_warming111.png
+:scale: 110%
+```
 
 ## NumPy
 
