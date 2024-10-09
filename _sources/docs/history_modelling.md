@@ -246,6 +246,19 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 ```{figure} /_static/lecture_specific/lecture1_figures/global_warming111.png
 :scale: 110%
 ```
+## 1977 - Arakawa and Lamb
+- [Computational Design of the Basic Dynamical Processes of the UCLA General Circulation Model](https://www.sciencedirect.com/science/article/abs/pii/B9780124608177500094)
+- [Methods in Computational Physics: Advances in Research and Applications](https://www.sciencedirect.com/bookseries/methods-in-computational-physics-advances-in-research-and-applications)
+```{figure} /_static/lecture_specific/lecture1_figures/arakawa1977.png
+:scale: 110%
+```
+
+## 1979 - The Charney Report
+- [Carbon Dioxide and Climate: A Scientific Assessment](https://geosci.uchicago.edu/~archer/warming_papers/charney.1979.report.pdf)
+- A retired representative from the Mobil oil company.
+- heat from the atmosphere could be temporarily absorbed by the oceans
+- climate sensitivity of 2-4.5C
+
 
 ## NumPy
 
