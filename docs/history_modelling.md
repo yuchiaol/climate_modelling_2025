@@ -242,7 +242,7 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 
 ## 1975 - Wally Broecker
 - first coined the term "global warming".
-- [Climatic Change: Are We on the Brink of aPronounced Global Warming?](https://www.science.org/doi/epdf/10.1126/science.189.4201.460)
+- [Climatic Change: Are We on the Brink of a Pronounced Global Warming?](https://www.science.org/doi/epdf/10.1126/science.189.4201.460)
 ```{figure} /_static/lecture_specific/lecture1_figures/global_warming111.png
 :scale: 110%
 ```
@@ -259,6 +259,35 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 - heat from the atmosphere could be temporarily absorbed by the oceans
 - climate sensitivity of 2-4.5C
 
+## 1979 - Newell and Dopplick 
+- [Questions concerning the possible influence of anthropogenic CO2 on atmospheric temperature](https://doi.org/10.1175/1520-0450(1979)018<0822:QCTPIO>2.0.CO;2)
+```{figure} /_static/lecture_specific/lecture1_figures/controversy1979.png
+:scale: 60%
+```
+
+## 1980 - World Climate Research Programme (WCRP)
+- to determine the predictability of climate and to determine the effect of human activities on climate
+- [https://www.wcrp-climate.org/](https://www.wcrp-climate.org/)
+```{figure} /_static/lecture_specific/lecture1_figures/wcrp.png
+:scale: 60%
+```
+
+## 1985 - Department of Energy
+- [Projecting the climatic effects of increasing carbon dioxide](https://www.osti.gov/biblio/5885458)
+- [report pdf file](https://www.osti.gov/servlets/purl/5885458)
+- Carbon dioxide-climate controversy
+
+## 1988 - Hansen’s three scenarios
+- [Global climate changes as forecast by Goddard Institute for Space Studies three-dimensional model](https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/JD093iD08p09341)
+- US Senate hearing
+```{figure} /_static/lecture_specific/lecture1_figures/hansen_3_1988.png
+:scale: 40%
+```
+## 1988 - IPCC
+- The United Nations Environment Programme (UNEP) and the World Meteorological Organization (WMO) establish the Intergovernmental Panel on Climate Change (IPCC).
+- “provide the world with a clear scientific view on the current state of knowledge in climate change and its potential environmental and socio-economic impacts”
+- First IPCC chair is Bert Bolin.
+- website: [here](https://www.ipcc.ch/)
 
 ## NumPy
 
