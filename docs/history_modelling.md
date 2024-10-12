@@ -289,7 +289,178 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 - First IPCC chair is Bert Bolin.
 - website: [here](https://www.ipcc.ch/)
 
+## 1989 - AMIP
+- [The Atmospheric Model Intercomparison Project](https://doi.org/10.1175/1520-0477(1992)073<1962:ATAMIP>2.0.CO;2)
+
+## 1989 - New NCAR and GFDL AOGCMs
+- NCAR AOGCM: [Washington and Meehl (1989)](https://link.springer.com/article/10.1007/BF00207397)
+```{figure} /_static/lecture_specific/lecture1_figures/wm_1989_scheme.png
+:scale: 40%
+```
+```{figure} /_static/lecture_specific/lecture1_figures/wm_1989_dsat.png
+:scale: 40%
+```
+- GFDL AOGCM: [Stouffer et al. (1989)](https://www.nature.com/articles/342660a0)
+```{figure} /_static/lecture_specific/lecture1_figures/sm_1989_dsat.png
+:scale: 40%
+```
+
+## 1990 - Met Office Hadley Centre
+- Margaret Thatcher, the UK prime minister, formally opens the Met Office’s Hadley Centre for Climate Prediction and Research in Bracknell, Berkshire. 
+- The first Hadley Centre coupled model boasts “11 atmospheric levels, 17 ocean levels and 2.5° × 3.75° resolution”. 
+
+## 1990 - First IPCC report
+- August 27, 1990 — August 30, 1990.
+- Report: [here](https://www.ipcc.ch/assessment-report/ar1/)
+- about 0.3C warming per decade
+```{figure} /_static/lecture_specific/lecture1_figures/IPCC1.png
+:scale: 100%
+```
+
+## 1990 - Robert D. Cess
+- uncertantiy from cloud is large.
+- [Intercomparison and Interpretation of Climate Feedback Processes in 19 Atmospheric General Circulation Models](https://pubs.giss.nasa.gov/docs/1990/1990_Cess_ce03000u.pdf)
+- [Cloud-Radiative Forcing and Climate: Resultsfrom te Earth Radiation Budget Experiment](https://www.science.org/doi/epdf/10.1126/science.243.4887.57)
+```{figure} /_static/lecture_specific/lecture1_figures/albedo_lw.png
+:scale: 60%
+```
+```{figure} /_static/lecture_specific/lecture1_figures/cloud_forcing.png
+:scale: 60%
+```
+
+## 1991 - Eruption of Mount Pinatubo 
+- [Potential climate impact of Mount Pinatubo eruption](https://pubs.giss.nasa.gov/docs/1992/1992_Hansen_ha00800v.pdf)
+
+## 1992 - Kevin Trenberth
+- [Climate System Modeling](https://books.google.co.uk/books?id=EDClFW7JWrQC&dq=%22Climate+System+Modeling%22+Cambridge+Univ.+Press+1992+trenberth&source=gbs_navlinks_s)
+
+## 1995 - CMIP launched
+- The Coupled Model Intercomparison Project (CMIP)
+- 18 models from 14 modelling groups are included
+- official website: [here](https://www.wcrp-climate.org/wgcm-cmip)
+
+## 1995 - John Mitchell
+- [Climate response to increasing levels of greenhouse gases and sulphate aerosols](https://www.nature.com/articles/376501a0)
+- based on Rasool and Schneiderr (1971): [Atmospheric Carbon Dioxide and Aerosols: Effects of Large Increases on Global Climate](https://www.science.org/doi/10.1126/science.173.3992.138)
+```{figure} /_static/lecture_specific/lecture1_figures/ghg_aer_ts.png
+:scale: 40%
+```
+```{figure} /_static/lecture_specific/lecture1_figures/ghg_aer_maps.png
+:scale: 50%
+```
+
+## 1995 - Draft of IPCC’s second assessment report
+- Human activity is a likely cause of the warming of the global atmosphere
+- Dr Richard S Lindzen from MIT, however, was unconvinced: the model estimate of natural variability being correct?
+
+## 1995 - US Congressional Hearing 
+ “climate models and projections of potential impacts of global climate change”.
+- chared by Dana Rohrabacher
+- He asks: “Are we so certain about the future climate changes that we should take action that will change the lives of millions of our own citizens at a cost of untold billions of dollars?”
+```{figure} /_static/lecture_specific/lecture1_figures/us_congress.png
+:scale: 50%
+```
+## 1996 - Ben Santer’s fingerprint study 
+- [A search for human influences on the thermal structure of the atmosphere](https://www.nature.com/articles/382039a0)
+- attached by climate sceptics: [here](https://www.realclimate.org/index.php/archives/2010/02/close-encounters-of-the-absurd-kind/)
+```{figure} /_static/lecture_specific/lecture1_figures/fingerprint.png
+:scale: 50%
+```
+
+## 2000 - IPCC’s Special Report on Emissions Scenarios
+- [SERS](https://www.ipcc.ch/report/emissions-scenarios/?idp=0)
+- The IPCC team is led by Professor [Nebojsa Nakicenovic](https://www.carbonbrief.org/the-carbon-brief-interview-prof-nebojsa-nakicenovic/)
+- [Representative Concentration Pathways (RCPs)](https://sedac.ciesin.columbia.edu/ddc/ar5_scenario_process/RCPs.html) in time for the IPCC’s fifth assessment report in 2014.
+```{figure} /_static/lecture_specific/lecture1_figures/rcp.png
+:scale: 40%
+```
+
+## 2000 - Peter Cox
+- The first “fully coupled three-dimensional carbon-climate model”.
+- [Acceleration of global warming due to carbon-cycle feedbacks in a coupled climate model](https://www.nature.com/articles/35041539)
+```{figure} /_static/lecture_specific/lecture1_figures/carbon_ts.png
+:scale: 50%
+```
+```{figure} /_static/lecture_specific/lecture1_figures/temp_ts.png
+:scale: 60%
+```
+
+## 2004 - Peter Stott and Myles Allen
+- [Human contribution to the European heatwave of 2003](https://www.nature.com/articles/nature03089)
+- It was very likely that human influence at least doubled the chances of heatwave occurring 
+```{figure} /_static/lecture_specific/lecture1_figures/attribution.png
+:scale: 60%
+```
+
+## 2007 - Santer vs Douglass
+- [A comparison of tropical temperature trends with model predictions](https://ncwatch.typepad.com/media/files/DOUGLASPAPER.pdf)
+```{figure} /_static/lecture_specific/lecture1_figures/douglass.png
+:scale: 60%
+```
+
+- [Consistency of modelled and observed temperature trends inthe tropical troposphere](https://www.researchgate.net/publication/323160419_Consistency_of_Modeled_and_Observed_Temperature_Trends_in_the_Tropical_Troposphere)
+```{figure} /_static/lecture_specific/lecture1_figures/santer_2008.png
+:scale: 60%
+```
+
+- Climategate affair in 2009.
+
+## 2008 - Tim Lenton
+- [Tipping elements in the Earth’s climate system](https://www.pnas.org/doi/epdf/10.1073/pnas.0705414105)
+```{figure} /_static/lecture_specific/lecture1_figures/tipping.png
+:scale: 40%
+```
+
+## 2008 - Veerabhadran Ramanathan and Greg Carmichael
+- [Global and regional climate changes due to black carbon](https://www.nature.com/articles/ngeo156)
+
+## 2008 - CMIP5
+
+## 2013 - IPCC’s fifth assessment report
+- [Report here](https://www.ipcc.ch/assessment-report/ar5/)
+```{figure} /_static/lecture_specific/lecture1_figures/ipcc_ar5.png
+:scale: 60%
+```
+
+## 2017 - Medhaug et al.
+- [Reconciling controversies about the ‘global warming hiatus’](https://www.nature.com/articles/nature22315)
+
+## 2021 - IPCC’s sixth assessment report
+- [Report here](https://www.ipcc.ch/assessment-report/ar6/)
+```{figure} /_static/lecture_specific/lecture1_figures/ipcc_ar6.png
+:scale: 40%
+```
+
+## 2021 - The Nobel Prize in Physics
+- Syukuro Manabe
+- Klaus Hasslmann
+```{figure} /_static/lecture_specific/lecture1_figures/nobel_2021.png
+:scale: 40%
+```
+
+```{figure} /_static/lecture_specific/lecture1_figures/ipcc_history.png
+:scale: 40%
+```
+
+## 2024 - Google's NeuralGCM
+- [NeuralGCM](https://neuralgcm.readthedocs.io/en/latest/trained_models.html)
+- [Neural general circulation models for weather and climate](https://www.nature.com/articles/s41586-024-07744-y)
+```{figure} /_static/lecture_specific/lecture1_figures/neuralgcm_structure.png
+:scale: 40%
+```
+```{figure} /_static/lecture_specific/lecture1_figures/amip_neuralgcm.png
+:scale: 60%
+```
+
+## future from now?
+- high-resolution climate modeling?
+- AI approach?
+
+
+# not below
+
 ## NumPy
+
 
 Fundamental matrix and array processing capabilities are provided by the
 excellent [NumPy](http://www.numpy.org/) library.
