@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Zero-dimensional Energy Balance Model &#8212; Scientific Python QuickStart</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/zero_dim_model';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up Your Python Environment" href="getting_started.html" />
+    <link rel="prev" title="The History of Climate Modeling" href="history_modelling.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/qe-logo-large.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/qe-logo-large.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="history_modelling.html">The History of Climate Modeling</a></li>
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Zero-dimensional Energy Balance Model</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Setting up Your Python Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/zero_dim_model.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Zero-dimensional Energy Balance Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero-dimensional Energy Balance Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-energy-budget">Global energy budget</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-energy-budget">Calculate the energy budget</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-state">Equilibrium state</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#not-below">not below</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="zero-dimensional-energy-balance-model">
+<span id="zero-dim-model"></span><h1>Zero-dimensional Energy Balance Model<a class="headerlink" href="#zero-dimensional-energy-balance-model" title="Permalink to this heading">#</a></h1>
+<section id="global-energy-budget">
+<h2>Global energy budget<a class="headerlink" href="#global-energy-budget" title="Permalink to this heading">#</a></h2>
+<p>We start with the observed global energy budget, which is not too difficult to understand but is rather essential to many aspects of climate dynamics and modeling studies.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/energy_budget000.png"><img alt="../_images/energy_budget000.png" src="../_images/energy_budget000.png" style="width: 614.4000000000001px; height: 460.8px;" /></a>
+</figure>
+<p>For the shortwave:</p>
+<ul class="simple">
+<li><p>Incoming shortwave/solar radiation is 341 W/m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
+<li><p>Reflected shortwave radiation is 102 W/m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
+<li><p>The global mean albedo is 102 m<span class="math notranslate nohighlight">\(^2\)</span> / 341 m<span class="math notranslate nohighlight">\(^2\)</span> = 0.299 ~= 0.3.</p></li>
+<li><p>Clouds absorption is 79 m<span class="math notranslate nohighlight">\(^2\)</span>, roughly the same as atmospheric absorption 78 m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
+<li><p>Surface receives 161 m<span class="math notranslate nohighlight">\(^2\)</span>, and reflects 23 m<span class="math notranslate nohighlight">\(^2\)</span> (why smaller than cloud reflection?).</p></li>
+<li><p>The roles of ozone (O<span class="math notranslate nohighlight">\(_3\)</span>) and water vapor (H<span class="math notranslate nohighlight">\(_{2}\)</span>O)?</p></li>
+</ul>
+<p>For the longwave:</p>
+<ul class="simple">
+<li><p>Surface emits 396 m<span class="math notranslate nohighlight">\(^2\)</span> (blackbody with temperture 288K?).</p></li>
+<li><p>Emission to space is only 239 m<span class="math notranslate nohighlight">\(^2\)</span> (greenhouse effect).</p></li>
+<li><p>Atmospheric window allos 22 m<span class="math notranslate nohighlight">\(^2\)</span> to the space directly.</p></li>
+<li><p>Atmosphere emits downward to the surface 333 m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
+</ul>
+<p>For others:</p>
+<ul class="simple">
+<li><p>Evapotranspiration emits 80 m<span class="math notranslate nohighlight">\(^2\)</span> to the atmosphere (latent heat).</p></li>
+<li><p>Thermals process emits 17 m<span class="math notranslate nohighlight">\(^2\)</span> to the atmosphere (sensible heat?).</p></li>
+</ul>
+<p>Net radiation absorbed by the surface:</p>
+<ul class="simple">
+<li><p>161 m<span class="math notranslate nohighlight">\(^2\)</span> (shortwave) - 17 m<span class="math notranslate nohighlight">\(^2\)</span> (sensible heat) - 80 (latent heat) - 396 (longwave) + 333 (longwave from the atmosphere) = 1 m<span class="math notranslate nohighlight">\(^2\)</span> ~= 0.9 m<span class="math notranslate nohighlight">\(^2\)</span></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Think about the roles of clouds and water vapor.</p>
+</div>
+</section>
+<section id="calculate-the-energy-budget">
+<h2>Calculate the energy budget<a class="headerlink" href="#calculate-the-energy-budget" title="Permalink to this heading">#</a></h2>
+<p>We assume a budget for an idealised global-mean atmosphere-ocean system:</p>
+<div class="math notranslate nohighlight" id="equation-my-label1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-my-label1" title="Permalink to this equation">#</a></span>\[\frac{dE}{dt} = \mbox{energy flux into the system} - \mbox{energy flux out of the system}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(E\)</span> is the heat or energy content of the system, or called enthalpy.</p></li>
+<li><p>We will consider the energy per surface area, therefore each term has units <span class="math notranslate nohighlight">\(\mbox{W/m}^2\)</span>.</p></li>
+<li><p>While <span class="math notranslate nohighlight">\(E\)</span> is the sum of internal energy in all reservoirs (e.g., atmosphere, ocean, land, cryosphere, biosphere), the internal exchange of energy betweem them cannot be present here.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Enthalpy">Enthalpy</a> (H) is the sum of a system’s internal energy and the product of its pressure and volume:</p>
+<div class="math notranslate nohighlight">
+\[
+H = U + pV
+\]</div>
+</div>
+<p>For the “energy flux into the system”, we assume it to be the net incoming solar radiation at the top-of-atmosphere (TOA):</p>
+<div class="math notranslate nohighlight" id="equation-my-label2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-my-label2" title="Permalink to this equation">#</a></span>\[Q = S_{0}\frac{A_{cross}}{A_{surface}} = \frac{S_{0}}{4} = 341.3 \mbox{W/m}^2\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_{0}\)</span> is the solar constant: 1365.2 <span class="math notranslate nohighlight">\(\mbox{W/m}^2\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{cross}\)</span> is the area of illumination: <span class="math notranslate nohighlight">\(\pi r_{p}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(A_{surface}\)</span> is surface area of the Earth: <span class="math notranslate nohighlight">\(4\pi r_{p}^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_{p}\)</span> is the Earth’s radius: 6371 km</p></li>
+</ul>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/sphere_cross.png"><img alt="../_images/sphere_cross.png" src="../_images/sphere_cross.png" style="width: 499.2px; height: 279.59999999999997px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Figure 2.2 from Dennis L. Hartmann’s textbook.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>For the “energy flux out of the system”, there are two components:</p>
+<ol class="arabic simple">
+<li><p>The amount of incoming solar radiation will be reflected back to the space <span class="math notranslate nohighlight">\(\alpha Q\)</span>.</p></li>
+</ol>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the planetary albedo: reflected solar flux / incoming solar flux <span class="math notranslate nohighlight">\(\approx 0.3\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha Q = 341.3*0.3 = 101.9 \mbox{W/m}^2\)</span>.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>The outgoing or terrestrial longwave radiative (OLR) flux.</p></li>
+</ol>
+<ul class="simple">
+<li><p>We assume the Earth behaves like a blackbody radiator with the emission temperature <span class="math notranslate nohighlight">\(T_e\)</span>.</p></li>
+<li><p>Following the Stefan-Bolzmann law: <span class="math notranslate nohighlight">\(\sigma T_{e}^4\)</span></p></li>
+<li><p>Stefan-Boltzmann constant: <span class="math notranslate nohighlight">\(\sigma = 5.67\times 10^{-8} \mbox{W/m}^2/\mbox{K}^{4}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(T_{e} = \sqrt[^4]{\frac{238.5}{\sigma}} = ?\)</span> You should get a very cold temperature…(what happens here?)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We could try to solve this puzzling by including the greenhouse effect as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mbox{OLR} = \tau \sigma T_{s}^{4}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tau\)</span> is called the transmissivity of the atmosphere.</p>
+<p>We can use the observed value to estimate <span class="math notranslate nohighlight">\(\tau\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\tau = \frac{\mbox{OLR}}{\sigma T_{s}^{4}} = \frac{238.5}{5.67\times 10^{-8}\cdot 288^4} \approx 0.61
+\]</div>
+</div>
+<p>Now let’s put everything together:</p>
+<div class="math notranslate nohighlight" id="equation-my-label3">
+<span class="eqno">(3)<a class="headerlink" href="#equation-my-label3" title="Permalink to this equation">#</a></span>\[\frac{dE}{dt} = \underbrace{Q}_{\mbox{energy flux into the system}} - \underbrace{(\alpha Q + \tau \sigma T_{s}^{4})}_{\mbox{energy flux out of the system}}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label4">
+<span class="eqno">(4)<a class="headerlink" href="#equation-my-label4" title="Permalink to this equation">#</a></span>\[\Rightarrow \frac{dE}{dt} = (Q-\alpha Q) - \tau \sigma T_{s}^{4} = (1-\alpha)Q - \tau \sigma T_{s}^{4}\]</div>
+<p>We will call <span class="math notranslate nohighlight">\((1-\alpha)Q\)</span> the absorbed shorwave radiation (ASR).</p>
+</section>
+<section id="equilibrium-state">
+<h2>Equilibrium state<a class="headerlink" href="#equilibrium-state" title="Permalink to this heading">#</a></h2>
+<p>Assume that the Earth system is in energy balance, that is:</p>
+<div class="math notranslate nohighlight" id="equation-my-label5">
+<span class="eqno">(5)<a class="headerlink" href="#equation-my-label5" title="Permalink to this equation">#</a></span>\[\underbrace{Q}_{\mbox{energy flux into the system}} = \underbrace{(\alpha Q + \tau \sigma T_{s}^{4})}_{\mbox{energy flux out of the system}}\]</div>
+<p>or</p>
+<div class="math notranslate nohighlight" id="equation-my-label6">
+<span class="eqno">(6)<a class="headerlink" href="#equation-my-label6" title="Permalink to this equation">#</a></span>\[\mbox{ASR} = \mbox{OLR} \]</div>
+<div class="math notranslate nohighlight" id="equation-my-label7">
+<span class="eqno">(7)<a class="headerlink" href="#equation-my-label7" title="Permalink to this equation">#</a></span>\[\Rightarrow (1-\alpha)Q = \tau \sigma T_{s}^{4}\]</div>
+<p>We would like to solve the surface temperature in this equilibrium state, so arrange the above equation to get:</p>
+<div class="math notranslate nohighlight" id="equation-my-label8">
+<span class="eqno">(8)<a class="headerlink" href="#equation-my-label8" title="Permalink to this equation">#</a></span>\[T_{eq} = \sqrt[^4]{\frac{(1-\alpha)Q}{\tau \sigma}}\]</div>
+<p>Let’s solve <span class="math notranslate nohighlight">\(T_{eq}\)</span> as a function of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>.</p>
+<p>I wrote a very bad (but easy to understand) Python code below to calcualte <span class="math notranslate nohighlight">\(T_{eq}\)</span> with <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> varied (can you improve it?):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="mf">341.3</span> <span class="c1"># W / m^2   </span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">5.67e-8</span> <span class="c1"># W / m^2 / K^4</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="p">)</span>
+
+<span class="n">Teq_obs</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span><span class="o">/</span><span class="mf">0.61</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mf">0.25</span>
+
+<span class="n">Teq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nx</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">JJ</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">II</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+        <span class="n">Teq</span><span class="p">[</span><span class="n">JJ</span><span class="p">,</span><span class="n">II</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">[</span><span class="n">JJ</span><span class="p">])</span><span class="o">*</span><span class="n">Q</span><span class="o">/</span><span class="n">tau</span><span class="p">[</span><span class="n">II</span><span class="p">]</span><span class="o">/</span><span class="n">sigma</span><span class="p">)</span><span class="o">**</span><span class="mf">0.25</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Can you make below figure?</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Teq_test1.png"><img alt="../_images/Teq_test1.png" src="../_images/Teq_test1.png" style="width: 662.4px; height: 536.4px;" /></a>
+</figure>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="not-below">
+<h1>not below<a class="headerlink" href="#not-below" title="Permalink to this heading">#</a></h1>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="history_modelling.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The History of Climate Modeling</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="getting_started.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setting up Your Python Environment</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero-dimensional Energy Balance Model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-energy-budget">Global energy budget</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-energy-budget">Calculate the energy budget</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-state">Equilibrium state</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#not-below">not below</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thomas J. Sargent and John Stachurski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
