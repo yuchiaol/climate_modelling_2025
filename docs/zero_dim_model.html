@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/zero_dim_model';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setting up Your Python Environment" href="getting_started.html" />
+    <link rel="next" title="Layered Energy Balance Model" href="layer_model.html" />
     <link rel="prev" title="The History of Climate Modeling" href="history_modelling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -162,8 +162,8 @@ const thebe_selector_output = ".output, .cell_output"
     <div class="bd-toc-item navbar-nav active">
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="history_modelling.html">The History of Climate Modeling</a></li>
-
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Zero-dimensional Energy Balance Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layer_model.html">Layered Energy Balance Model</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Setting up Your Python Environment</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
@@ -314,15 +314,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero-dimensional Energy Balance Model</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-energy-budget">Global energy budget</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-energy-budget">Calculate the energy budget</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-state">Equilibrium state</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-energy-balance-model">Time-dependent energy balance model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-1-due-xxx">Homework assignment 1 (due xxx)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-1">Final project 1</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#not-below">not below</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -370,6 +368,10 @@ document.write(`
 <p class="admonition-title">Note</p>
 <p>Think about the roles of clouds and water vapor.</p>
 </div>
+<p>Below is the newer version of the global energy budget from Dennis L. Hartmann’s <a class="reference external" href="https://www.atmos.washington.edu/~dennis/gpc.html">textbook</a>:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Fig-2-4.png"><img alt="../_images/Fig-2-4.png" src="../_images/Fig-2-4.png" style="width: 533.2px; height: 370.8px;" /></a>
+</figure>
 </section>
 <section id="calculate-the-energy-budget">
 <h2>Calculate the energy budget<a class="headerlink" href="#calculate-the-energy-budget" title="Permalink to this heading">#</a></h2>
@@ -416,8 +418,8 @@ H = U + pV
 <li><p>The outgoing or terrestrial longwave radiative (OLR) flux.</p></li>
 </ol>
 <ul class="simple">
-<li><p>We assume the Earth behaves like a blackbody radiator with the emission temperature <span class="math notranslate nohighlight">\(T_e\)</span>.</p></li>
-<li><p>Following the Stefan-Bolzmann law: <span class="math notranslate nohighlight">\(\sigma T_{e}^4\)</span></p></li>
+<li><p>We assume the Earth behaves like a blackbody radiator with the <span style="color:red">emission temperature <span class="math notranslate nohighlight">\(T_e\)</span></span>.</p></li>
+<li><p>Following the <a class="reference external" href="https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law">Stefan-Bolzmann law</a>: <span class="math notranslate nohighlight">\(\sigma T_{e}^4\)</span></p></li>
 <li><p>Stefan-Boltzmann constant: <span class="math notranslate nohighlight">\(\sigma = 5.67\times 10^{-8} \mbox{W/m}^2/\mbox{K}^{4}\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(T_{e} = \sqrt[^4]{\frac{238.5}{\sigma}} = ?\)</span> You should get a very cold temperature…(what happens here?)</p></li>
 </ul>
@@ -482,9 +484,147 @@ H = U + pV
 <a class="reference internal image-reference" href="../_images/Teq_test1.png"><img alt="../_images/Teq_test1.png" src="../_images/Teq_test1.png" style="width: 662.4px; height: 536.4px;" /></a>
 </figure>
 </section>
+<section id="time-dependent-energy-balance-model">
+<h2>Time-dependent energy balance model<a class="headerlink" href="#time-dependent-energy-balance-model" title="Permalink to this heading">#</a></h2>
+<p>In the real word and for most climate modelling system, the energy-balance state of a climate can be broken if some disturbances or process changes in the system (e.g., greenhouse gases). The system is no longer in equilibrium, but it may adjust to a new equibrium state (if not, what will happen?). So we are now back to Equation (4).</p>
+<p>We relate the enthalpy <span class="math notranslate nohighlight">\(E\)</span> to the global-mean surface temperature <span class="math notranslate nohighlight">\(T_{s}\)</span> with a constant <span class="math notranslate nohighlight">\(C\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-my-label9">
+<span class="eqno">(9)<a class="headerlink" href="#equation-my-label9" title="Permalink to this equation">#</a></span>\[E = CT_{s}\]</div>
+<p>where <span class="math notranslate nohighlight">\(C\)</span> is the effective heat capacity of atmosphere and ocean combined.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Assuming <span class="math notranslate nohighlight">\(C\)</span> as a constant is somewhat tricky and highly-simplified. It is apparently not reasonable to treat the atmosphere, ocean, cryopshere together as one value <span class="math notranslate nohighlight">\(C\)</span>. However, to start with this zero-dimensional simple model, a constant <span class="math notranslate nohighlight">\(C\)</span> may be suffient.</p>
+<p>We can assume that most of the heat capacity comes from the upper ocean (reasonable, right?), then</p>
+<div class="math notranslate nohighlight">
+\[
+C = c_{w}\rho_{w}H
+\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(c_w\)</span> is the specific heat of water = <span class="math notranslate nohighlight">\(4\times 10^{3}\)</span> <span class="math notranslate nohighlight">\(\mbox{J/kg/K}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho\)</span> is the density of water = <span class="math notranslate nohighlight">\(10^3\)</span> <span class="math notranslate nohighlight">\(\mbox{kg/m}^3\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(H\)</span> is the effective depth of sea water <span class="math notranslate nohighlight">\(\approx\)</span> 100 m.</p></li>
+</ul>
+<p>We will have the effective heat capacity <span class="math notranslate nohighlight">\(4.0\times 10^{8}\)</span> <span class="math notranslate nohighlight">\(\mbox{J/m}^{2}\mbox{/K}\)</span>.</p>
+</div>
+<p>Then Equation (4) becomes:</p>
+<div class="math notranslate nohighlight" id="equation-my-label10">
+<span class="eqno">(10)<a class="headerlink" href="#equation-my-label10" title="Permalink to this equation">#</a></span>\[C\frac{dT_s}{dt} = (1-\alpha)Q - \tau \sigma T_{s}^{4}\]</div>
+<p>Now we can solve this equation analytically!!! We adopt the concept of linear perturbation to the system:</p>
+<div class="math notranslate nohighlight" id="equation-my-label11">
+<span class="eqno">(11)<a class="headerlink" href="#equation-my-label11" title="Permalink to this equation">#</a></span>\[\begin{split}T_{s} = T_{eq} + T_{s}'\\ T_{s}' \ll T_{eq}\end{split}\]</div>
+<p>Using Taylor series expansion, we can approximate</p>
+<div class="math notranslate nohighlight" id="equation-my-label12">
+<span class="eqno">(12)<a class="headerlink" href="#equation-my-label12" title="Permalink to this equation">#</a></span>\[\tau \sigma T_{s}^{4} = \tau \sigma (T_{eq}+T_{s}')^{4} \approx \tau \sigma(T_{eq}^{4}+4T_{eq}^{3}T_{s}')\]</div>
+<p>The energy balance equation can be then written as:</p>
+<div class="math notranslate nohighlight" id="equation-my-label13">
+<span class="eqno">(13)<a class="headerlink" href="#equation-my-label13" title="Permalink to this equation">#</a></span>\[\Rightarrow C\frac{d(T_{eq}+T_{s}')}{dt} = (1-\alpha)Q - \tau \sigma (T_{eq}+T_{s}')^{4} = (1-\alpha)Q - \tau \sigma (T_{eq}^{4}+4T_{eq}^{3}T_{s}')\]</div>
+<p>Recall that <span class="math notranslate nohighlight">\(T_{eq}=\sqrt[4]{\frac{(1-\alpha)Q}{\tau \sigma}}\)</span>, such that:</p>
+<div class="math notranslate nohighlight" id="equation-my-label14">
+<span class="eqno">(14)<a class="headerlink" href="#equation-my-label14" title="Permalink to this equation">#</a></span>\[\Rightarrow C\frac{d(T_{eq}+T_{s}')}{dt} = (1-\alpha)Q - \tau \sigma (\frac{(1-\alpha)Q}{\tau \sigma}+4T_{eq}^{3}T_{s}') = -4\tau \sigma T_{eq}^{3}T_{s}'\]</div>
+<p>We define a feedback parameter:</p>
+<div class="math notranslate nohighlight" id="equation-my-label15">
+<span class="eqno">(15)<a class="headerlink" href="#equation-my-label15" title="Permalink to this equation">#</a></span>\[\lambda_{0} = 4\tau \sigma T_{eq}^{3}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label16">
+<span class="eqno">(16)<a class="headerlink" href="#equation-my-label16" title="Permalink to this equation">#</a></span>\[\Rightarrow C\frac{dT_{s}'}{dt} = -\lambda_{0} T_{s}'\]</div>
+<p>We next define a characteristic timescale:</p>
+<div class="math notranslate nohighlight" id="equation-my-label17">
+<span class="eqno">(17)<a class="headerlink" href="#equation-my-label17" title="Permalink to this equation">#</a></span>\[t^{*} \equiv \frac{C}{\lambda_{0}}\]</div>
+<p>The the equation becomes:</p>
+<div class="math notranslate nohighlight" id="equation-my-label18">
+<span class="eqno">(18)<a class="headerlink" href="#equation-my-label18" title="Permalink to this equation">#</a></span>\[\frac{dT_{s}'}{dt} = - \frac{T_{s}'}{t^{*}} \Rightarrow \frac{dT_{s}'}{T_{s}'} = - \frac{dt}{t^{*}}\]</div>
+<p>Take integral on both sides with a given initial condition <span class="math notranslate nohighlight">\(T_{s}'(0)\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-my-label19">
+<span class="eqno">(19)<a class="headerlink" href="#equation-my-label19" title="Permalink to this equation">#</a></span>\[\int_{T_{s}'(0)}^{T_{s}'(t)}\frac{dT_{s}'}{T_{s}'} = \int_{0}^{t}-\frac{dt}{t^{*}} \]</div>
+<div class="math notranslate nohighlight" id="equation-my-label20">
+<span class="eqno">(20)<a class="headerlink" href="#equation-my-label20" title="Permalink to this equation">#</a></span>\[\Rightarrow \ln \frac{T_{s}'(t)}{T_{s}'(0)} = -\frac{t}{t^{*}}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label21">
+<span class="eqno">(21)<a class="headerlink" href="#equation-my-label21" title="Permalink to this equation">#</a></span>\[\Rightarrow T_{s}'(t) = T_{s}'(0)e^{-\frac{t}{t^{*}}}\]</div>
+<p>Above are all mathematics, we now discuss the parameters and outcome.</p>
+<ol class="arabic simple">
+<li><p>The analytical solution:</p></li>
+</ol>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/T_solution.png"><img alt="../_images/T_solution.png" src="../_images/T_solution.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+<p>If we consider a global warming scenario, that is <span class="math notranslate nohighlight">\(\tau=0.57\)</span> and <span class="math notranslate nohighlight">\(\alpha=0.32\)</span>, then we have the solutions:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/T_solution2.png"><img alt="../_images/T_solution2.png" src="../_images/T_solution2.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>The Planck feeback, <span class="math notranslate nohighlight">\(\lambda_{0}\)</span>:</p></li>
+</ol>
+<ul class="simple">
+<li><p>The strength of Planck feedback can be quantified by <span class="math notranslate nohighlight">\(\lambda_{0}\)</span>, which we usually call the Planck feedback parameter (more correctly -<span class="math notranslate nohighlight">\(\lambda_{0}\)</span> to denote it is a negative feedback).</p></li>
+<li><p>If we use the code from Professor Brian Rose, we can get its value 3.31 W/m<span class="math notranslate nohighlight">\(^2\)</span>/K. This value does not vary too much in climate model simulations with different scenarios.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OLRobserved</span> <span class="o">=</span> <span class="mf">238.5</span>  <span class="c1"># in W/m2</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">5.67E-8</span>  <span class="c1"># S-B constant</span>
+<span class="n">Tsobserved</span> <span class="o">=</span> <span class="mf">288.</span>  <span class="c1"># global average surface temperature</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">OLRobserved</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">Tsobserved</span><span class="o">**</span><span class="mi">4</span>  <span class="c1"># solve for tuned value of transmissivity</span>
+
+<span class="n">lambda_0</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">Tsobserved</span><span class="o">**</span><span class="mi">3</span>
+<span class="c1">#  This is an example of formatted text output in Python</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;lambda_0 = </span><span class="si">{:.2f}</span><span class="s1"> W m-2 K-1&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lambda_0</span><span class="p">)</span>  <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>lambda_0 = 3.31 W m-2 K-1
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>refer to as no-feedback climate response parameter.</p></li>
+<li><p>Since <span class="math notranslate nohighlight">\(\lambda_{0} = 4\tau \sigma T_{eq}^{3}\)</span> and <span class="math notranslate nohighlight">\(T_{eq} = \sqrt[^4]{\frac{(1-\alpha)Q}{\tau \sigma}}\)</span>, we can make a plot for <span class="math notranslate nohighlight">\(\lambda_{0}\)</span> as a function of <span class="math notranslate nohighlight">\(\tau\)</span> and <span class="math notranslate nohighlight">\(\alpha\)</span>:</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/lambda_zero.png"><img alt="../_images/lambda_zero.png" src="../_images/lambda_zero.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+<ol class="arabic simple" start="3">
+<li><p>The characteristic timescale <span class="math notranslate nohighlight">\(t^{*}\)</span>:</p></li>
+</ol>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(t^{*}\)</span> depends on effective heat capacity and radiative feedback process.</p></li>
+<li><p>We can calculate its value by <span class="math notranslate nohighlight">\(\frac{C}{\lambda_{0}}=\frac{4.0\times10^{8}}{3.31}\approx 120845921\)</span> second <span class="math notranslate nohighlight">\(\approx 3.8\)</span> year.</p></li>
+<li><p>This means this climate system requires about 4 years to reach a quasi-equilibrium state based on the e-folding time criterion.</p></li>
+<li><p>not too long, right?</p></li>
+<li><p>We can make a plot to show its dependency on <span class="math notranslate nohighlight">\(H\)</span> and <span class="math notranslate nohighlight">\(\lambda_{0}\)</span>:</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/T_star.png"><img alt="../_images/T_star.png" src="../_images/T_star.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="not-below">
-<h1>not below<a class="headerlink" href="#not-below" title="Permalink to this heading">#</a></h1>
+<section id="homework-assignment-1-due-xxx">
+<h2>Homework assignment 1 (due xxx)<a class="headerlink" href="#homework-assignment-1-due-xxx" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>If the outgoing longwave radiation is 238.5 <span class="math notranslate nohighlight">\(\mbox{W/m}^2\)</span> as observed and we purely consider the Earth as a blackbody, what is the corresponding surface air temperature <span class="math notranslate nohighlight">\(T_{s}\)</span>?</p></li>
+<li><p>Can you make the contour plot for <span class="math notranslate nohighlight">\(T_{eq}\)</span> as a function of <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>? If global warming occurs, what is the possible changes in <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span>, and the resultant <span class="math notranslate nohighlight">\(T_{eq}\)</span>?</p></li>
+<li><p>Can you use numerical method to solve Equation (10)? Please make a plot for the numerical solution together with the analytical solution included. Please also submit your code.</p></li>
+</ol>
+</section>
+<section id="final-project-1">
+<h2>Final project 1<a class="headerlink" href="#final-project-1" title="Permalink to this heading">#</a></h2>
+<p>When global warming occurs, high temperature could melt sea ice or glaciers that greatly reduce the albedo. In other words, the planetary albedo can be considered as a function of temperature, rather than a fixed value as we discuss above.</p>
+<p>One widely-used simple albedo parameterization is:</p>
+<div class="math notranslate nohighlight" id="equation-my-label22">
+<span class="eqno">(22)<a class="headerlink" href="#equation-my-label22" title="Permalink to this equation">#</a></span>\[\alpha(T) = \alpha_{i}=0.7, \mbox{ when } T\le T_{i} = 260 K\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label23">
+<span class="eqno">(23)<a class="headerlink" href="#equation-my-label23" title="Permalink to this equation">#</a></span>\[\alpha(T) = \alpha_{0} = 0.289, \mbox{ when } T\ge T_{0} = 293 K\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label24">
+<span class="eqno">(24)<a class="headerlink" href="#equation-my-label24" title="Permalink to this equation">#</a></span>\[\alpha(T) = \alpha_{0} + (\alpha_{i}-\alpha_{0})\frac{(T-T_{0})^{2}}{(T_{i}-T_{0})^{2}}, \mbox{ when } T_{i}=260 K\lt T \lt T_{0}= 293 K\]</div>
+<ol class="arabic simple">
+<li><p>Discuss why we choose <span class="math notranslate nohighlight">\(\alpha_{i}=0.7\)</span> and <span class="math notranslate nohighlight">\(T_{i}=260 K\)</span>. What does this condition in a climate system mean?</p></li>
+<li><p>Discuss why we choose <span class="math notranslate nohighlight">\(\alpha_{0} = 0.289\)</span> and <span class="math notranslate nohighlight">\(T_{0}=293 K\)</span>. What does this condition in a climate system mean?</p></li>
+<li><p>Can you calcuate the solution for <span class="math notranslate nohighlight">\(T_{eq}\)</span> anallytically, when implementing <span class="math notranslate nohighlight">\(\alpha(T)\)</span> in Equation (10)?</p></li>
+<li><p>Can you calcualte the numerical solution for <span class="math notranslate nohighlight">\(T_{eq}\)</span> anallytically, when implementing <span class="math notranslate nohighlight">\(\alpha(T)\)</span> in Equation (10)?</p></li>
+<li><p>Please find the relationship between <span class="math notranslate nohighlight">\(T_{eq}\)</span> and <span class="math notranslate nohighlight">\(\alpha(T)\)</span>.</p></li>
+<li><p>Feel free to add or discuss anything else?</p></li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -527,11 +667,11 @@ H = U + pV
       </div>
     </a>
     <a class="right-next"
-       href="getting_started.html"
+       href="layer_model.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Setting up Your Python Environment</p>
+        <p class="prev-next-title">Layered Energy Balance Model</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -550,15 +690,13 @@ H = U + pV
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Zero-dimensional Energy Balance Model</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-energy-budget">Global energy budget</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-the-energy-budget">Calculate the energy budget</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-state">Equilibrium state</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#time-dependent-energy-balance-model">Time-dependent energy balance model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-1-due-xxx">Homework assignment 1 (due xxx)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-1">Final project 1</a></li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#not-below">not below</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

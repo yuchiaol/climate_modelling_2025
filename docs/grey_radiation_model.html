@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Climate Modelling &#8212; Scientific Python QuickStart</title>
+    <title>Grey Radiation Model &#8212; Scientific Python QuickStart</title>
   
   
   
@@ -62,10 +62,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/index';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/grey_radiation_model';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The History of Climate Modeling" href="history_modelling.html" />
+    <link rel="next" title="An Introductory Example" href="python_by_example.html" />
+    <link rel="prev" title="Layered Energy Balance Model" href="layer_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -140,7 +143,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="sidebar-primary-item">
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="index.html">
   
   
   
@@ -157,11 +160,11 @@ const thebe_selector_output = ".output, .cell_output"
 </a></div>
         <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="history_modelling.html">The History of Climate Modeling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="zero_dim_model.html">Zero-dimensional Energy Balance Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="layer_model.html">Layered Energy Balance Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="grey_radiation_model.html">Grey Radiation Model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Grey Radiation Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
 </ul>
@@ -218,7 +221,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/docs/index.md" target="_blank"
+      <li><a href="../_sources/docs/grey_radiation_model.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +303,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Climate Modelling</h1>
+    <h1>Grey Radiation Model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -310,8 +313,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-information">Class information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants">Teaching assistants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climlab">climlab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-3-due-xxx">Homework assignment 3 (due xxx)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-3">Final project 3</a></li>
 </ul>
             </nav>
         </div>
@@ -323,50 +327,27 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="climate-modelling">
-<h1>Climate Modelling<a class="headerlink" href="#climate-modelling" title="Permalink to this heading">#</a></h1>
-<p>This is a short sequence of lectures on Climate Modelling, written by <a class="reference external" href="https://littleyuchiao.wixsite.com/yuchiaol">Yu-Chiao Liang</a>.
-for the undergraduate students at the Department of Atmospheric Sciences, College of Earth Sciences,
-National Central University, and the Department of Atmospheric Sciences, National Taiwan University.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="grey-radiation-model">
+<span id="id1"></span><h1>Grey Radiation Model<a class="headerlink" href="#grey-radiation-model" title="Permalink to this heading">#</a></h1>
+<section id="climlab">
+<h2>climlab<a class="headerlink" href="#climlab" title="Permalink to this heading">#</a></h2>
+<p>From now on, it would be useful, and sometimes helpful, to konw <a class="reference external" href="https://climlab.readthedocs.io/en/latest/">climlab</a>, developed by Professor Brian E. J. Rose. Let’s start with a few examples: <a class="reference external" href="https://brian-rose.github.io/ClimateLaboratoryBook/courseware/grey-radiation-climlab.html">here</a>. We will see how to construct a 30-layer model, which seems not feasible for solving the equations analytically.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Chapter-3-1.png"><img alt="../_images/Chapter-3-1.png" src="../_images/Chapter-3-1.png" style="width: 892.5px; height: 732.2px;" /></a>
+</figure>
+<div class="math notranslate nohighlight" id="equation-my-label26">
+<span class="eqno">(61)<a class="headerlink" href="#equation-my-label26" title="Permalink to this equation">#</a></span>\[(1-\alpha)Q + \sigma T_{a}^{4} = \sigma T_{s}^{4}\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Some of the course materials were modified from the lecture notes from Professor <a class="reference external" href="https://www.atmos.albany.edu/facstaff/brose/index.html">Brian E. J. Rose</a>,
-University at Albany:
-<a class="reference external" href="https://www.atmos.albany.edu/facstaff/brose/classes/ATM623_Spring2015/Notes/index.html">website link here</a>.</p>
-<p>Some materials were also from “The Climate Modelling Primer” by Kendal McGuffie and Ann Henderson-Sellers. This textbook can be found on WILEY publisher: <a class="reference external" href="https://www.wiley.com/en-ca/The+Climate+Modelling+Primer%2C+4th+Edition-p-9781119943372">website link here</a>.</p>
+<p>back radiation: <span class="math notranslate nohighlight">\(\sigma T_{a}^{4}\)</span></p>
 </div>
-<section id="class-information">
-<h2>Class information<a class="headerlink" href="#class-information" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Curriculum Number: xxx</p></li>
-<li><p>Curriculum Id Number: xxx</p></li>
-<li><p>Credit: 2</p></li>
-<li><p>Time: Wednesday, 3,4 (10:20 am - 12:10 pm)</p></li>
-<li><p>Place: xxx</p></li>
-<li><p>Co-teach with Professor xxx</p></li>
-<li><p>Requirements: basic knowledge in calculus, programming skills, radiation, weather and climate dynamics.</p></li>
-<li><p>Office hours: Wednesday 12:10-1:20 pm at xxx or by appointment</p></li>
-<li><p>Grading (100%): homework assignments (50%); midterm presentation (25%); final presentation (20%); class interaction (5%)</p></li>
-<li><p>Homework assignments:</p></li>
-</ul>
-<ol class="arabic simple">
-<li><p>Homework due is every Wednesday at 10:00 am.</p></li>
-<li><p>50% off before Wednesday’s class ends at 12:10 pm.</p></li>
-<li><p>No credit after Wednesday’s class.</p></li>
-<li><p>借別人參考的作業也強制適用以上規則！</p></li>
-</ol>
-<ul class="simple">
-<li><p>Course website: <a class="reference external" href="https://yuchiaol.github.io/climate_modelling_2025/docs/index.html">here</a></p></li>
-</ul>
 </section>
-<section id="teaching-assistants">
-<h2>Teaching assistants<a class="headerlink" href="#teaching-assistants" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>xxx</p></li>
-</ul>
+<section id="homework-assignment-3-due-xxx">
+<h2>Homework assignment 3 (due xxx)<a class="headerlink" href="#homework-assignment-3-due-xxx" title="Permalink to this heading">#</a></h2>
 </section>
-<div class="toctree-wrapper compound">
-</div>
+<section id="final-project-3">
+<h2>Final project 3<a class="headerlink" href="#final-project-3" title="Permalink to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -399,12 +380,21 @@ University at Albany:
                 <footer class="prev-next-footer">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="layer_model.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Layered Energy Balance Model</p>
+      </div>
+    </a>
     <a class="right-next"
-       href="history_modelling.html"
+       href="python_by_example.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The History of Climate Modeling</p>
+        <p class="prev-next-title">An Introductory Example</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -423,8 +413,9 @@ University at Albany:
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-information">Class information</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants">Teaching assistants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climlab">climlab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-3-due-xxx">Homework assignment 3 (due xxx)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-3">Final project 3</a></li>
 </ul>
   </nav></div>
 
