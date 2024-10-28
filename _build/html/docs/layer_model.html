@@ -1,0 +1,828 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Layered Energy Balance Model &#8212; Scientific Python QuickStart</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=ac02cc09edc035673794" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=ac02cc09edc035673794"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/layer_model';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Grey Radiation Model" href="grey_radiation_model.html" />
+    <link rel="prev" title="Zero-dimensional Energy Balance Model" href="zero_dim_model.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/qe-logo-large.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/qe-logo-large.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="history_modelling.html">The History of Climate Modeling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="zero_dim_model.html">Zero-dimensional Energy Balance Model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Layered Energy Balance Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grey_radiation_model.html">Grey Radiation Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/layer_model.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Layered Energy Balance Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-absorption-spectra">Atmospheric absorption spectra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-with-one-layer-atmosphere-and-one-layer-surface-one-layer-model">Model with one-layer atmosphere and one-layer surface (one-layer model)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-with-two-layer-atmosphere-and-one-layer-surface-two-layer-model">Model with two-layer atmosphere and one-layer surface (two-layer model)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upward-beam">Upward beam</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downward-beam">Downward beam</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-atmospheric-layer2">The atmospheric layer2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-atmospheric-layer1">The atmospheric layer1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-surface">The surface</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#level-of-emission">Level of emission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-2-due-xxx">Homework assignment 2 (due xxx)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-2">Final project 2</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="layered-energy-balance-model">
+<span id="layer-model"></span><h1>Layered Energy Balance Model<a class="headerlink" href="#layered-energy-balance-model" title="Permalink to this heading">#</a></h1>
+<p>The zero-dimensional energy balance model discussed in previous lecture does not contain vertical distribution of the atmosphere, which is important in understanding climate change. We will introduce the simple two-layer model, simple three-layer model, and n-layer model. These models will pave a road for understanding Manabe’s radiative-convective equilibrium that will be discussed in the next lecture. Before these, let’s start with radiation process in the atmosphere.</p>
+<section id="atmospheric-absorption-spectra">
+<h2>Atmospheric absorption spectra<a class="headerlink" href="#atmospheric-absorption-spectra" title="Permalink to this heading">#</a></h2>
+<p>The most important results, using <a class="reference external" href="https://en.wikipedia.org/wiki/Planck%27s_law">Planck’s law</a> from atmospheric radiation studies are probably can be shown in the figure from Dennis L. Hartmann’s <a class="reference external" href="https://www.atmos.washington.edu/~dennis/gpc.html">textbook</a> (his Figure 3.1):</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Chapter-3-1.png"><img alt="../_images/Chapter-3-1.png" src="../_images/Chapter-3-1.png" style="width: 892.5px; height: 732.2px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>We call longer wavelengths “infrared”, and shorter wavelengths “ultraviolet”.</p></li>
+<li><p>The Earth emission temperature is 255 K.</p></li>
+<li><p>The Sun emission temperature is 6000 K with peak wavelength <span class="math notranslate nohighlight">\(\lambda_{peak, Sun}\)</span> 0.6 <span class="math notranslate nohighlight">\(\mu m\)</span>.</p></li>
+<li><p>We know that soloar spectrum peaks at 0.6 micrometers. By <a class="reference external" href="https://en.wikipedia.org/wiki/Wien%27s_displacement_law">Wien’s displacement law</a>, we can get:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-my-label25">
+<span class="eqno">(25)<a class="headerlink" href="#equation-my-label25" title="Permalink to this equation">#</a></span>\[T_{e}\times \lambda_{peak} = b \Rightarrow 6000\times 0.6 = 255\times \lambda_{peak, Earth} \Rightarrow \lambda_{peak, Earth} = 14 \mu m\]</div>
+<ul class="simple">
+<li><p>Let’s quickly review the air gas composition looking at Hartmann’s table1.1:</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/gas_table1.png"><img alt="../_images/gas_table1.png" src="../_images/gas_table1.png" style="width: 629.0px; height: 652.0px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>The abropstion of these gases, Figure 3.4 from Hartmann’s text book:</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Fig-3-4.png"><img alt="../_images/Fig-3-4.png" src="../_images/Fig-3-4.png" style="width: 480.1px; height: 495.1px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>The molecular structure of these gases, Figure 3.3 from Hartmann’s text book:</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/Fig-3-3.png"><img alt="../_images/Fig-3-3.png" src="../_images/Fig-3-3.png" style="width: 545.2px; height: 845.2px;" /></a>
+</figure>
+</section>
+<section id="model-with-one-layer-atmosphere-and-one-layer-surface-one-layer-model">
+<h2>Model with one-layer atmosphere and one-layer surface (one-layer model)<a class="headerlink" href="#model-with-one-layer-atmosphere-and-one-layer-surface-one-layer-model" title="Permalink to this heading">#</a></h2>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/one_atm_one_surf.png"><img alt="../_images/one_atm_one_surf.png" src="../_images/one_atm_one_surf.png" style="width: 725.6px; height: 373.6px;" /></a>
+</figure>
+<p>We assume:</p>
+<ul class="simple">
+<li><p>A single-layer atmosphere with temperature <span class="math notranslate nohighlight">\(T_{a}\)</span>.</p></li>
+<li><p>The atmosphere is transparent to shortwave radiation.</p></li>
+<li><p>The surface albedo is <span class="math notranslate nohighlight">\(\alpha\)</span>.</p></li>
+<li><p>The atmosphere aabsorbs all longwave radiation from the surface.</p></li>
+<li><p>The atmosphere and surface are blackbodies.</p></li>
+<li><p>The atmosphere radiates equally upward and downward.</p></li>
+</ul>
+<p>We consider surface energy balance:</p>
+<div class="math notranslate nohighlight" id="equation-my-label26">
+<span class="eqno">(26)<a class="headerlink" href="#equation-my-label26" title="Permalink to this equation">#</a></span>\[(1-\alpha)Q + \sigma T_{a}^{4} = \sigma T_{s}^{4}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>back radiation: <span class="math notranslate nohighlight">\(\sigma T_{a}^{4}\)</span></p>
+</div>
+<p>We consider atmosphere energy balance:</p>
+<div class="math notranslate nohighlight" id="equation-my-label27">
+<span class="eqno">(27)<a class="headerlink" href="#equation-my-label27" title="Permalink to this equation">#</a></span>\[\sigma T_{s}^{4} = 2\sigma T_{a}^{4}\]</div>
+<p>So we can get the result that surface temperature is alway higher than the atmospheric temperature:</p>
+<div class="math notranslate nohighlight" id="equation-my-label28">
+<span class="eqno">(28)<a class="headerlink" href="#equation-my-label28" title="Permalink to this equation">#</a></span>\[T_{s} = 2^{0.25}T_{a} \approx 1.2T_{a}\]</div>
+<p>If we assume <span class="math notranslate nohighlight">\(T_{a}\)</span> = <span class="math notranslate nohighlight">\(T_{e}\)</span> = 255 K (the emission temperature, how do we get this value?), we can <span class="math notranslate nohighlight">\(T_{s}\)</span> = 303 K. In reality, the surface temperature is about 288 K, lower than 303 K. Why?</p>
+<p>Let’s play around with varying <span class="math notranslate nohighlight">\(Q\)</span> and <span class="math notranslate nohighlight">\(\alpha\)</span>:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/one_layer_surface_T.png"><img alt="../_images/one_layer_surface_T.png" src="../_images/one_layer_surface_T.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+</section>
+<section id="model-with-two-layer-atmosphere-and-one-layer-surface-two-layer-model">
+<h2>Model with two-layer atmosphere and one-layer surface (two-layer model)<a class="headerlink" href="#model-with-two-layer-atmosphere-and-one-layer-surface-two-layer-model" title="Permalink to this heading">#</a></h2>
+<p>The surface temperature is too warm in the one-layer model. How could we improve the model to better capture the real surface air temperature?</p>
+<p>Many aspects can be considered (can you think about some?). We start by considering the vertical structure and longwave absorption by the atmosphere(s).</p>
+<p>We keep most of the assumptions made for one-layer model, but modify the model as below:</p>
+<ul class="simple">
+<li><p>include one more atmospheric layer.</p></li>
+<li><p>each atmospehric layer absorbs a fraction of longwave radiation. This fraction is <span class="math notranslate nohighlight">\(\epsilon\)</span> and we call it absorptivity.</p></li>
+<li><p>the reamaining <span class="math notranslate nohighlight">\(1-\epsilon\)</span> readiation will pass through the layer.</p></li>
+<li><p>we adopt the <a class="reference external" href="https://en.wikipedia.org/wiki/Kirchhoff%27s_law_of_thermal_radiation">Kirchhoff’s law of thermal radiation</a>: “For an arbitrary body emitting and absorbing thermal radiation in thermodynamic equilibrium, the emissivity function is equal to the absorptivity function.”. That is absorptivity is equal to emissivity.</p></li>
+<li><p>consider the two longwave beams: upward (U) and downward (D) beams.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is a grey gas-type model. Grey meands that the emission and absorption do not depend on the wavelength.</p>
+</div>
+<p>Let’s look at the model:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/two_layer_surface_T.png"><img alt="../_images/two_layer_surface_T.png" src="../_images/two_layer_surface_T.png" style="width: 728.0px; height: 403.20000000000005px;" /></a>
+</figure>
+<section id="upward-beam">
+<h3>Upward beam<a class="headerlink" href="#upward-beam" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-my-label29">
+<span class="eqno">(29)<a class="headerlink" href="#equation-my-label29" title="Permalink to this equation">#</a></span>\[U_{s} = \sigma T_{s}^{4}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label30">
+<span class="eqno">(30)<a class="headerlink" href="#equation-my-label30" title="Permalink to this equation">#</a></span>\[U_{1} = (1-\epsilon)U_{s} + \epsilon \sigma T_{1}^{4} = (1-\epsilon)\sigma T_{s}^{4} + \epsilon \sigma T_{1}^{4}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label31">
+<span class="eqno">(31)<a class="headerlink" href="#equation-my-label31" title="Permalink to this equation">#</a></span>\[\begin{split}U_{2} &amp;=&amp; (1-\epsilon)U_{1} + \epsilon \sigma T_{2}^{4} = (1-\epsilon)((1-\epsilon)U_{s} + \epsilon \sigma T_{1}^{4}) + \epsilon \sigma T_{2}^{4} \\ 
+&amp;=&amp; \underbrace{(1-\epsilon)^{2}\sigma T_{s}^{4}}_{\mbox{from surface}} + \underbrace{\epsilon (1-\epsilon) \sigma T_{1}^{4}}_{\mbox{from atmospheric layer 1}} + \underbrace{\epsilon \sigma T_{2}^{4}}_{\mbox{from atmospheric layer 2}}\end{split}\]</div>
+</section>
+<section id="downward-beam">
+<h3>Downward beam<a class="headerlink" href="#downward-beam" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-my-label32">
+<span class="eqno">(32)<a class="headerlink" href="#equation-my-label32" title="Permalink to this equation">#</a></span>\[D_{2} = 0\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label33">
+<span class="eqno">(33)<a class="headerlink" href="#equation-my-label33" title="Permalink to this equation">#</a></span>\[D_{1} = (1-\epsilon)D_{2} + \epsilon \sigma T_{2}^{4} = \epsilon \sigma T_{2}^{4}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label34">
+<span class="eqno">(34)<a class="headerlink" href="#equation-my-label34" title="Permalink to this equation">#</a></span>\[D_{s} = (1-\epsilon)(1-\epsilon)D_{2} + (1-\epsilon)D_{1} + \epsilon \sigma T_{1}^{4} = (1-\epsilon)\epsilon \sigma T_{2}^{4} + \epsilon \sigma T_{1}^{4}\]</div>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\epsilon = 1\)</span>, the atmopsheres absorb everything:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-my-label35">
+<span class="eqno">(35)<a class="headerlink" href="#equation-my-label35" title="Permalink to this equation">#</a></span>\[\begin{split}U_{s} = \sigma T_{s}^{4}\\
+U_{1} = \sigma T_{1}^{4}\\
+U_{2} = \sigma T_{2}^{4}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label36">
+<span class="eqno">(36)<a class="headerlink" href="#equation-my-label36" title="Permalink to this equation">#</a></span>\[\begin{split}D_{2} = 0 \\
+D_{1} = \sigma T_{2}^{4}\\
+D_{s} = \sigma T_{1}^{4}\end{split}\]</div>
+<ul class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(\epsilon = 0\)</span>, the atmopsheres absorb nothing:</p></li>
+</ul>
+<div class="math notranslate nohighlight" id="equation-my-label37">
+<span class="eqno">(37)<a class="headerlink" href="#equation-my-label37" title="Permalink to this equation">#</a></span>\[\begin{split}U_{s} = \sigma T_{s}^{4}\\
+U_{1} = \sigma T_{s}^{4}\\
+U_{2} = \sigma T_{s}^{4}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label38">
+<span class="eqno">(38)<a class="headerlink" href="#equation-my-label38" title="Permalink to this equation">#</a></span>\[\begin{split}D_{2} = 0\\
+D_{1} = 0\\
+D_{s} = 0\end{split}\]</div>
+<p>Let’s solve temperatures considering an energy balance state!</p>
+</section>
+<section id="the-atmospheric-layer2">
+<h3>The atmospheric layer2<a class="headerlink" href="#the-atmospheric-layer2" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-my-label39">
+<span class="eqno">(39)<a class="headerlink" href="#equation-my-label39" title="Permalink to this equation">#</a></span>\[U_{2} + D_{1} = D_{2} + U_{1}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label40">
+<span class="eqno">(40)<a class="headerlink" href="#equation-my-label40" title="Permalink to this equation">#</a></span>\[\Rightarrow (1-\epsilon)^{2}\sigma T_{s}^{4} + \epsilon (1-\epsilon)\sigma T_{1}^{4} + \epsilon \sigma T_{2}^{4} +  \epsilon \sigma T_{2}^{4} = 0 + (1-\epsilon)\sigma T_{s}^{4} + \epsilon \sigma T_{1}^{4}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label41">
+<span class="eqno">(41)<a class="headerlink" href="#equation-my-label41" title="Permalink to this equation">#</a></span>\[\begin{split}\Rightarrow [2\epsilon]\sigma T_{2}^{4}\\
++ [-\epsilon^{2}]\sigma T_{1}^{4}\\
++ [\epsilon^{2}-\epsilon]\sigma T_{s}^{4}\\\end{split}\]</div>
+</section>
+<section id="the-atmospheric-layer1">
+<h3>The atmospheric layer1<a class="headerlink" href="#the-atmospheric-layer1" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-my-label42">
+<span class="eqno">(42)<a class="headerlink" href="#equation-my-label42" title="Permalink to this equation">#</a></span>\[U_{1} + D_{s} = D_{1} + U_{s}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label43">
+<span class="eqno">(43)<a class="headerlink" href="#equation-my-label43" title="Permalink to this equation">#</a></span>\[\Rightarrow (1-\epsilon)\sigma T_{s}^{4} + \epsilon \sigma T_{1}^{4} + (1-\epsilon)\epsilon \sigma T_{2}^{4} + \epsilon \sigma T_{1}^{4} = \sigma T_{s}^{4} + \epsilon \sigma T_{2}^{4}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label44">
+<span class="eqno">(44)<a class="headerlink" href="#equation-my-label44" title="Permalink to this equation">#</a></span>\[\begin{split}\Rightarrow [-\epsilon^{2}]\sigma T_{2}^{4}\\
+[2\epsilon]\sigma T_{1}^{4}\\
+[-\epsilon]\sigma T_{s}^{4}\end{split}\]</div>
+</section>
+<section id="the-surface">
+<h3>The surface<a class="headerlink" href="#the-surface" title="Permalink to this heading">#</a></h3>
+<div class="math notranslate nohighlight" id="equation-my-label45">
+<span class="eqno">(45)<a class="headerlink" href="#equation-my-label45" title="Permalink to this equation">#</a></span>\[U_{s} + \alpha Q = D_{s} + Q\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label46">
+<span class="eqno">(46)<a class="headerlink" href="#equation-my-label46" title="Permalink to this equation">#</a></span>\[\Rightarrow \sigma T_{s}^{4} - (1-\epsilon)\epsilon \sigma T_{2}^{4} - \epsilon \sigma T_{1}^{4} = (1- \alpha)Q\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label47">
+<span class="eqno">(47)<a class="headerlink" href="#equation-my-label47" title="Permalink to this equation">#</a></span>\[\begin{split}\Rightarrow [\epsilon^{2}-\epsilon]\sigma T_{2}^{4}\\
+[-\epsilon]\sigma T_{1}^{4}\\
+[1]\sigma T_{s}^{4}\end{split}\]</div>
+<p>Now we can write the above equations in a matrix form:</p>
+<div class="math notranslate nohighlight" id="equation-my-label48">
+<span class="eqno">(48)<a class="headerlink" href="#equation-my-label48" title="Permalink to this equation">#</a></span>\[\begin{split}\underbrace{\begin{bmatrix}
+2\epsilon &amp; -\epsilon^{2} &amp; \epsilon^{2} - \epsilon \\
+\epsilon^{2} &amp; -2\epsilon &amp; \epsilon \\
+\epsilon^{2}-\epsilon &amp; \epsilon &amp; 1 
+\end{bmatrix}}_{A}
+\begin{bmatrix}
+\sigma T_{2}^{4}\\
+\sigma T_{1}^{4}\\
+\sigma T_{1}^{4}
+\end{bmatrix} = 
+\begin{bmatrix}
+0\\
+0\\
+(1-\alpha)Q = \sigma T_{e}^{4}
+\end{bmatrix}\end{split}\]</div>
+<p>It is a bit tedious to calculate the inverse of the matrix. We can use online tool <a class="reference external" href="https://www.symbolab.com/solver/linear-algebra-calculator">(here)</a> to calculate it:</p>
+<div class="math notranslate nohighlight" id="equation-my-label49">
+<span class="eqno">(49)<a class="headerlink" href="#equation-my-label49" title="Permalink to this equation">#</a></span>\[\begin{split}A^{-1} = 
+\begin{bmatrix}
+-\frac{1}{\epsilon(\epsilon-2)} &amp; -\frac{1}{-\epsilon+2} &amp; \frac{1}{-\epsilon+2} \\
+\frac{1}{-\epsilon+2} &amp; \frac{2+\epsilon(\epsilon+1)^{2}}{\epsilon(\epsilon+2)(\epsilon=2)} &amp; \frac{\epsilon+1}{-\epsilon+2}\\
+\frac{1}{-\epsilon+2} &amp;  -\frac{\epsilon+1}{-\epsilon+2}&amp; \frac{\epsilon+2}{-\epsilon+2}  
+\end{bmatrix}\end{split}\]</div>
+<p>So we can get:</p>
+<div class="math notranslate nohighlight" id="equation-my-label50">
+<span class="eqno">(50)<a class="headerlink" href="#equation-my-label50" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+T_{2}^4 \\
+T_{1}^4 \\
+T_{s}^4 
+\end{bmatrix}=
+\begin{bmatrix}
+-\frac{T_{e}^4}{\epsilon-2}\\
+\frac{-\epsilon T_{e}^4 - T_{e}^4}{\epsilon-2}\\
+\frac{-\epsilon T_{e}^4 - 2T_{e}^4}{\epsilon-2}
+\end{bmatrix}
+\Rightarrow 
+\begin{bmatrix}
+T_{2} \\
+T_{1} \\
+T_{s} 
+\end{bmatrix}=
+\begin{bmatrix}
+\sqrt[4]{\frac{1}{2-\epsilon}}T_{e}\\
+\sqrt[4]{\frac{1+\epsilon}{2-\epsilon}}T_{e}\\
+\sqrt[4]{\frac{2+\epsilon}{2-\epsilon}}T_{e}
+\end{bmatrix}\end{split}\]</div>
+<p>Assume <span class="math notranslate nohighlight">\(\epsilon = 0.586\)</span> (why?) and <span class="math notranslate nohighlight">\(T_{e}=255\)</span> K (why?), we can have</p>
+<div class="math notranslate nohighlight" id="equation-my-label51">
+<span class="eqno">(51)<a class="headerlink" href="#equation-my-label51" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+T_{2} \\
+T_{1} \\
+T_{s}
+\end{bmatrix}=
+\begin{bmatrix}
+233.8 \mbox{K} \\
+262.3 \mbox{K} \\
+296.4 \mbox{K} 
+\end{bmatrix}\end{split}\]</div>
+<p>From observations:</p>
+<div class="math notranslate nohighlight" id="equation-my-label52">
+<span class="eqno">(52)<a class="headerlink" href="#equation-my-label52" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{bmatrix}
+T_{2} \\
+T_{1} \\
+T_{s}
+\end{bmatrix}=
+\begin{bmatrix}
+230.0 \mbox{K} \\
+275.0 \mbox{K} \\
+288.0 \mbox{K}
+\end{bmatrix}\end{split}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The radiative equilibrium solution for the two-layer model is substantially warmer at the surface and colder in the lower troposphere than the real atmosphere.</p>
+</div>
+<p>If we fix <span class="math notranslate nohighlight">\(T_{e} = 255\)</span> K:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/two_layer_T.png"><img alt="../_images/two_layer_T.png" src="../_images/two_layer_T.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+<p>If we fix <span class="math notranslate nohighlight">\(\epsilon=0.586\)</span>:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/two_layer_T2.png"><img alt="../_images/two_layer_T2.png" src="../_images/two_layer_T2.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/two_layer_T1.png"><img alt="../_images/two_layer_T1.png" src="../_images/two_layer_T1.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/two_layer_TS.png"><img alt="../_images/two_layer_TS.png" src="../_images/two_layer_TS.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+</section>
+</section>
+<section id="level-of-emission">
+<h2>Level of emission<a class="headerlink" href="#level-of-emission" title="Permalink to this heading">#</a></h2>
+<p>From above results, we can decompose total OLR to the contributions from each layer:</p>
+<div class="math notranslate nohighlight" id="equation-my-label53">
+<span class="eqno">(53)<a class="headerlink" href="#equation-my-label53" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+OLR_{s} &amp;=&amp; (1-\epsilon)^{2}\sigma T_{s}^{4}\\
+OLR_{1} &amp;=&amp; \epsilon(1-\epsilon)\sigma T_{1}^{4}\\
+OLR_{2} &amp;=&amp; \epsilon\sigma T_{2}^{4}
+\end{eqnarray}\end{split}\]</div>
+<p>If we assume <span class="math notranslate nohighlight">\(T_s\)</span>=288 K, <span class="math notranslate nohighlight">\(T_1\)</span>=275 K, <span class="math notranslate nohighlight">\(T_2\)</span>=230 K, and <span class="math notranslate nohighlight">\(\epsilon=0.586\)</span>, then we can get:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/level_emission_T.png"><img alt="../_images/level_emission_T.png" src="../_images/level_emission_T.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+</section>
+<section id="radiative-forcing">
+<h2>Radiative forcing<a class="headerlink" href="#radiative-forcing" title="Permalink to this heading">#</a></h2>
+<p>We define the radiative forcing (<span class="math notranslate nohighlight">\(F_{R}\)</span>) as the change in TOA radiative flux after adding absorbers (not being adjusted by other processes, such as feedbacks). In orther words, the radiative flux change due to changes in atmospheric composition.</p>
+<div class="math notranslate nohighlight" id="equation-my-label54">
+<span class="eqno">(54)<a class="headerlink" href="#equation-my-label54" title="Permalink to this equation">#</a></span>\[F_{R} = -\Delta OLR,\]</div>
+<p>where negative value means radiative emission to the space, so the Earth is losing energy, vice versa.</p>
+<p>In the two-layer model, the only component that can change due to adding absorbers is OLR. In a more realistic scenasio, the radiative forcing invovles with stratospheric adjustment. Here’s a schematic from Hansen’s 1997 classic <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/96JD03436">paper</a>:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/hansen_1997_rf.png"><img alt="../_images/hansen_1997_rf.png" src="../_images/hansen_1997_rf.png" style="width: 927.0px; height: 443.0px;" /></a>
+</figure>
+<ul class="simple">
+<li><p>instantaneous radiative forcing</p></li>
+<li><p>adjusted radiative forcing</p></li>
+<li><p>effective radiative forcing (???)</p></li>
+</ul>
+<p>Let’s go back to our two-layer model with level of emission (Equation (53)). If we perturb the emmisivity:</p>
+<div class="math notranslate nohighlight" id="equation-my-label55">
+<span class="eqno">(55)<a class="headerlink" href="#equation-my-label55" title="Permalink to this equation">#</a></span>\[\epsilon \rightarrow \epsilon + \Delta \epsilon\]</div>
+<p>The atmospheric temperatures are assumed unchanged, so we can derive:</p>
+<div class="math notranslate nohighlight" id="equation-my-label56">
+<span class="eqno">(56)<a class="headerlink" href="#equation-my-label56" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+OLR_{s} &amp;=&amp; (1-\epsilon-\Delta \epsilon)^{2}\sigma T_{s}^{4}\\
+OLR_{1} &amp;=&amp; (\epsilon+\Delta \epsilon)(1-\epsilon-\Delta \epsilon)\sigma T_{1}^{4}\\
+OLR_{2} &amp;=&amp; (\epsilon+\Delta \epsilon)\sigma T_{2}^{4}
+\end{eqnarray}\end{split}\]</div>
+<p>We subtract each term from original value to get “changes” of OLR:</p>
+<div class="math notranslate nohighlight" id="equation-my-label57">
+<span class="eqno">(57)<a class="headerlink" href="#equation-my-label57" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\Delta OLR_{s} &amp;=&amp; ((1-\epsilon-\Delta \epsilon)^{2} - (1-\epsilon)^{2})\sigma T_{s}^{4}\\
+\Delta OLR_{1} &amp;=&amp; ((\epsilon+\Delta \epsilon)(1-\epsilon-\Delta \epsilon) - \epsilon(1-\epsilon))\sigma T_{1}^{4}\\
+\Delta OLR_{2} &amp;=&amp; (\epsilon+\Delta \epsilon-\epsilon)\sigma T_{2}^{4}
+\end{eqnarray}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label58">
+<span class="eqno">(58)<a class="headerlink" href="#equation-my-label58" title="Permalink to this equation">#</a></span>\[\begin{split}\Rightarrow
+\begin{eqnarray}
+\Delta OLR_{s} &amp;=&amp; ((-2(1-\epsilon)\Delta \epsilon + \Delta \epsilon^{2})\sigma T_{s}^{4}\\
+\Delta OLR_{1} &amp;=&amp; (\Delta \epsilon - 2\epsilon\Delta \epsilon - \Delta \epsilon^{2})\sigma T_{1}^{4}\\
+\Delta OLR_{2} &amp;=&amp; (\Delta \epsilon)\sigma T_{2}^{4}
+\end{eqnarray}\end{split}\]</div>
+<p>If we ignore high-order term:</p>
+<div class="math notranslate nohighlight" id="equation-my-label59">
+<span class="eqno">(59)<a class="headerlink" href="#equation-my-label59" title="Permalink to this equation">#</a></span>\[\begin{split}\Rightarrow
+\begin{eqnarray}
+\Delta OLR_{s} &amp;=&amp; ((-2(1-\epsilon)\Delta \epsilon)\sigma T_{s}^{4}\\
+\Delta OLR_{1} &amp;=&amp; (\Delta \epsilon - 2\epsilon\Delta \epsilon)\sigma T_{1}^{4}\\
+\Delta OLR_{2} &amp;=&amp; (\Delta \epsilon)\sigma T_{2}^{4}
+\end{eqnarray}\end{split}\]</div>
+<p>What do these results mean?</p>
+<p>The radiative forcing then becomes:</p>
+<div class="math notranslate nohighlight" id="equation-my-label60">
+<span class="eqno">(60)<a class="headerlink" href="#equation-my-label60" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+F_{R} &amp;=&amp; -\Delta OLR_{s} - \Delta OLR_{1} - \Delta OLR_{2} \\
+&amp;=&amp;-\Delta \epsilon (-2(1-\epsilon)\sigma T_{s}^{4} + (1-2\epsilon)\sigma T_{1}^{4} + \sigma T_{2}^{4})
+\end{eqnarray}\end{split}\]</div>
+<p>Will <span class="math notranslate nohighlight">\(F_R\)</span> be negative or positive? It is complicated and depending on the vertical temperature profile.</p>
+<p>If we fix temepratures from observations:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/level_demission.png"><img alt="../_images/level_demission.png" src="../_images/level_demission.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+<p>If we include nonlinear terms:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/level_demission_nonlinear.png"><img alt="../_images/level_demission_nonlinear.png" src="../_images/level_demission_nonlinear.png" style="width: 576.0px; height: 432.0px;" /></a>
+</figure>
+<p>Below is the intantaneous radiative forcing estimated by a rapid radiative transfer model (RRTM) from Previdi et al. (2020):</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/instant_rf.png"><img alt="../_images/instant_rf.png" src="../_images/instant_rf.png" style="width: 571.0px; height: 831.0px;" /></a>
+</figure>
+</section>
+<section id="homework-assignment-2-due-xxx">
+<h2>Homework assignment 2 (due xxx)<a class="headerlink" href="#homework-assignment-2-due-xxx" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Given an observational vertical temperature profile (<span class="math notranslate nohighlight">\(T_s\)</span>=288 K, <span class="math notranslate nohighlight">\(T_1\)</span>=275 K, <span class="math notranslate nohighlight">\(T_2\)</span>=230 K, and OLR=238.5 <span class="math notranslate nohighlight">\(\mbox{W/m}^2\)</span>, could you find the value for <span class="math notranslate nohighlight">\(\epsilon\)</span>?</p></li>
+<li><p>What is the radiative forcing <span class="math notranslate nohighlight">\(R\)</span> in an isothermal atmosphere? Please use the two-layer model to support your guess.</p></li>
+<li><p>Assume we add greenhouse gases into the atmopshere with observed temperatures, that is:<span class="math notranslate nohighlight">\(\Delta \epsilon = 0.02\times \epsilon\)</span>. What is the radiative forcing? Be sure you understand the sign.</p></li>
+</ol>
+</section>
+<section id="final-project-2">
+<h2>Final project 2<a class="headerlink" href="#final-project-2" title="Permalink to this heading">#</a></h2>
+<p>Could you construct a n-layer model, for n&gt;4? Please discuss:</p>
+<ol class="arabic simple">
+<li><p>The upward and downward longwave beams, and the level of emission.</p></li>
+<li><p>What are the atmospheric temperatures in each layer? And what is the sufrave temperature?</p></li>
+<li><p>If you add greenhouse gases, what are the temperatures change?</p></li>
+<li><p>What is the radiative forcing in each layer? How does it change when the emmisivity increases?</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="zero_dim_model.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Zero-dimensional Energy Balance Model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="grey_radiation_model.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Grey Radiation Model</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#atmospheric-absorption-spectra">Atmospheric absorption spectra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-with-one-layer-atmosphere-and-one-layer-surface-one-layer-model">Model with one-layer atmosphere and one-layer surface (one-layer model)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#model-with-two-layer-atmosphere-and-one-layer-surface-two-layer-model">Model with two-layer atmosphere and one-layer surface (two-layer model)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upward-beam">Upward beam</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#downward-beam">Downward beam</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-atmospheric-layer2">The atmospheric layer2</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-atmospheric-layer1">The atmospheric layer1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-surface">The surface</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#level-of-emission">Level of emission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-2-due-xxx">Homework assignment 2 (due xxx)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-2">Final project 2</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Thomas J. Sargent and John Stachurski
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=ac02cc09edc035673794"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=ac02cc09edc035673794"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

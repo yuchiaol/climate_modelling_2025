@@ -2,7 +2,7 @@
 
 This is a short sequence of lectures on Climate Modelling, written by [Yu-Chiao Liang](https://littleyuchiao.wixsite.com/yuchiaol). 
 for the undergraduate students at the Department of Atmospheric Sciences, College of Earth Sciences,
-National Central University.
+National Central University, and the Department of Atmospheric Sciences, National Taiwan University.
 
 
 ```{note}
@@ -22,7 +22,7 @@ Some materials were also from "The Climate Modelling Primer" by Kendal McGuffie 
 - Co-teach with Professor xxx
 - Requirements: basic knowledge in calculus, programming skills, radiation, weather and climate dynamics.
 - Office hours: Wednesday 12:10-1:20 pm at xxx or by appointment
-- Grading (100%): homework assignments (70%); final presentation (25%); class interaction (5%)
+- Grading (100%): homework assignments (50%); midterm presentation (25%); final presentation (20%); class interaction (5%)
 - Homework assignments:
 1. Homework due is every Wednesday at 10:00 am.
 2. 50% off before Wednesday’s class ends at 12:10 pm.
