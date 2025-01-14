@@ -442,6 +442,12 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 :scale: 40%
 ```
 
+## Doing this, doing that...How is the performance of climate models?
+The equilibrium climate sensitivity (ECS) and transient climate response (TCR) are still showing wide ranges [paper here](https://www.science.org/doi/10.1126/sciadv.aba1981):
+```{figure} /_static/lecture_specific/lecture1_figures/ecs_uncertainty.jpeg
+:scale: 70%
+```
+
 ## 2024 - Google's NeuralGCM
 - [NeuralGCM](https://neuralgcm.readthedocs.io/en/latest/trained_models.html)
 - [Neural general circulation models for weather and climate](https://www.nature.com/articles/s41586-024-07744-y)
@@ -455,4 +461,12 @@ In particular, Arrhenius' Table VII impressed me most becasue it shows polar amp
 ## future from now?
 - high-resolution climate modeling?
 - AI approach?
+
+## Mid-term project
+- Please chose one classic paper to summarize the findings and conclusion.
+- What is the model the author(s) used?
+- Discuss what are reasonable and unreasonable.
+- Can you use what you have learned to correct/improve the model?
+
+
 

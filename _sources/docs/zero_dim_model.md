@@ -50,6 +50,12 @@ Below is the newer version of the global energy budget from Dennis L. Hartmann's
 :scale: 40%
 ```
 
+From a surface energy balance perspective, the energy budget can be estimated (from [Li et al. 2024](https://www.nature.com/articles/s43247-024-01802-z)):
+```{figure} /_static/lecture_specific/lecture1_figures/surface_energy_balance.png
+:scale: 40%
+```
+
+
 
 ## Calculate the energy budget
 We assume a budget for an idealised global-mean atmosphere-ocean system:

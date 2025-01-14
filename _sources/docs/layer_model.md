@@ -461,13 +461,200 @@ Below is the intantaneous radiative forcing estimated by a rapid radiative trans
 :scale: 100%
 ```
 
+## 30-layer model
+We can construct a 30-layer model by hand, but it could be challenging and not feasible. Therefore, it would be useful, and sometimes helpful, to konw [climlab](https://climlab.readthedocs.io/en/latest/), developed by Professor Brian E. J. Rose. Let's start with a few examples: [here](https://brian-rose.github.io/ClimateLaboratoryBook/courseware/grey-radiation-climlab.html). We will see how to construct a 30-layer model, which seems not feasible for solving the equations analytically.
+
+
+```{note}
+You can find more materials and notes prepared by Professor Brian E. J. Rose: [here](https://brian-rose.github.io/ClimateLaboratoryBook/home.html). They are awesome!!!
+```
+
+We now follow an example from Professor Rose's notes to demonstrate the results of 30-layer grey-gas model.
+
+We first look at the observed temperature profile, which we need to specify later in the 30-layer model. 
+
+```{code-cell} ipython3
+import numpy as np
+import matplotlib.pyplot as plt
+import xarray as xr
+import climlab
+from scipy.optimize import brentq
+
+plt.style.use('dark_background')
+
+# read data from ncep reanalysis data
+url = 'http://apdrc.soest.hawaii.edu:80/dods/public_data/Reanalysis_Data/NCEP/NCEP/clima/pressure/air'
+air = xr.open_dataset(url)
+# The name of the vertical axis is different than the NOAA ESRL version..
+ncep_air = air.rename({'lev': 'level'})
+print('ncep_air')
+print(ncep_air)
+
+#  Take global, annual average and convert to Kelvin
+weight = np.cos(np.deg2rad(ncep_air.lat)) / np.cos(np.deg2rad(ncep_air.lat)).mean(dim='lat')
+Tglobal = (ncep_air.air * weight).mean(dim=('lat','lon','time'))
+Tglobal += climlab.constants.tempCtoK
+print('Tglobal')
+print(Tglobal)
+
+
+#  A handy re-usable routine for making a plot of the temperature profiles
+#  We will plot temperatures with respect to log(pressure) to get a height-like coordinate
+
+def zstar(lev):
+    return -np.log(lev / climlab.constants.ps)
+
+def plot_soundings(result_list, name_list, plot_obs=True, fixed_range=True):
+    color_cycle=['r', 'g', 'b', 'y']
+    # col is either a column model object or a list of column model objects
+    #if isinstance(state_list, climlab.Process):
+    #    # make a list with a single item
+    #    collist = [collist]
+    fig, ax = plt.subplots(figsize=(9,9))
+    if plot_obs:
+        ax.plot(Tglobal, zstar(Tglobal.level), color='w', label='Observed')    
+    for i, state in enumerate(result_list):
+        Tatm = state['Tatm']
+        lev = Tatm.domain.axes['lev'].points
+        Ts = state['Ts']
+        ax.plot(Tatm, zstar(lev), color=color_cycle[i], label=name_list[i])
+        ax.plot(Ts, 0, 'o', markersize=12, color=color_cycle[i])
+    #ax.invert_yaxis()
+    yticks = np.array([1000., 750., 500., 250., 100., 50., 20., 10., 5.])
+    ax.set_yticks(-np.log(yticks/1000.))
+    ax.set_yticklabels(yticks)
+    ax.set_xlabel('Temperature (K)', fontsize=14)
+    ax.set_ylabel('Pressure (hPa)', fontsize=14)
+    ax.grid()
+    ax.legend()
+    if fixed_range:
+        ax.set_xlim([200, 300])
+        ax.set_ylim(zstar(np.array([1000., 5.])))
+    #ax2 = ax.twinx()
+    
+    return ax
+
+plot_soundings([],[] );
+
+```
+
+Now we construct our 30-layer model using the observed temperature profile.
+
+
+```{code-cell} ipython3
+#  initialize a grey radiation model with 30 levels
+col = climlab.GreyRadiationModel()
+print('col')
+print(col)
+
+# interpolate to 30 evenly spaced pressure levels
+lev = col.lev
+Tinterp = np.interp(lev, np.flipud(Tglobal.level), np.flipud(Tglobal))
+print('Tinterp')
+print(Tinterp)
+#  Need to 'flipud' because the interpolation routine 
+#  needs the pressure data to be in increasing order
+
+# Initialize model with observed temperatures
+col.Ts[:] = Tglobal[0]
+col.Tatm[:] = Tinterp
+
+# This should look just like the observations
+result_list = [col.state]
+name_list = ['Observed, interpolated']
+plot_soundings(result_list, name_list);
+
+col.compute_diagnostics()
+print('col.OLR')
+print(col.OLR)
+
+# Need to tune absorptivity to get OLR = 238.5
+epsarray = np.linspace(0.01, 0.1, 100)
+OLRarray = np.zeros_like(epsarray)
+
+for i in range(epsarray.size):
+    col.subprocess['LW'].absorptivity = epsarray[i]
+    col.compute_diagnostics()
+    OLRarray[i] = col.OLR
+
+def OLRanom(eps):
+    col.subprocess['LW'].absorptivity = eps
+    col.compute_diagnostics()
+    return col.OLR - 238.5
+
+# Use numerical root-finding to get the equilibria
+# brentq is a root-finding function
+#  Need to give it a function and two end-points
+#  It will look for a zero of the function between those end-points
+eps = brentq(OLRanom, 0.01, 0.1)
+print('eps')
+print(eps)
+
+col.subprocess.LW.absorptivity = eps
+print('col.subprocess.LW.absorptivity')
+print(col.subprocess.LW.absorptivity)
+
+col.compute_diagnostics()
+print('col.OLR')
+print(col.OLR)
+
+```
+
+We now calculate the radiative forcing.
+
+```{code-cell} ipython3
+#  clone our model using a built-in climlab function
+col2 = climlab.process_like(col)
+print('col2')
+print(col2)
+
+col2.subprocess['LW'].absorptivity *= 1.02
+print(col2.subprocess['LW'].absorptivity)
+
+#  Radiative forcing by definition is the change in TOA radiative flux,
+# HOLDING THE TEMPERATURES FIXED.
+print('col2.Ts - col.Ts')
+print(col2.Ts - col.Ts)
+
+col2.compute_diagnostics()
+print('col2.OLR')
+print(col2.OLR)
+
+RF = -(col2.OLR - col.OLR)
+print( 'The radiative forcing is %.2f W/m2.' %RF)
+
+```
+
+Finally, we calculate the radiative equilibrium state:
+```{code-cell} ipython3
+re = climlab.process_like(col)
+#  To get to equilibrium, we just time-step the model forward long enough
+re.integrate_years(1.)
+
+#  Check for energy balance
+print( 'The net downward radiative flux at TOA is %.4f W/m2.' %(re.ASR - re.OLR))
+
+result_list.append(re.state)
+name_list.append('Radiative equilibrium (grey gas)')
+plot_soundings(result_list, name_list)
+
+```
+
+What do you find?
+
+
+
 ## Homework assignment 2 (due xxx)
 
 1. Given an observational vertical temperature profile ($T_s$=288 K, $T_1$=275 K, $T_2$=230 K, and OLR=238.5 $\mbox{W/m}^2$, could you find the value for $\epsilon$?
 
 2. What is the radiative forcing $R$ in an isothermal atmosphere? Please use the two-layer model to support your guess.
+3. What is the radiative forcing $R$ in an isothermal atmosphere? Please use the two-layer model to support your guess.
 
-3. Assume we add greenhouse gases into the atmopshere with observed temperatures, that is:$\Delta \epsilon = 0.02\times \epsilon$. What is the radiative forcing? Be sure you understand the sign.
+4. Assume we add greenhouse gases into the atmopshere with observed temperatures, that is:$\Delta \epsilon = 0.02\times \epsilon$. What is the radiative forcing? Be sure you understand the sign.
+
+5. Can you add convective adjustment and ozone into your 30-layer model?
+
 
 ## Final project 2
 
@@ -481,4 +668,11 @@ Could you construct a n-layer model, for n>4? Please discuss:
 
 4. What is the radiative forcing in each layer? How does it change when the emmisivity increases?
  
+## Final project 3
+Could you include seasonal and latitudinal variation of ozone in your 30-layer model? Please discuss the aspects discussed above.
+
+
+
+
+
 
