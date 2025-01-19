@@ -17,7 +17,7 @@ Some materials were also from "The Climate Modelling Primer" by Kendal McGuffie 
 - Curriculum Number: xxx
 - Curriculum Id Number: xxx
 - Credit: 2
-- Time: Wednesday, 3,4 (10:20 am - 12:10 pm)
+- Time: Wednesday, 6,7 (1:20 pm - 3:10 pm)
 - Place: National Central University
 - Co-teach with Professor xxx
 - Requirements: basic knowledge in calculus, programming skills, radiation, weather and climate dynamics.
