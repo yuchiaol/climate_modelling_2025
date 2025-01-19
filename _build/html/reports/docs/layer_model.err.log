@@ -1,0 +1,52 @@
+Traceback (most recent call last):
+  File "/Users/yuchiaol_ntuas/miniconda3/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/Users/yuchiaol_ntuas/miniconda3/lib/python3.11/site-packages/nbclient/client.py", line 1305, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/yuchiaol_ntuas/miniconda3/lib/python3.11/site-packages/jupyter_core/utils/__init__.py", line 166, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/yuchiaol_ntuas/miniconda3/lib/python3.11/asyncio/base_events.py", line 653, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/yuchiaol_ntuas/miniconda3/lib/python3.11/site-packages/nbclient/client.py", line 705, in async_execute
+    await self.async_execute_cell(
+  File "/Users/yuchiaol_ntuas/miniconda3/lib/python3.11/site-packages/nbclient/client.py", line 1058, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Users/yuchiaol_ntuas/miniconda3/lib/python3.11/site-packages/nbclient/client.py", line 914, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+#  clone our model using a built-in climlab function
+col2 = climlab.process_like(col)
+print('col2')
+print(col2)
+
+col2.subprocess['LW'].absorptivity *= 1.02
+print(''col2.subprocess['LW'].absorptivity'')
+print(col2.subprocess['LW'].absorptivity)
+
+#  Radiative forcing by definition is the change in TOA radiative flux,
+# HOLDING THE TEMPERATURES FIXED.
+print('col2.Ts - col.Ts')
+print(col2.Ts - col.Ts)
+
+col2.compute_diagnostics()
+print('col2.OLR')
+print(col2.OLR)
+
+RF = -(col2.OLR - col.OLR)
+print( 'The radiative forcing is %.2f W/m2.' %RF)
+
+
+
+------------------
+
+
+[0;36m  Cell [0;32mIn[3], line 7[0;36m[0m
+[0;31m    print(''col2.subprocess['LW'].absorptivity'')[0m
+[0m          ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax. Perhaps you forgot a comma?
+
+

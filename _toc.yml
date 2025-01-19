@@ -4,6 +4,6 @@ sections:
 - file: docs/history_modelling
 - file: docs/zero_dim_model
 - file: docs/layer_model
-- file: docs/grey_radiation_model
+- file: docs/rce_model
 - file: docs/python_by_example
 - file: docs/learn_more
