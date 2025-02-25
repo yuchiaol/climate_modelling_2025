@@ -23,23 +23,23 @@ We start with the observed global energy budget, which is not too difficult to u
 For the shortwave:
 - Incoming shortwave/solar radiation is 341 W/m$^2$. 
 - Reflected shortwave radiation is 102 W/m$^2$.
-- The global mean albedo is 102 m$^2$ / 341 m$^2$ = 0.299 ~= 0.3.
-- Clouds absorption is 79 m$^2$, roughly the same as atmospheric absorption 78 m$^2$.
-- Surface receives 161 m$^2$, and reflects 23 m$^2$ (why smaller than cloud reflection?).
+- The global mean albedo is 102 W/m$^2$ / 341 W/m$^2$ = 0.299 ~= 0.3.
+- Clouds absorption is 79 W/m$^2$, roughly the same as atmosphere and cloud reflected 78 W/m$^2$.
+- Surface receives W/161 m$^2$, and reflects 23 W/m$^2$ (why smaller than cloud reflection?).
 - The roles of ozone (O$_3$) and water vapor (H$_{2}$O)?
 
 For the longwave:
-- Surface emits 396 m$^2$ (blackbody with temperture 288K?).
-- Emission to space is only 239 m$^2$ (greenhouse effect).
-- Atmospheric window allos 22 m$^2$ to the space directly.
-- Atmosphere emits downward to the surface 333 m$^2$.
+- Surface emits 396 W/m$^2$ (blackbody with temperture 288K?).
+- Emission to space is only 239 W/m$^2$ (greenhouse effect).
+- Atmospheric window allos 22 W/m$^2$ to the space directly.
+- Atmosphere emits downward to the surface 333 W/m$^2$.
 
 For others:
-- Evapotranspiration emits 80 m$^2$ to the atmosphere (latent heat).
-- Thermals process emits 17 m$^2$ to the atmosphere (sensible heat?).
+- Evapotranspiration emits 80 W/m$^2$ to the atmosphere (latent heat).
+- Thermals process emits 17 W/m$^2$ to the atmosphere (sensible heat?).
 
 Net radiation absorbed by the surface:
-- 161 m$^2$ (shortwave) - 17 m$^2$ (sensible heat) - 80 (latent heat) - 396 (longwave) + 333 (longwave from the atmosphere) = 1 m$^2$ ~= 0.9 m$^2$
+- 161 W/m$^2$ (shortwave) - 17 W/m$^2$ (sensible heat) - 80 W/m$^2$ (latent heat) - 396 W/m$^2$ (longwave) + 333 W/m$^2$ (longwave from the atmosphere) = 1 W/m$^2$ ~= W/0.9 m$^2$
 
 ```{note}
 Think about the roles of clouds and water vapor. 
