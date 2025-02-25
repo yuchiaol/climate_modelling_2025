@@ -164,7 +164,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="history_modelling.html">The History of Climate Modeling</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Zero-dimensional Energy Balance Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="layer_model.html">Layered Energy Balance Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rce_model.html">Radiative Convective Equilibrium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rce_model.html">Radiative Convective Equilibrium (RCE)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
 </ul>
@@ -342,26 +342,26 @@ document.write(`
 <ul class="simple">
 <li><p>Incoming shortwave/solar radiation is 341 W/m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
 <li><p>Reflected shortwave radiation is 102 W/m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
-<li><p>The global mean albedo is 102 m<span class="math notranslate nohighlight">\(^2\)</span> / 341 m<span class="math notranslate nohighlight">\(^2\)</span> = 0.299 ~= 0.3.</p></li>
-<li><p>Clouds absorption is 79 m<span class="math notranslate nohighlight">\(^2\)</span>, roughly the same as atmospheric absorption 78 m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
-<li><p>Surface receives 161 m<span class="math notranslate nohighlight">\(^2\)</span>, and reflects 23 m<span class="math notranslate nohighlight">\(^2\)</span> (why smaller than cloud reflection?).</p></li>
+<li><p>The global mean albedo is 102 W/m<span class="math notranslate nohighlight">\(^2\)</span> / 341 W/m<span class="math notranslate nohighlight">\(^2\)</span> = 0.299 ~= 0.3.</p></li>
+<li><p>Clouds absorption is 79 W/m<span class="math notranslate nohighlight">\(^2\)</span>, roughly the same as atmosphere and cloud reflected 78 W/m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
+<li><p>Surface receives W/161 m<span class="math notranslate nohighlight">\(^2\)</span>, and reflects 23 W/m<span class="math notranslate nohighlight">\(^2\)</span> (why smaller than cloud reflection?).</p></li>
 <li><p>The roles of ozone (O<span class="math notranslate nohighlight">\(_3\)</span>) and water vapor (H<span class="math notranslate nohighlight">\(_{2}\)</span>O)?</p></li>
 </ul>
 <p>For the longwave:</p>
 <ul class="simple">
-<li><p>Surface emits 396 m<span class="math notranslate nohighlight">\(^2\)</span> (blackbody with temperture 288K?).</p></li>
-<li><p>Emission to space is only 239 m<span class="math notranslate nohighlight">\(^2\)</span> (greenhouse effect).</p></li>
-<li><p>Atmospheric window allos 22 m<span class="math notranslate nohighlight">\(^2\)</span> to the space directly.</p></li>
-<li><p>Atmosphere emits downward to the surface 333 m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
+<li><p>Surface emits 396 W/m<span class="math notranslate nohighlight">\(^2\)</span> (blackbody with temperture 288K?).</p></li>
+<li><p>Emission to space is only 239 W/m<span class="math notranslate nohighlight">\(^2\)</span> (greenhouse effect).</p></li>
+<li><p>Atmospheric window allos 22 W/m<span class="math notranslate nohighlight">\(^2\)</span> to the space directly.</p></li>
+<li><p>Atmosphere emits downward to the surface 333 W/m<span class="math notranslate nohighlight">\(^2\)</span>.</p></li>
 </ul>
 <p>For others:</p>
 <ul class="simple">
-<li><p>Evapotranspiration emits 80 m<span class="math notranslate nohighlight">\(^2\)</span> to the atmosphere (latent heat).</p></li>
-<li><p>Thermals process emits 17 m<span class="math notranslate nohighlight">\(^2\)</span> to the atmosphere (sensible heat?).</p></li>
+<li><p>Evapotranspiration emits 80 W/m<span class="math notranslate nohighlight">\(^2\)</span> to the atmosphere (latent heat).</p></li>
+<li><p>Thermals process emits 17 W/m<span class="math notranslate nohighlight">\(^2\)</span> to the atmosphere (sensible heat?).</p></li>
 </ul>
 <p>Net radiation absorbed by the surface:</p>
 <ul class="simple">
-<li><p>161 m<span class="math notranslate nohighlight">\(^2\)</span> (shortwave) - 17 m<span class="math notranslate nohighlight">\(^2\)</span> (sensible heat) - 80 (latent heat) - 396 (longwave) + 333 (longwave from the atmosphere) = 1 m<span class="math notranslate nohighlight">\(^2\)</span> ~= 0.9 m<span class="math notranslate nohighlight">\(^2\)</span></p></li>
+<li><p>161 W/m<span class="math notranslate nohighlight">\(^2\)</span> (shortwave) - 17 W/m<span class="math notranslate nohighlight">\(^2\)</span> (sensible heat) - 80 W/m<span class="math notranslate nohighlight">\(^2\)</span> (latent heat) - 396 W/m<span class="math notranslate nohighlight">\(^2\)</span> (longwave) + 333 W/m<span class="math notranslate nohighlight">\(^2\)</span> (longwave from the atmosphere) = 1 W/m<span class="math notranslate nohighlight">\(^2\)</span> ~= W/0.9 m<span class="math notranslate nohighlight">\(^2\)</span></p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
