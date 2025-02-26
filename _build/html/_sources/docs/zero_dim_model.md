@@ -25,7 +25,7 @@ For the shortwave:
 - Reflected shortwave radiation is 102 W/m$^2$.
 - The global mean albedo is 102 W/m$^2$ / 341 W/m$^2$ = 0.299 ~= 0.3.
 - Clouds absorption is 79 W/m$^2$, roughly the same as atmosphere and cloud reflected 78 W/m$^2$.
-- Surface receives W/161 m$^2$, and reflects 23 W/m$^2$ (why smaller than cloud reflection?).
+- Surface receives 161 W/m$^2$, and reflects 23 W/m$^2$ (why smaller than cloud reflection?).
 - The roles of ozone (O$_3$) and water vapor (H$_{2}$O)?
 
 For the longwave:
