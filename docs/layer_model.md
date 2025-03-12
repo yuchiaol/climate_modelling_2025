@@ -63,7 +63,7 @@ We assume:
 - A single-layer atmosphere with temperature $T_{a}$.
 - The atmosphere is transparent to shortwave radiation.
 - The surface albedo is $\alpha$.
-- The atmosphere aabsorbs all longwave radiation from the surface.
+- The atmosphere absorbs all longwave radiation from the surface.
 - The atmosphere and surface are blackbodies.
 - The atmosphere radiates equally upward and downward.
 
@@ -151,7 +151,7 @@ D_{1} = (1-\epsilon)D_{2} + \epsilon \sigma T_{2}^{4} = \epsilon \sigma T_{2}^{4
 
 ```{math}
 :label: my_label34
-D_{s} = (1-\epsilon)(1-\epsilon)D_{2} + (1-\epsilon)D_{1} + \epsilon \sigma T_{1}^{4} = (1-\epsilon)\epsilon \sigma T_{2}^{4} + \epsilon \sigma T_{1}^{4}
+D_{s} = (1-\epsilon)D_{1} + \epsilon \sigma T_{1}^{4} = (1-\epsilon)\epsilon \sigma T_{2}^{4} + \epsilon \sigma T_{1}^{4}
 ```
 
 
