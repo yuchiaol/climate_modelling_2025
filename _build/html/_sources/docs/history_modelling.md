@@ -465,6 +465,8 @@ The equilibrium climate sensitivity (ECS) and transient climate response (TCR) a
 ## Mid-term project
 - Please chose one classic paper to summarize the findings and conclusion.
 - What is the model the author(s) used?
+
+## Final project (following mid-term project)
 - Discuss what are reasonable and unreasonable.
 - Can you use what you have learned to correct/improve the model?
 
