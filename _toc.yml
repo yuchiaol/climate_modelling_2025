@@ -5,5 +5,6 @@ sections:
 - file: docs/zero_dim_model
 - file: docs/layer_model
 - file: docs/rce_model
+- file: docs/climate_sensitivity
 - file: docs/python_by_example
 - file: docs/learn_more

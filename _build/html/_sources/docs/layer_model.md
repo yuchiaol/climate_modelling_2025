@@ -253,7 +253,7 @@ Now we can write the above equations in a matrix form:
 \begin{bmatrix}
 \sigma T_{2}^{4}\\
 \sigma T_{1}^{4}\\
-\sigma T_{1}^{4}
+\sigma T_{s}^{4}
 \end{bmatrix} = 
 \begin{bmatrix}
 0\\
@@ -649,11 +649,10 @@ What do you find?
 1. Given an observational vertical temperature profile ($T_s$=288 K, $T_1$=275 K, $T_2$=230 K, and OLR=238.5 $\mbox{W/m}^2$, could you find the value for $\epsilon$?
 
 2. What is the radiative forcing $R$ in an isothermal atmosphere? Please use the two-layer model to support your guess.
-3. What is the radiative forcing $R$ in an isothermal atmosphere? Please use the two-layer model to support your guess.
 
-4. Assume we add greenhouse gases into the atmopshere with observed temperatures, that is:$\Delta \epsilon = 0.02\times \epsilon$. What is the radiative forcing? Be sure you understand the sign.
+3. Assume we add greenhouse gases into the atmopshere with observed temperatures, that is:$\Delta \epsilon = 0.02\times \epsilon$. What is the radiative forcing? Be sure you understand the sign.
 
-5. Can you add convective adjustment and ozone into your 30-layer model?
+4. Can you add convective adjustment and ozone into your 30-layer model?
 
 
 ## Final project 2
