@@ -14,6 +14,7 @@ Some materials were also from "The Climate Modelling Primer" by Kendal McGuffie 
 ```
 
 ## Class information
+- Course code: AP6114
 - Curriculum Number: xxx
 - Curriculum Id Number: xxx
 - Credit: 2

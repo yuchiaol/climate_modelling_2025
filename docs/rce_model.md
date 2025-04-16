@@ -499,7 +499,6 @@ skew2.ax.set_title('Radiative-convective equilibrium', fontsize=18);
 
 There are a lot to discuss. We could start with 1) the vertical structure, and 2) tropopause height.
 
-
 ## Homework assignment 3 (due xxx)
 1. In the pure radiative model, can you remove the effect of ozone?
 2. In the pure radiative model, can you remove the effects of ozone and water vapor?

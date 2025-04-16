@@ -332,7 +332,6 @@ print( 'lambda_0 = {:.2f} W m-2 K-1'.format(lambda_0)  )
 :scale: 90%
 ```
 
-
 ## Homework assignment 1 (due xxx)
 1. If the outgoing longwave radiation is 238.5 $\mbox{W/m}^2$ as observed and we purely consider the Earth as a blackbody, what is the corresponding surface air temperature $T_{s}$?
 

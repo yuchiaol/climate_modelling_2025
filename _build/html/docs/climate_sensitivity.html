@@ -67,7 +67,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'docs/climate_sensitivity';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="An Introductory Example" href="python_by_example.html" />
     <link rel="prev" title="Radiative Convective Equilibrium (RCE)" href="rce_model.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -166,8 +165,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="layer_model.html">Layered Energy Balance Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rce_model.html">Radiative Convective Equilibrium (RCE)</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Climate sensitivity and feedback</a></li>
-<li class="toctree-l1"><a class="reference internal" href="python_by_example.html">An Introductory Example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="learn_more.html">Learn More</a></li>
 </ul>
 
     </div>
@@ -315,10 +312,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-equilibrium-model">Radiative equilibrium model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-water-vapor">Remove water vapor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-convective-equilibrium-model">Radiative convective equilibrium model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-3-due-xxx">Homework assignment 3 (due xxx)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity">Equilibrium climate sensitivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-4-due-xxx">Homework assignment 4 (due xxx)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-4">Final project 4</a></li>
 </ul>
             </nav>
@@ -332,7 +327,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="climate-sensitivity-and-feedback">
-<span id="rce-model"></span><h1>Climate sensitivity and feedback<a class="headerlink" href="#climate-sensitivity-and-feedback" title="Permalink to this heading">#</a></h1>
+<span id="ecs-feedback"></span><h1>Climate sensitivity and feedback<a class="headerlink" href="#climate-sensitivity-and-feedback" title="Permalink to this heading">#</a></h1>
 <section id="radiative-forcing">
 <h2>Radiative forcing<a class="headerlink" href="#radiative-forcing" title="Permalink to this heading">#</a></h2>
 <p>We start with the radiative forcing in a RCE model. Recall that the radiative forcing is the quick change in the TOA energy budget before the climate system begins to adjust. If we consider the forcing as doubling CO2, we could write the radiative forcing as:</p>
@@ -352,13 +347,16 @@ document.write(`
 <span class="c1">#plt.style.use(&#39;dark_background&#39;)</span>
 
 <span class="c1">#  This code is used just to create the skew-T plot of global, annual mean air temperature</span>
-<span class="n">ncep_url</span> <span class="o">=</span> <span class="s2">&quot;http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/&quot;</span>
-<span class="n">time_coder</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">coders</span><span class="o">.</span><span class="n">CFDatetimeCoder</span><span class="p">(</span><span class="n">use_cftime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">ncep_air</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span> <span class="n">ncep_url</span> <span class="o">+</span> <span class="s2">&quot;pressure/air.mon.1981-2010.ltm.nc&quot;</span><span class="p">,</span> <span class="n">decode_times</span><span class="o">=</span><span class="n">time_coder</span><span class="p">)</span>
+<span class="c1">#ncep_url = &quot;http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/&quot;</span>
+<span class="n">ncep_url</span> <span class="o">=</span> <span class="s2">&quot;/Users/yuchiaol_ntuas/Desktop/ebooks/data/&quot;</span>
+<span class="c1">#time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)</span>
+<span class="n">ncep_air</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span> <span class="n">ncep_url</span> <span class="o">+</span> <span class="s2">&quot;air.mon.1981-2010.ltm.nc&quot;</span><span class="p">,</span> <span class="n">use_cftime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1">#  Take global, annual average </span>
 <span class="n">coslat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ncep_air</span><span class="o">.</span><span class="n">lat</span><span class="p">))</span>
 <span class="n">weight</span> <span class="o">=</span> <span class="n">coslat</span> <span class="o">/</span> <span class="n">coslat</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;lat&#39;</span><span class="p">)</span>
 <span class="n">Tglobal</span> <span class="o">=</span> <span class="p">(</span><span class="n">ncep_air</span><span class="o">.</span><span class="n">air</span> <span class="o">*</span> <span class="n">weight</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">Tglobal</span><span class="p">)</span>
 
 <span class="c1">#  Resuable function to plot the temperature data on a Skew-T chart</span>
 <span class="k">def</span> <span class="nf">make_skewT</span><span class="p">():</span>
@@ -383,10 +381,28 @@ document.write(`
     <span class="n">skew</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">Ts</span> <span class="o">-</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">tempCtoK</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> 
               <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">get_color</span><span class="p">())</span>
     <span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="c1"># Get the water vapor data from CESM output</span>
-<span class="n">cesm_data_path</span> <span class="o">=</span> <span class="s2">&quot;http://thredds.atmos.albany.edu:8080/thredds/dodsC/CESMA/&quot;</span>
-<span class="n">atm_control</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">cesm_data_path</span> <span class="o">+</span> <span class="s2">&quot;cpl_1850_f19/concatenated/cpl_1850_f19.cam.h0.nc&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;xarray.DataArray (level: 17)&gt; Size: 68B
+array([ 15.179084  ,  11.207003  ,   7.8383274 ,   0.21994135,
+        -6.4483433 , -14.888848  , -25.570469  , -39.36969   ,
+       -46.797905  , -53.652245  , -60.56356   , -67.006065  ,
+       -65.53293   , -61.48664   , -55.853584  , -51.593952  ,
+       -43.21999   ], dtype=float32)
+Coordinates:
+  * level    (level) float32 68B 1e+03 925.0 850.0 700.0 ... 50.0 30.0 20.0 10.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the water vapor data from CESM output</span>
+<span class="c1">#cesm_data_path = &quot;http://thredds.atmos.albany.edu:8080/thredds/dodsC/CESMA/&quot;</span>
+<span class="n">cesm_data_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/yuchiaol_ntuas/Desktop/ebooks/data/&quot;</span>
+<span class="n">atm_control</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">cesm_data_path</span> <span class="o">+</span> <span class="s2">&quot;cpl_1850_f19.cam.h0.nc&quot;</span><span class="p">)</span>
 <span class="c1"># Take global, annual average of the specific humidity</span>
 <span class="n">weight_factor</span> <span class="o">=</span> <span class="n">atm_control</span><span class="o">.</span><span class="n">gw</span> <span class="o">/</span> <span class="n">atm_control</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;lat&#39;</span><span class="p">)</span>
 <span class="n">Qglobal</span> <span class="o">=</span> <span class="p">(</span><span class="n">atm_control</span><span class="o">.</span><span class="n">Q</span> <span class="o">*</span> <span class="n">weight_factor</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
@@ -409,468 +425,125 @@ document.write(`
 <span class="c1">#  Here is where we build the model by coupling together the two components</span>
 <span class="n">rcm</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">couple</span><span class="p">([</span><span class="n">rad</span><span class="p">,</span> <span class="n">conv</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Radiative-Convective Model&#39;</span><span class="p">)</span>
 
-<span class="n">rcm</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
 
-<span class="n">rcm</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">])</span>
 
-<span class="n">rcm</span><span class="o">.</span><span class="n">integrate_years</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">integrate_years</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="n">rcm</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">OLR</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">13</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="c1">#plt.style.use(&#39;dark_background&#39;)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span> 
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1">#  This code is used just to create the skew-T plot of global, annual mean air temperature</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">ncep_url</span> <span class="o">=</span> <span class="s2">&quot;http://www.esrl.noaa.gov/psd/thredds/dodsC/Datasets/ncep.reanalysis.derived/&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">13</span> <span class="n">time_coder</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">coders</span><span class="o">.</span><span class="n">CFDatetimeCoder</span><span class="p">(</span><span class="n">use_cftime</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">ncep_air</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span> <span class="n">ncep_url</span> <span class="o">+</span> <span class="s2">&quot;pressure/air.mon.1981-2010.ltm.nc&quot;</span><span class="p">,</span> <span class="n">decode_times</span><span class="o">=</span><span class="n">time_coder</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1">#  Take global, annual average </span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>climlab Process of type &lt;class &#39;climlab.process.time_dependent_process.TimeDependentProcess&#39;&gt;. 
+State variables and domain shapes: 
+  Ts: (1,) 
+  Tatm: (26,) 
+The subprocess tree: 
+Radiative-Convective Model: &lt;class &#39;climlab.process.time_dependent_process.TimeDependentProcess&#39;&gt;
+   Radiation: &lt;class &#39;climlab.radiation.rrtm.rrtmg.RRTMG&#39;&gt;
+      SW: &lt;class &#39;climlab.radiation.rrtm.rrtmg_sw.RRTMG_SW&#39;&gt;
+      LW: &lt;class &#39;climlab.radiation.rrtm.rrtmg_lw.RRTMG_LW&#39;&gt;
+   Convection: &lt;class &#39;climlab.convection.convadj.ConvectiveAdjustment&#39;&gt;
 
-<span class="ne">AttributeError</span>: module &#39;xarray&#39; has no attribute &#39;coders&#39;
+0.000348
+Integrating for 1826 steps, 1826.2110000000002 days, or 5 years.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total elapsed time is 4.999422301147019 years.
+None
+[-3.3651304e-11]
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now we make another RCE model with CO2 doubled!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xxx</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make an exact clone with same temperatures</span>
+<span class="n">rcm_2xCO2</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
+<span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Radiative-Convective Model (2xCO2 initial)&#39;</span>
+
+<span class="c1">#  Check to see that we indeed have the same CO2 amount</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">])</span>
+
+<span class="c1">#  Now double it!</span>
+<span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">[</span><span class="s1">&#39;CO2&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.000348
+0.000696
 </pre></div>
 </div>
 </div>
 </div>
-</section>
-<section id="radiative-equilibrium-model">
-<h2>Radiative equilibrium model<a class="headerlink" href="#radiative-equilibrium-model" title="Permalink to this heading">#</a></h2>
-<p>Before we go into RCE model, we recap the important feature of considering only radiative process. We increase the complexity of radiative model, rather than just grey radiation, by using the <a class="reference external" href="http://rtweb.aer.com/rrtm_frame.html">rapid radiative transfer model</a> in climlab.</p>
-<p>We load the water vapor profile from CESM control simulation.</p>
+<p>Let’s quickly chech the instantaneous radiative forcing:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load the model output as we have done before</span>
-<span class="n">cesm_data_path</span> <span class="o">=</span> <span class="s2">&quot;/Users/yuchiaol_ntuas/Desktop/ebooks/local_ncu_climate_modelling/book_test2/docs/data/cpl_1850_f19.cam.h0.nc&quot;</span>
-<span class="n">atm_control</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">cesm_data_path</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">compute_diagnostics</span><span class="p">()</span>
 
-<span class="c1"># The specific humidity is stored in the variable called Q in this dataset:</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">atm_control</span><span class="o">.</span><span class="n">Q</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">atm_control</span><span class="o">.</span><span class="n">gw</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">ASR</span><span class="p">)</span>
 
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">OLR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
 
-<span class="c1"># Take global, annual average of the specific humidity</span>
-<span class="n">weight_factor</span> <span class="o">=</span> <span class="n">atm_control</span><span class="o">.</span><span class="n">gw</span> <span class="o">/</span> <span class="n">atm_control</span><span class="o">.</span><span class="n">gw</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="s1">&#39;lat&#39;</span><span class="p">)</span>
+<span class="n">DeltaR_instant</span> <span class="o">=</span> <span class="p">(</span><span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm_2xCO2</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
 
-<span class="n">Qglobal</span> <span class="o">=</span> <span class="p">(</span><span class="n">atm_control</span><span class="o">.</span><span class="n">Q</span> <span class="o">*</span> <span class="n">weight_factor</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span><span class="s1">&#39;lon&#39;</span><span class="p">,</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
-<span class="c1"># Take a look at what we just calculated ... it should be one-dimensional (vertical levels)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">Qglobal</span><span class="p">)</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="c1">#  Multiply Qglobal by 1000 to put in units of grams water vapor per kg of air</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Qglobal</span><span class="o">*</span><span class="mf">1000.</span><span class="p">,</span> <span class="n">Qglobal</span><span class="o">.</span><span class="n">lev</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure (hPa)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Specific humidity (g/kg)&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">DeltaR_instant</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.06274162]
+[-2.11458541]
+[2.17732704]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now we construct a single column model.</p>
+<p>What is the instantaneous radiative forcing in our two/three-layer model?</p>
+<p>Now we briefly calculate the adjusted radiative forcing. Recall that the adjusted radiative forcing is that the stratosphere is adjusted while the troposphere does not.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Make a model on same vertical domain as the GCM</span>
-<span class="n">mystate</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">column_state</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="n">Qglobal</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span> <span class="n">water_depth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mystate</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># print out troposphere</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">lev</span><span class="p">[</span><span class="mi">13</span><span class="p">:])</span>
 
-<span class="n">radmodel</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">radiation</span><span class="o">.</span><span class="n">RRTMG</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Radiation (all gases)&#39;</span><span class="p">,</span>  <span class="c1"># give our model a name!</span>
-                              <span class="n">state</span><span class="o">=</span><span class="n">mystate</span><span class="p">,</span>   <span class="c1"># give our model an initial condition!</span>
-                              <span class="n">specific_humidity</span><span class="o">=</span><span class="n">Qglobal</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>  <span class="c1"># tell the model how much water vapor there is</span>
-                              <span class="n">albedo</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>  <span class="c1"># this the SURFACE shortwave albedo</span>
-                              <span class="n">timestep</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">seconds_per_day</span><span class="p">,</span>  <span class="c1"># set the timestep to one day (measured in seconds)</span>
-                             <span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="p">)</span>
-
-<span class="c1">#  Here&#39;s the state dictionary we already created</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.state=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">state</span><span class="p">)</span>
-
-<span class="c1">#  Here are the pressure levels in hPa</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.lev=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">lev</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.absorber_vmr=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">)</span>
-
-
-<span class="c1">#  specific humidity in kg/kg, on the same pressure axis</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.specific_humidity=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">specific_humidity</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s have a look at the input parameters of RRTMG model, we can see a lot of parameters for cloud processes:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">radmodel</span><span class="o">.</span><span class="n">input</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Let’s integrate the model one timestep:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.Ts=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">Ts</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.Tatm=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">Tatm</span><span class="p">)</span>
-
-<span class="c1"># a single step forward</span>
-<span class="n">radmodel</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.Ts=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">Ts</span><span class="p">)</span>
-
-<span class="n">climlab</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">diagnostics</span><span class="p">)</span>
-
-<span class="n">climlab</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">LW_flux_up</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.ASR - radmodel.OLR=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">radmodel</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>The model does not reach equilibrium, right?</p>
-<p>Now let’s integrate the model to equilibrium:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">radmodel</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">:</span>
-    <span class="n">radmodel</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-
-<span class="c1">#  Check the energy budget again</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel.ASR - radmodel.OLR=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">radmodel</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="n">line</span> <span class="o">=</span> <span class="n">skew</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">Tatm</span> <span class="o">-</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">tempCtoK</span><span class="p">,</span>
-             <span class="n">label</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">Ts</span> <span class="o">-</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">tempCtoK</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> 
-              <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">get_color</span><span class="p">())</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="n">skew</span> <span class="o">=</span> <span class="n">make_skewT</span><span class="p">()</span>
-<span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">radmodel</span><span class="p">)</span>
-<span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Pure radiative equilibrium&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>What do you think about the temperature profile compared to the observational one?</p>
-<p>In Manabe’s 1964 <a class="reference external" href="https://www.gfdl.noaa.gov/bibliography/related_files/sm6401.pdf">paper</a>:</p>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../_images/manabe_1964_jump.png"><img alt="../_images/manabe_1964_jump.png" src="../_images/manabe_1964_jump.png" style="width: 396.0px; height: 279.2px;" /></a>
-</figure>
-</section>
-<section id="remove-water-vapor">
-<h2>Remove water vapor<a class="headerlink" href="#remove-water-vapor" title="Permalink to this heading">#</a></h2>
-<p>Let’s remove water vapor:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Make an exact clone of our existing model</span>
-<span class="n">radmodel_noH2O</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">radmodel</span><span class="p">)</span>
-<span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Radiation (no H2O)&#39;</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel_noH2O=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel_noH2O</span><span class="p">)</span>
-
-<span class="c1">#  Here is the water vapor profile we started with</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel_noH2O.specific_humidity=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">specific_humidity</span><span class="p">)</span>
-
-<span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">specific_humidity</span> <span class="o">*=</span> <span class="mf">0.</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel_noH2O.specific_humidity=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">specific_humidity</span><span class="p">)</span>
-
-<span class="c1">#  it&#39;s useful to take a single step first before starting the while loop</span>
-<span class="c1">#   because the diagnostics won&#39;t get updated </span>
-<span class="c1">#  (and thus show the effects of removing water vapor)</span>
-<span class="c1">#  until we take a step forward</span>
-
-<span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-<span class="k">while</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">:</span>
-    <span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======radmodel_noH2O.ASR - radmodel_noH2O.OLR=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">radmodel_noH2O</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
-
-<span class="n">skew</span> <span class="o">=</span> <span class="n">make_skewT</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="p">[</span><span class="n">radmodel</span><span class="p">,</span> <span class="n">radmodel_noH2O</span><span class="p">]:</span>
-    <span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can remove ozone and ozone and water vapor combined. Can you make the same plot?</p>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../_images/re_no_absorbers.png"><img alt="../_images/re_no_absorbers.png" src="../_images/re_no_absorbers.png" style="width: 676.0px; height: 689.0px;" /></a>
-</figure>
-</section>
-<section id="radiative-convective-equilibrium-model">
-<h2>Radiative convective equilibrium model<a class="headerlink" href="#radiative-convective-equilibrium-model" title="Permalink to this heading">#</a></h2>
-<p>The idea is to copule the convective model to the radiative model. If the lapse rate exceeds the critical lapse rate, then an instantaneous adjustment will be performed to mix temperatures to the critical lapse rate while conserving the energy.</p>
-<p>The crtical lapse is generally chosen to be 6.5 K / km. Let’s have a look at how Manabe discussed <a class="reference external" href="https://www.gfdl.noaa.gov/bibliography/related_files/sm6401.pdf">the critical lapse rate</a>:</p>
-<figure class="align-default">
-<a class="reference internal image-reference" href="../_images/manabe_critical_lapse_rate.png"><img alt="../_images/manabe_critical_lapse_rate.png" src="../_images/manabe_critical_lapse_rate.png" style="width: 422.0px; height: 299.0px;" /></a>
-</figure>
-<p>This is how we parameterize it and construct our RCE model in climlab:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Make a model on same vertical domain as the GCM</span>
-<span class="n">mystate</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">column_state</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="n">Qglobal</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span> <span class="n">water_depth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
-
-<span class="c1">#  Build the radiation model -- just like we already did</span>
-<span class="n">rad</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">radiation</span><span class="o">.</span><span class="n">RRTMG</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Radiation (net)&#39;</span><span class="p">,</span>
-                              <span class="n">state</span><span class="o">=</span><span class="n">mystate</span><span class="p">,</span> 
-                              <span class="n">specific_humidity</span><span class="o">=</span><span class="n">Qglobal</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                              <span class="n">timestep</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">seconds_per_day</span><span class="p">,</span>
-                              <span class="n">albedo</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>  <span class="c1"># surface albedo, tuned to give reasonable ASR for reference cloud-free model</span>
-                             <span class="p">)</span>
-<span class="c1">#  Now create the convection model</span>
-<span class="n">conv</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">convection</span><span class="o">.</span><span class="n">ConvectiveAdjustment</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Convection&#39;</span><span class="p">,</span>
-                                               <span class="n">state</span><span class="o">=</span><span class="n">mystate</span><span class="p">,</span>
-                                               <span class="n">adj_lapse_rate</span><span class="o">=</span><span class="mf">6.5</span><span class="p">,</span> <span class="c1"># this is the key parameter! We&#39;ll discuss below</span>
-                                               <span class="n">timestep</span><span class="o">=</span><span class="n">rad</span><span class="o">.</span><span class="n">timestep</span><span class="p">,</span>  <span class="c1"># same timestep!</span>
-                                              <span class="p">)</span>
-<span class="c1">#  Here is where we build the model by coupling together the two components</span>
-<span class="n">rcm</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">couple</span><span class="p">([</span><span class="n">rad</span><span class="p">,</span> <span class="n">conv</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Radiative-Convective Model&#39;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Some imports needed to make and display animations</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
-
-<span class="k">def</span> <span class="nf">get_tendencies</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39;Pack all the subprocess tendencies into xarray.Datasets</span>
-<span class="sd">    and convert to units of K / day&#39;&#39;&#39;</span>
-    <span class="n">tendencies_atm</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">()</span>
-    <span class="n">tendencies_sfc</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">Dataset</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">proc</span><span class="p">,</span> <span class="n">top_proc</span> <span class="ow">in</span> <span class="n">climlab</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">walk</span><span class="o">.</span><span class="n">walk_processes</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">topname</span><span class="o">=</span><span class="s1">&#39;Total&#39;</span><span class="p">,</span> <span class="n">topdown</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="n">tendencies_atm</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">tendencies</span><span class="p">[</span><span class="s1">&#39;Tatm&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
-        <span class="n">tendencies_sfc</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">tendencies</span><span class="p">[</span><span class="s1">&#39;Ts&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">tend</span> <span class="ow">in</span> <span class="p">[</span><span class="n">tendencies_atm</span><span class="p">,</span> <span class="n">tendencies_sfc</span><span class="p">]:</span>
-        <span class="c1">#  convert to K / day</span>
-        <span class="n">tend</span> <span class="o">*=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">seconds_per_day</span>
-    <span class="k">return</span> <span class="n">tendencies_atm</span><span class="p">,</span> <span class="n">tendencies_sfc</span>
-
-<span class="k">def</span> <span class="nf">initial_figure</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
-    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
-    
-    <span class="n">skew</span> <span class="o">=</span> <span class="n">SkewT</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">subplot</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
-    <span class="c1">#  plot the observations</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Tglobal</span><span class="o">.</span><span class="n">level</span><span class="p">,</span> <span class="n">Tglobal</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observations&#39;</span><span class="p">)</span>    
-    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">skew</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">Tatm</span> <span class="o">-</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">tempCtoK</span><span class="p">,</span> 
-              <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;RC model (all gases)&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">1050</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">75</span><span class="p">)</span>
-    <span class="c1"># Add the relevant special lines</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">plot_dry_adiabats</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">plot_moist_adiabats</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature ($^\circ$C)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-    <span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure (hPa)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">skew</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">Ts</span> <span class="o">-</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">tempCtoK</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> 
-                  <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">,</span> <span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">1050</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature tendency ($^\circ$C day$^{-1}$)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-
-    <span class="n">color_cycle</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="s1">&#39;k&#39;</span><span class="p">]</span>
-    <span class="c1">#color_cycle=[&#39;y&#39;, &#39;r&#39;, &#39;b&#39;, &#39;g&#39;, &#39;k&#39;]</span>
-    <span class="n">tendencies_atm</span><span class="p">,</span> <span class="n">tendencies_sfc</span> <span class="o">=</span> <span class="n">get_tendencies</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tendencies_atm</span><span class="o">.</span><span class="n">data_vars</span><span class="p">):</span>
-        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tendencies_atm</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="n">model</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color_cycle</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tendencies_sfc</span><span class="o">.</span><span class="n">data_vars</span><span class="p">):</span>
-        <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tendencies_sfc</span><span class="p">[</span><span class="n">name</span><span class="p">],</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color_cycle</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center right&#39;</span><span class="p">);</span>
-    <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;Day </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;days_elapsed&#39;</span><span class="p">])),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">))</span> 
-    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">lines</span>
-
-<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">day</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">lines</span><span class="p">):</span>
-    <span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">Tatm</span><span class="p">)</span><span class="o">-</span><span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">tempCtoK</span><span class="p">)</span>
-    <span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">Ts</span><span class="p">)</span><span class="o">-</span><span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">tempCtoK</span><span class="p">)</span>
-    <span class="c1">#lines[2].set_xdata(np.array(model.q)*1E3)</span>
-    <span class="n">tendencies_atm</span><span class="p">,</span> <span class="n">tendencies_sfc</span> <span class="o">=</span> <span class="n">get_tendencies</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tendencies_atm</span><span class="o">.</span><span class="n">data_vars</span><span class="p">):</span>
-        <span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">(</span><span class="n">tendencies_atm</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tendencies_sfc</span><span class="o">.</span><span class="n">data_vars</span><span class="p">):</span>
-        <span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="o">+</span><span class="mi">5</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xdata</span><span class="p">(</span><span class="n">tendencies_sfc</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
-    <span class="n">lines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s1">&#39;Day </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">time</span><span class="p">[</span><span class="s1">&#39;days_elapsed&#39;</span><span class="p">])))</span>
-    <span class="c1"># This is kind of a hack, but without it the initial frame doesn&#39;t appear</span>
-    <span class="k">if</span> <span class="n">day</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">lines</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>We use an isothermal initial condition:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Start from isothermal state</span>
-<span class="n">rcm</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">Tatm</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">rcm</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">Ts</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;========================================&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=======rcm.state.Tatm=======&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">Tatm</span><span class="p">)</span>
-
-<span class="c1">#  Call the diagnostics once for initial plotting</span>
-<span class="n">rcm</span><span class="o">.</span><span class="n">compute_diagnostics</span><span class="p">()</span>
-
-<span class="c1">#  Plot initial data</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">initial_figure</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Below we follow Professor Brian Rose to create animations to illustrate the adjustment of RCE.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  This is where we make a loop over many timesteps and create an animation in the notebook</span>
-<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="p">(</span><span class="n">rcm</span><span class="p">,</span> <span class="n">lines</span><span class="p">))</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>If we start from radiative equilibrium state:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Here we take JUST THE RADIATION COMPONENT of the full model and run it out to (near) equilibrium</span>
-<span class="c1">#  This is just to get the initial condition for our animation</span>
+<span class="n">rcm_2xCO2_strat</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">rcm_2xCO2</span><span class="p">)</span>
+<span class="n">rcm_2xCO2_strat</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Radiative-Convective Model (2xCO2 stratosphere-adjusted)&#39;</span>
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
-    <span class="n">rcm</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation (net)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-<span class="c1">#  Call the diagnostics once for initial plotting</span>
-<span class="n">rcm</span><span class="o">.</span><span class="n">compute_diagnostics</span><span class="p">()</span>
-<span class="c1">#  Plot initial data</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">lines</span> <span class="o">=</span> <span class="n">initial_figure</span><span class="p">(</span><span class="n">rcm</span><span class="p">)</span>
+    <span class="n">rcm_2xCO2_strat</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
+<span class="c1"># hold tropospheric and surface temperatures fixed</span>
+    <span class="n">rcm_2xCO2_strat</span><span class="o">.</span><span class="n">Tatm</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span> <span class="o">=</span> <span class="n">rcm</span><span class="o">.</span><span class="n">Tatm</span><span class="p">[</span><span class="mi">13</span><span class="p">:]</span>
+    <span class="n">rcm_2xCO2_strat</span><span class="o">.</span><span class="n">Ts</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span><span class="p">[:]</span>
+
+<span class="n">DeltaR</span> <span class="o">=</span> <span class="p">(</span><span class="n">rcm_2xCO2_strat</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm_2xCO2_strat</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">DeltaR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[226.513265 266.481155 313.501265 368.81798  433.895225 510.455255
+ 600.5242   696.79629  787.70206  867.16076  929.648875 970.55483
+ 992.5561  ]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[4.28837377]
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  This is where we make a loop over many timesteps and create an animation in the notebook</span>
-<span class="n">ani</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">fargs</span><span class="o">=</span><span class="p">(</span><span class="n">rcm</span><span class="p">,</span> <span class="n">lines</span><span class="p">))</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">ani</span><span class="o">.</span><span class="n">to_html5_video</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Convection processes are fast compared to radiative processes.</p>
-</div>
-<p>We now compare the results with those in radiative equilibrium.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  Make a model on same vertical domain as the GCM</span>
-<span class="n">mystate</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">column_state</span><span class="p">(</span><span class="n">lev</span><span class="o">=</span><span class="n">Qglobal</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span> <span class="n">water_depth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
-
-<span class="n">rad</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">radiation</span><span class="o">.</span><span class="n">RRTMG</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;all gases&#39;</span><span class="p">,</span>
-                              <span class="n">state</span><span class="o">=</span><span class="n">mystate</span><span class="p">,</span> 
-                              <span class="n">specific_humidity</span><span class="o">=</span><span class="n">Qglobal</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
-                              <span class="n">timestep</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">constants</span><span class="o">.</span><span class="n">seconds_per_day</span><span class="p">,</span>
-                              <span class="n">albedo</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>  <span class="c1"># tuned to give reasonable ASR for reference cloud-free model</span>
-                             <span class="p">)</span>
-
-<span class="c1">#  remove ozone</span>
-<span class="n">rad_noO3</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">rad</span><span class="p">)</span>
-<span class="n">rad_noO3</span><span class="o">.</span><span class="n">absorber_vmr</span><span class="p">[</span><span class="s1">&#39;O3&#39;</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">0.</span>
-<span class="n">rad_noO3</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;no O3&#39;</span>
-
-<span class="c1">#  remove water vapor</span>
-<span class="n">rad_noH2O</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">rad</span><span class="p">)</span>
-<span class="n">rad_noH2O</span><span class="o">.</span><span class="n">specific_humidity</span> <span class="o">*=</span> <span class="mf">0.</span>
-<span class="n">rad_noH2O</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;no H2O&#39;</span>
-
-<span class="c1">#  remove both</span>
-<span class="n">rad_noO3_noH2O</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">rad_noO3</span><span class="p">)</span>
-<span class="n">rad_noO3_noH2O</span><span class="o">.</span><span class="n">specific_humidity</span> <span class="o">*=</span> <span class="mf">0.</span>
-<span class="n">rad_noO3_noH2O</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;no O3, no H2O&#39;</span>
-
-<span class="c1">#  put all models together in a list</span>
-<span class="n">rad_models</span> <span class="o">=</span> <span class="p">[</span><span class="n">rad</span><span class="p">,</span> <span class="n">rad_noO3</span><span class="p">,</span> <span class="n">rad_noH2O</span><span class="p">,</span> <span class="n">rad_noO3_noH2O</span><span class="p">]</span>
-
-<span class="n">rc_models</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rad_models</span><span class="p">:</span>
-    <span class="n">newrad</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-    <span class="n">conv</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">convection</span><span class="o">.</span><span class="n">ConvectiveAdjustment</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Convective Adjustment&#39;</span><span class="p">,</span>
-                                               <span class="n">state</span><span class="o">=</span><span class="n">newrad</span><span class="o">.</span><span class="n">state</span><span class="p">,</span>
-                                               <span class="n">adj_lapse_rate</span><span class="o">=</span><span class="mf">6.5</span><span class="p">,</span>  <span class="c1"># the key parameter in the convection model!</span>
-                                               <span class="n">timestep</span><span class="o">=</span><span class="n">newrad</span><span class="o">.</span><span class="n">timestep</span><span class="p">,)</span>
-    <span class="n">rc</span> <span class="o">=</span> <span class="n">newrad</span> <span class="o">+</span> <span class="n">conv</span>
-    <span class="n">rc</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">newrad</span><span class="o">.</span><span class="n">name</span>
-    <span class="n">rc_models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">rad_models</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">ASR</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="p">):</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>    
-    
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">rc_models</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">ASR</span><span class="o">-</span><span class="n">model</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.01</span><span class="p">):</span>
-        <span class="n">model</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
-
-<span class="n">skew</span> <span class="o">=</span> <span class="n">make_skewT</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">rad_models</span><span class="p">:</span>
-    <span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-<span class="n">skew</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Pure radiative equilibrium&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>
-
-<span class="n">skew2</span> <span class="o">=</span> <span class="n">make_skewT</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">rc_models</span><span class="p">:</span>
-    <span class="n">add_profile</span><span class="p">(</span><span class="n">skew2</span><span class="p">,</span> <span class="n">model</span><span class="p">)</span>
-<span class="n">skew2</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Radiative-convective equilibrium&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>There are a lot to discuss. We could start with 1) the vertical structure, and 2) tropopause height.</p>
+<p>Radiative forcing gives us some insights about how the changes of forcing could tranfer energy to the system, and temperature might change. But not the final temperature reaching equilibrium.</p>
 </section>
-<section id="homework-assignment-3-due-xxx">
-<h2>Homework assignment 3 (due xxx)<a class="headerlink" href="#homework-assignment-3-due-xxx" title="Permalink to this heading">#</a></h2>
+<section id="equilibrium-climate-sensitivity">
+<h2>Equilibrium climate sensitivity<a class="headerlink" href="#equilibrium-climate-sensitivity" title="Permalink to this heading">#</a></h2>
+<p>Go~</p>
+</section>
+<section id="homework-assignment-4-due-xxx">
+<h2>Homework assignment 4 (due xxx)<a class="headerlink" href="#homework-assignment-4-due-xxx" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>In the pure radiative model, can you remove the effect of ozone?</p></li>
 <li><p>In the pure radiative model, can you remove the effects of ozone and water vapor?</p></li>
@@ -928,15 +601,6 @@ document.write(`
         <p class="prev-next-title">Radiative Convective Equilibrium (RCE)</p>
       </div>
     </a>
-    <a class="right-next"
-       href="python_by_example.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">An Introductory Example</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -953,10 +617,8 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-equilibrium-model">Radiative equilibrium model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-water-vapor">Remove water vapor</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-convective-equilibrium-model">Radiative convective equilibrium model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-3-due-xxx">Homework assignment 3 (due xxx)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity">Equilibrium climate sensitivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-4-due-xxx">Homework assignment 4 (due xxx)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-4">Final project 4</a></li>
 </ul>
   </nav></div>
