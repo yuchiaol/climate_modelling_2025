@@ -643,7 +643,6 @@ plot_soundings(result_list, name_list)
 What do you find?
 
 
-
 ## Homework assignment 2 (due xxx)
 
 1. Given an observational vertical temperature profile ($T_s$=288 K, $T_1$=275 K, $T_2$=230 K, and OLR=238.5 $\mbox{W/m}^2$, could you find the value for $\epsilon$?
