@@ -18,14 +18,31 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-xxx
+rcm_2xCO2_eq = climlab.process_like(rcm_2xCO2_strat)
+rcm_2xCO2_eq.name = 'Radiative-Convective Model (2xCO2 equilibrium)'
+rcm_2xCO2_eq.integrate_years(5)
+
+print(rcm_2xCO2_eq.ASR - rcm_2xCO2_eq.OLR)
+
+skew = make_skewT()
+add_profile(skew, rcm)
+add_profile(skew, rcm_2xCO2_strat)
+add_profile(skew, rcm_2xCO2_eq)
+
+ECS_nofeedback = rcm_2xCO2_eq.Ts - rcm.Ts
+print(ECS with no feedback)
+print(ECS_nofeedback)
+
+print(rcm_2xCO2_eq.OLR - rcm.OLR)
+print(rcm_2xCO2_eq.ASR - rcm.ASR)
+
+
 ------------------
 
 
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[3], line 1[0m
-[0;32m----> 1[0m [43mxxx[49m
+[0;36m  Cell [0;32mIn[7], line 13[0;36m[0m
+[0;31m    print(ECS with no feedback)[0m
+[0m              ^[0m
+[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
 
-[0;31mNameError[0m: name 'xxx' is not defined
 
