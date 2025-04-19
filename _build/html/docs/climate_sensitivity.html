@@ -312,7 +312,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity">Equilibrium climate sensitivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity-ecs-without-feedback">Equilibrium climate sensitivity (ECS) without feedback</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-4-due-xxx">Homework assignment 4 (due xxx)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-4">Final project 4</a></li>
 </ul>
@@ -333,6 +333,12 @@ document.write(`
 <p>We start with the radiative forcing in a RCE model. Recall that the radiative forcing is the quick change in the TOA energy budget before the climate system begins to adjust. If we consider the forcing as doubling CO2, we could write the radiative forcing as:</p>
 <div class="math notranslate nohighlight" id="equation-my-label61">
 <span class="eqno">(61)<a class="headerlink" href="#equation-my-label61" title="Permalink to this equation">#</a></span>\[\Delta R = (ASR_{2xCO2}-OLR_{2xCO2}) - (ASR_{1xCO2}-OLR_{1xCO2}).\]</div>
+<p>What is happening after we add more CO2 in the atmosphere?</p>
+<ul class="simple">
+<li><p>The atmosphere is less efficient at radiating energy away to space (reducing emissivity, right?).</p></li>
+<li><p>OLR will decrease</p></li>
+<li><p>The climate system will begin gaining energy.</p></li>
+</ul>
 <p>Now let’s build a RCE model and analyze its radiative forcing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -538,9 +544,93 @@ None
 </div>
 <p>Radiative forcing gives us some insights about how the changes of forcing could tranfer energy to the system, and temperature might change. But not the final temperature reaching equilibrium.</p>
 </section>
-<section id="equilibrium-climate-sensitivity">
-<h2>Equilibrium climate sensitivity<a class="headerlink" href="#equilibrium-climate-sensitivity" title="Permalink to this heading">#</a></h2>
-<p>Go~</p>
+<section id="equilibrium-climate-sensitivity-ecs-without-feedback">
+<h2>Equilibrium climate sensitivity (ECS) without feedback<a class="headerlink" href="#equilibrium-climate-sensitivity-ecs-without-feedback" title="Permalink to this heading">#</a></h2>
+<p>We define the ECS as “The global mean surface warming necessary to balance the planetary energy budget after a doubling of atmospheric CO2”.</p>
+<p>If we assume incoming shortwave radiation does not change (e.g., the planetary albedo does not change) after doubling CO2, the climate system has to adjust to new equilibrium temperature. This new temperature must balance the radiative forcing. So, we can get:</p>
+<div class="math notranslate nohighlight" id="equation-my-label62">
+<span class="eqno">(62)<a class="headerlink" href="#equation-my-label62" title="Permalink to this equation">#</a></span>\[\Delta R = OLR_{f} - OLR_{2xCO2},\]</div>
+<p>where <span class="math notranslate nohighlight">\(OLR_{f}\)</span> is the equilibrated <span class="math notranslate nohighlight">\(OLR\)</span> associated with the new qeuilibrium temperature.</p>
+<p>We know that from our zero-dimensional energy-balance model, we derive the OLR sensitivity to temperature change:</p>
+<div class="math notranslate nohighlight" id="equation-my-label63">
+<span class="eqno">(63)<a class="headerlink" href="#equation-my-label63" title="Permalink to this equation">#</a></span>\[\lambda_{0} = 4\tau\sigma T_{eq}^{3} \approx 3.3 \mbox{ W/m$^2$/K}\]</div>
+<p>So we can write:</p>
+<div class="math notranslate nohighlight" id="equation-my-label64">
+<span class="eqno">(64)<a class="headerlink" href="#equation-my-label64" title="Permalink to this equation">#</a></span>\[OLR_{f} \approx OLR_{2xCO2} + \lambda_{0}\Delta T_{0},\]</div>
+<p>The energy balance gives us:</p>
+<div class="math notranslate nohighlight" id="equation-my-label65">
+<span class="eqno">(65)<a class="headerlink" href="#equation-my-label65" title="Permalink to this equation">#</a></span>\[\Delta R = OLR_{f} - OLR_{2xCO2} \approx OLR_{2xCO2} + \lambda_{0}\Delta T_{0} - OLR_{2xCO2} = \lambda_{0}\Delta T_{0}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label66">
+<span class="eqno">(66)<a class="headerlink" href="#equation-my-label66" title="Permalink to this equation">#</a></span>\[\rightarrow \Delta T_{0} = \frac{\Delta R}{\lambda_{0}}\]</div>
+<p>Assume the actual radiative forcing after doubling CO2 is about 4 W/m<span class="math notranslate nohighlight">\(^2\)</span>/K, we can get:</p>
+<div class="math notranslate nohighlight" id="equation-my-label67">
+<span class="eqno">(67)<a class="headerlink" href="#equation-my-label67" title="Permalink to this equation">#</a></span>\[\Delta T_{0} = \frac{\Delta R}{\lambda_{0}} = \frac{4}{3.3} \approx 1.2 \mbox{ K}\]</div>
+<p>This is the ECS without feedback using zero-dimensional model!!!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">OLRobserved</span> <span class="o">=</span> <span class="mf">238.5</span>  <span class="c1"># in W/m2</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">5.67E-8</span>  <span class="c1"># S-B constant</span>
+<span class="n">Tsobserved</span> <span class="o">=</span> <span class="mf">288.</span>  <span class="c1"># global average surface temperature</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">OLRobserved</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">/</span> <span class="n">Tsobserved</span><span class="o">**</span><span class="mi">4</span>  <span class="c1"># solve for tuned value of transmissivity</span>
+
+<span class="n">lambda_0</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">Tsobserved</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="n">DeltaR</span> <span class="o">=</span> <span class="mf">4.</span>  <span class="c1"># Radiative forcing in W/m2</span>
+<span class="n">DeltaT0</span> <span class="o">=</span> <span class="n">DeltaR</span> <span class="o">/</span> <span class="n">lambda_0</span>
+<span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;The Equilibrium Climate Sensitivity in the absence of feedback is </span><span class="si">{:.1f}</span><span class="s1"> K.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">DeltaT0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The Equilibrium Climate Sensitivity in the absence of feedback is 1.2 K.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we use RCE models to estimate ECS.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rcm_2xCO2_eq</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">rcm_2xCO2_strat</span><span class="p">)</span>
+<span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Radiative-Convective Model (2xCO2 equilibrium)&#39;</span>
+<span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">integrate_years</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rcm_2xCO2_eq.ASR - rcm_2xCO2_eq.OLR&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
+
+<span class="n">skew</span> <span class="o">=</span> <span class="n">make_skewT</span><span class="p">()</span>
+<span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">rcm_2xCO2_strat</span><span class="p">)</span>
+<span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">rcm_2xCO2_eq</span><span class="p">)</span>
+<span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">rcm</span><span class="p">)</span>
+
+<span class="n">ECS_nofeedback</span> <span class="o">=</span> <span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">Ts</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ECS with no feedback&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ECS_nofeedback</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rcm_2xCO2_eq.OLR - rcm.OLR&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">OLR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rcm_2xCO2_eq.ASR - rcm.ASR&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">ASR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integrating for 1826 steps, 1826.2110000000002 days, or 5 years.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Total elapsed time is 12.736753858124827 years.
+rcm_2xCO2_eq.ASR - rcm_2xCO2_eq.OLR
+[1.31308298e-11]
+ECS with no feedback
+[1.29984831]
+rcm_2xCO2_eq.OLR - rcm.OLR
+[0.05080282]
+rcm_2xCO2_eq.ASR - rcm.ASR
+[0.05080282]
+</pre></div>
+</div>
+<img alt="../_images/f79f0037516e3c650de86b57a0361cf51633228959aef76d3eee986e581162fc.png" src="../_images/f79f0037516e3c650de86b57a0361cf51633228959aef76d3eee986e581162fc.png" />
+</div>
+</div>
 </section>
 <section id="homework-assignment-4-due-xxx">
 <h2>Homework assignment 4 (due xxx)<a class="headerlink" href="#homework-assignment-4-due-xxx" title="Permalink to this heading">#</a></h2>
@@ -617,7 +707,7 @@ None
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity">Equilibrium climate sensitivity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity-ecs-without-feedback">Equilibrium climate sensitivity (ECS) without feedback</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-4-due-xxx">Homework assignment 4 (due xxx)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-4">Final project 4</a></li>
 </ul>

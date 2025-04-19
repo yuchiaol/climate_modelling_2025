@@ -19,8 +19,14 @@ We start with the radiative forcing in a RCE model. Recall that the radiative fo
 :label: my_label61
 \Delta R = (ASR_{2xCO2}-OLR_{2xCO2}) - (ASR_{1xCO2}-OLR_{1xCO2}).
 ```
-Now let's build a RCE model and analyze its radiative forcing.
 
+What is happening after we add more CO2 in the atmosphere?
+
+- The atmosphere is less efficient at radiating energy away to space (reducing emissivity, right?).
+- OLR will decrease
+- The climate system will begin gaining energy.
+
+Now let's build a RCE model and analyze its radiative forcing.
 
 ```{code-cell} ipython3
 #  This code is used just to create the skew-T plot of global, annual mean air temperature
@@ -162,8 +168,85 @@ print(DeltaR)
 
 Radiative forcing gives us some insights about how the changes of forcing could tranfer energy to the system, and temperature might change. But not the final temperature reaching equilibrium.
 
-## Equilibrium climate sensitivity
-Go~
+## Equilibrium climate sensitivity (ECS) without feedback
+We define the ECS as "The global mean surface warming necessary to balance the planetary energy budget after a doubling of atmospheric CO2".
+
+If we assume incoming shortwave radiation does not change (e.g., the planetary albedo does not change) after doubling CO2, the climate system has to adjust to new equilibrium temperature. This new temperature must balance the radiative forcing. So, we can get:
+```{math}
+:label: my_label62
+\Delta R = OLR_{f} - OLR_{2xCO2},
+```
+where $OLR_{f}$ is the equilibrated $OLR$ associated with the new qeuilibrium temperature.
+
+We know that from our zero-dimensional energy-balance model, we derive the OLR sensitivity to temperature change:
+```{math}
+:label: my_label63
+\lambda_{0} = 4\tau\sigma T_{eq}^{3} \approx 3.3 \mbox{ W/m$^2$/K}
+```
+
+So we can write:
+```{math}
+:label: my_label64
+OLR_{f} \approx OLR_{2xCO2} + \lambda_{0}\Delta T_{0},
+```
+
+The energy balance gives us:
+```{math}
+:label: my_label65
+\Delta R = OLR_{f} - OLR_{2xCO2} \approx OLR_{2xCO2} + \lambda_{0}\Delta T_{0} - OLR_{2xCO2} = \lambda_{0}\Delta T_{0}
+```
+```{math}
+:label: my_label66
+\rightarrow \Delta T_{0} = \frac{\Delta R}{\lambda_{0}}
+```
+
+Assume the actual radiative forcing after doubling CO2 is about 4 W/m$^2$/K, we can get:
+```{math}
+:label: my_label67
+\Delta T_{0} = \frac{\Delta R}{\lambda_{0}} = \frac{4}{3.3} \approx 1.2 \mbox{ K}
+```
+
+This is the ECS without feedback using zero-dimensional model!!!
+
+```{code-cell} ipython3
+OLRobserved = 238.5  # in W/m2
+sigma = 5.67E-8  # S-B constant
+Tsobserved = 288.  # global average surface temperature
+tau = OLRobserved / sigma / Tsobserved**4  # solve for tuned value of transmissivity
+
+lambda_0 = 4 * sigma * tau * Tsobserved**3
+
+DeltaR = 4.  # Radiative forcing in W/m2
+DeltaT0 = DeltaR / lambda_0
+print( 'The Equilibrium Climate Sensitivity in the absence of feedback is {:.1f} K.'.format(DeltaT0))
+```
+
+Now we use RCE models to estimate ECS.
+```{code-cell} ipython3
+rcm_2xCO2_eq = climlab.process_like(rcm_2xCO2_strat)
+rcm_2xCO2_eq.name = 'Radiative-Convective Model (2xCO2 equilibrium)'
+rcm_2xCO2_eq.integrate_years(5)
+
+print('rcm_2xCO2_eq.ASR - rcm_2xCO2_eq.OLR')
+print(rcm_2xCO2_eq.ASR - rcm_2xCO2_eq.OLR)
+
+skew = make_skewT()
+add_profile(skew, rcm_2xCO2_strat)
+add_profile(skew, rcm_2xCO2_eq)
+add_profile(skew, rcm)
+
+ECS_nofeedback = rcm_2xCO2_eq.Ts - rcm.Ts
+print('ECS with no feedback')
+print(ECS_nofeedback)
+
+print('rcm_2xCO2_eq.OLR - rcm.OLR')
+print(rcm_2xCO2_eq.OLR - rcm.OLR)
+print('rcm_2xCO2_eq.ASR - rcm.ASR')
+print(rcm_2xCO2_eq.ASR - rcm.ASR)
+
+```
+
+
 
 
 ## Homework assignment 4 (due xxx)
