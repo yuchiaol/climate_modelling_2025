@@ -18,31 +18,41 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-rcm_2xCO2_eq = climlab.process_like(rcm_2xCO2_strat)
-rcm_2xCO2_eq.name = 'Radiative-Convective Model (2xCO2 equilibrium)'
-rcm_2xCO2_eq.integrate_years(5)
+ECS = rcm_2xCO2_h2o.Ts - rcm.Ts
+print('ECS')
+print(ECS)
 
-print(rcm_2xCO2_eq.ASR - rcm_2xCO2_eq.OLR)
+g = ECS / ECS_nofeedback
+print('gain')
+print(g)
 
-skew = make_skewT()
-add_profile(skew, rcm)
-add_profile(skew, rcm_2xCO2_strat)
-add_profile(skew, rcm_2xCO2_eq)
+lambda_net = DeltaR / ECS
+print('lambda_net')
+print(lambda_net)
 
-ECS_nofeedback = rcm_2xCO2_eq.Ts - rcm.Ts
-print(ECS with no feedback)
-print(ECS_nofeedback)
-
-print(rcm_2xCO2_eq.OLR - rcm.OLR)
-print(rcm_2xCO2_eq.ASR - rcm.ASR)
-
+lambda_h2o = lambda0 - lambda_net
+print('lambda_h2o')
+print(lambda_h2o)
 
 ------------------
 
+----- stdout -----
+ECS
+[2.98902357]
+gain
+[2.29951722]
+lambda_net
+[1.33822966]
+------------------
 
-[0;36m  Cell [0;32mIn[7], line 13[0;36m[0m
-[0;31m    print(ECS with no feedback)[0m
-[0m              ^[0m
-[0;31mSyntaxError[0m[0;31m:[0m invalid syntax
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[10], line 13[0m
+[1;32m     10[0m [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mlambda_net[39m[38;5;124m'[39m)
+[1;32m     11[0m [38;5;28mprint[39m(lambda_net)
+[0;32m---> 13[0m lambda_h2o [38;5;241m=[39m [43mlambda0[49m [38;5;241m-[39m lambda_net
+[1;32m     14[0m [38;5;28mprint[39m([38;5;124m'[39m[38;5;124mlambda_h2o[39m[38;5;124m'[39m)
+[1;32m     15[0m [38;5;28mprint[39m(lambda_h2o)
 
+[0;31mNameError[0m: name 'lambda0' is not defined
 

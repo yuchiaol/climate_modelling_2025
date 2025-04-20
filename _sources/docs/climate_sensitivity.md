@@ -14,7 +14,13 @@ kernelspec:
 # Climate sensitivity and feedback
 
 ## Radiative forcing
-We start with the radiative forcing in a RCE model. Recall that the radiative forcing is the quick change in the TOA energy budget before the climate system begins to adjust. If we consider the forcing as doubling CO2, we could write the radiative forcing as:
+We start with the radiative forcing in a RCE model. Recall that the instantaneous radiative forcing is the quick change in the TOA energy budget before the climate system begins to adjust. 
+
+```{figure} /_static/lecture_specific/lecture1_figures/hansen_1997_rf.png
+:scale: 50%
+```
+
+If we consider the forcing as doubling CO2, we could write the radiative forcing as:
 ```{math}
 :label: my_label61
 \Delta R = (ASR_{2xCO2}-OLR_{2xCO2}) - (ASR_{1xCO2}-OLR_{1xCO2}).
@@ -168,6 +174,12 @@ print(DeltaR)
 
 Radiative forcing gives us some insights about how the changes of forcing could tranfer energy to the system, and temperature might change. But not the final temperature reaching equilibrium.
 
+[Sherwood et al. (2020)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019RG000678) summarize the radiative forcing:
+```{figure} /_static/lecture_specific/lecture1_figures/sherwood_erf.jpg
+:scale: 30%
+```
+
+
 ## Equilibrium climate sensitivity (ECS) without feedback
 We define the ECS as "The global mean surface warming necessary to balance the planetary energy budget after a doubling of atmospheric CO2".
 
@@ -216,8 +228,8 @@ tau = OLRobserved / sigma / Tsobserved**4  # solve for tuned value of transmissi
 
 lambda_0 = 4 * sigma * tau * Tsobserved**3
 
-DeltaR = 4.  # Radiative forcing in W/m2
-DeltaT0 = DeltaR / lambda_0
+DeltaR_test = 4.  # Radiative forcing in W/m2
+DeltaT0 = DeltaR_test / lambda_0
 print( 'The Equilibrium Climate Sensitivity in the absence of feedback is {:.1f} K.'.format(DeltaT0))
 ```
 
@@ -244,10 +256,209 @@ print(rcm_2xCO2_eq.OLR - rcm.OLR)
 print('rcm_2xCO2_eq.ASR - rcm.ASR')
 print(rcm_2xCO2_eq.ASR - rcm.ASR)
 
+lambda0 = DeltaR / ECS_nofeedback
+print('lambda0')
+print(lambda0)
+
+```
+## Climate feedback
+I guess that the feedback concept is inherited from electronic engineering. 
+For example, Professor Gu-Yeon Wei's lecture 18 introduced the feedback concept [(here)](https://in.ncu.edu.tw/~ncume_ee/harvard-es154/lect_18_feedback.pdf):
+
+```{figure} /_static/lecture_specific/lecture1_figures/feedback0.png
+:scale: 50%
 ```
 
+In climate science, we can think of "Source" as forcing or input added to the system, A as the whole process in the system, $\beta$ (gain) as the amplifier or deamplifier, and the load is the output.
+
+We use $f$ to quantify the effect and strength of $\beta$ (gain). If it is positive ($f>0$), we call it amplifying feedback. If it is negative ($f<0$), we call it dampling feedback. 
+
+Can you give examples for positive and negative feedbacks in the atmosphere or climate system?
+
+In Arctic climate system, the feedbacks could be complex. In [Goosse et al. (2018)](https://www.nature.com/articles/s41467-018-04173-0), they summarized some feedbacks in the Arctic:
+
+```{figure} /_static/lecture_specific/lecture1_figures/arctic_feedback.png
+:scale: 30%
+```
+
+Let's work on how to quantify the effect of feedbacks. We strat with the temperature change considered in a system without feedback:
+```{math}
+:label: my_label68
+\Delta T_{0} = \frac{\Delta R}{\lambda_{0}}
+```
+
+We assume that a positive feedback (e.g., water vapor feedback) is included and taking action. So its effect is to "enhance" the temperature change positively with a fraction of $f$:
+
+```{math}
+:label: my_label69
+f\lambda_{0}\Delta T_{0}
+```
+
+```{note}
+```{math}
+:label: my_label70
+\mbox{why  } -\infty < f \le 1 \mbox{ ???}
+```
+
+With infinity loops, we take the sume of each feedback effect:
+```{math}
+:label: my_label71
+f\lambda_{0}\Delta T_{0} + f^{2}\lambda_{0}\Delta T_{0} + \cdots = (f+f^{2}+\cdots)\lambda_{0}\Delta T_{0} = \lambda_{0}\Delta T_{0}\sum_{n=1}^{\infty}f^{n}
+```
+ 
+Sum the original response to forcing $\Delta R = \lambda_{0}\Delta T_{0}$,
+```{math}
+:label: my_label72
+\lambda_{0}\Delta T_{0} + \lambda_{0}\Delta T_{0}\sum_{n=1}^{\infty}f^{n} = \lambda_{0}\Delta T_{0}\sum_{n=0}^{\infty}f^{n} = \frac{1}{1-f}\lambda_{0}\Delta T_{0}
+```
+
+So the final response is
+```{math}
+:label: my_label73
+\lambda_{0}\Delta T = \frac{1}{1-f}\lambda_{0}\Delta T_{0}
+```
+```{math}
+:label: my_label74
+\rightarrow \Delta T = \frac{1}{1-f}\Delta T_{0}
+```
+
+We define the gain as:
+```{math}
+:label: my_label75
+g = \frac{1}{1-f} = \frac{\Delta T}{\Delta T_{0}}
+``` 
+
+What does this mean? How about a negative feedback?
+
+If the system has N individual feedbacks, the total effect can be summed:
+```{math}
+:label: my_label76
+f = f_{1} + f_{2} + \cdots f_{N} = \sum_{i=1}^{N}f_{i}
+```
+
+The ECS now becomes:
+```{math}
+:label: my_label77
+\Delta T_{2xCO2} = \frac{1}{1-\sum_{i=1}^{N}f_{i}}\Delta T_{0} = \frac{1}{1-\sum_{i=1}^{N}f_{i}}\frac{\Delta R}{\lambda_{0}}
+```
+
+We can define feedback parameter in the unit of W/m$^2$/K as:
+```{math}
+:label: my_label78
+\lambda_{i} = f_{i}\lambda_{0}
+```
+
+Then:
+```{math}
+:label: my_label79
+\Delta T_{2xCO2} = \frac{\Delta R}{\lambda_{0}-\sum_{i=1}^{N}\lambda_{i}}
+```
+
+So the total feedback (parameter) could be decompose into:
+```{math}
+:label: my_label80
+\lambda = \lambda_{0} - \sum_{i=1}^{N}\lambda_{i}
+```
+
+```{note}
+$\lambda_{0}=3.3$ W/m$^2$/K is the Planck feedback parameter. This is not a real feedback (right?), and simply as a consequence of a warmer world emits more longwave radiation than a colder world.
+```
+
+This formulation is very useful, becasue we can qunatitatively compare the importance of each feedback. Below is an example from my paper:
+```{figure} /_static/lecture_specific/lecture1_figures/my_feedback0.png
+:scale: 70%
+```
+
+Now let's add a water vapor feedback into our RCE model and calculate ECS and feedback parameter.
+
+```{code-cell} ipython3
+#  actual specific humidity
+q = rcm.subprocess['Radiation'].specific_humidity
+#  saturation specific humidity (a function of temperature and pressure)
+qsat = climlab.utils.thermo.qsat(rcm.Tatm, rcm.lev)
+#  Relative humidity
+rh = q/qsat
+
+#  Plot relative humidity in percent
+fig,ax = plt.subplots()
+ax.plot(q*1000, rcm.lev, 'b-')
+ax.invert_yaxis()
+ax.grid()
+ax.set_ylabel('Pressure (hPa)')
+ax.set_xlabel('Specific humidity (g/kg)', color='b')
+ax.tick_params('x', colors='b')
+ax2 = ax.twiny()
+ax2.plot(rh*100., rcm.lev, 'r-')
+ax2.set_xlabel('Relative humidity (%)', color='r')
+ax2.tick_params('x', colors='r')
+
+```
+
+We consider the relative humidity somewhat fixed, while saturation specific humidity varied with temperature changes.
+
+```{code-cell} ipython3
+rcm_2xCO2_h2o = climlab.process_like(rcm_2xCO2)
+rcm_2xCO2_h2o.name = 'RCE Model (2xCO2 equilibrium with H2O feedback)'
+
+for n in range(2000):
+    # At every timestep
+    # we calculate the new saturation specific humidity for the new temperature
+    #  and change the water vapor in the radiation model
+    #  so that relative humidity is always the same
+    qsat = climlab.utils.thermo.qsat(rcm_2xCO2_h2o.Tatm, rcm_2xCO2_h2o.lev)
+    rcm_2xCO2_h2o.subprocess['Radiation'].specific_humidity[:] = rh * qsat
+    rcm_2xCO2_h2o.step_forward()
+
+# Check for energy balance
+print(rcm_2xCO2_h2o.ASR - rcm_2xCO2_h2o.OLR)
+
+skew = make_skewT()
+add_profile(skew, rcm)
+add_profile(skew, rcm_2xCO2_strat)
+add_profile(skew, rcm_2xCO2_eq)
+add_profile(skew, rcm_2xCO2_h2o)
+
+```
+
+```{code-cell}ipython
+ECS = rcm_2xCO2_h2o.Ts - rcm.Ts
+print('ECS')
+print(ECS)
+
+g = ECS / ECS_nofeedback
+print('gain')
+print(g)
+
+lambda_net = DeltaR / ECS
+print('lambda_net')
+print(lambda_net)
+
+print('lambda0')
+print(lambda0)
+
+lambda_h2o = lambda0 - lambda_net
+print('lambda_h2o')
+print(lambda_h2o)
+
+```
+
+```{math}
+:label: my_label81
+\lambda_{H2O} = \lambda_{0} - \lambda = 3.3 - 1.43 \approx 1.87
+```
+
+"For every 1 degree of surface warming, the increased water vapor greenhouse effect provides an additional 1.86 W m$^{-2}$ of radiative forcing."
 
 
+[Flato et al. (2013)](https://www.ipcc.ch/report/ar5/wg1/) in IPCC AR5 reported the climate feedbacks:
+```{figure} /_static/lecture_specific/lecture1_figures/flato_feedbacks.png
+:scale: 50%
+```
+
+[Sherwood et al. (2020)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019RG000678) summarize the climate feedbacks:
+```{figure} /_static/lecture_specific/lecture1_figures/sherwood_feedbacks.jpg
+:scale: 40%
+```
 
 ## Homework assignment 4 (due xxx)
 1. In the pure radiative model, can you remove the effect of ozone?
