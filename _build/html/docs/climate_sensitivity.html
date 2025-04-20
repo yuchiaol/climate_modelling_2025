@@ -313,6 +313,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity-ecs-without-feedback">Equilibrium climate sensitivity (ECS) without feedback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-feedback">Climate feedback</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-4-due-xxx">Homework assignment 4 (due xxx)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-4">Final project 4</a></li>
 </ul>
@@ -330,7 +331,11 @@ document.write(`
 <span id="ecs-feedback"></span><h1>Climate sensitivity and feedback<a class="headerlink" href="#climate-sensitivity-and-feedback" title="Permalink to this heading">#</a></h1>
 <section id="radiative-forcing">
 <h2>Radiative forcing<a class="headerlink" href="#radiative-forcing" title="Permalink to this heading">#</a></h2>
-<p>We start with the radiative forcing in a RCE model. Recall that the radiative forcing is the quick change in the TOA energy budget before the climate system begins to adjust. If we consider the forcing as doubling CO2, we could write the radiative forcing as:</p>
+<p>We start with the radiative forcing in a RCE model. Recall that the instantaneous radiative forcing is the quick change in the TOA energy budget before the climate system begins to adjust.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/hansen_1997_rf.png"><img alt="../_images/hansen_1997_rf.png" src="../_images/hansen_1997_rf.png" style="width: 927.0px; height: 443.0px;" /></a>
+</figure>
+<p>If we consider the forcing as doubling CO2, we could write the radiative forcing as:</p>
 <div class="math notranslate nohighlight" id="equation-my-label61">
 <span class="eqno">(61)<a class="headerlink" href="#equation-my-label61" title="Permalink to this equation">#</a></span>\[\Delta R = (ASR_{2xCO2}-OLR_{2xCO2}) - (ASR_{1xCO2}-OLR_{1xCO2}).\]</div>
 <p>What is happening after we add more CO2 in the atmosphere?</p>
@@ -543,6 +548,10 @@ None
 </div>
 </div>
 <p>Radiative forcing gives us some insights about how the changes of forcing could tranfer energy to the system, and temperature might change. But not the final temperature reaching equilibrium.</p>
+<p><a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019RG000678">Sherwood et al. (2020)</a> summarize the radiative forcing:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/sherwood_erf.jpg"><img alt="../_images/sherwood_erf.jpg" src="../_images/sherwood_erf.jpg" style="width: 554.4px; height: 507.0px;" /></a>
+</figure>
 </section>
 <section id="equilibrium-climate-sensitivity-ecs-without-feedback">
 <h2>Equilibrium climate sensitivity (ECS) without feedback<a class="headerlink" href="#equilibrium-climate-sensitivity-ecs-without-feedback" title="Permalink to this heading">#</a></h2>
@@ -575,8 +584,8 @@ None
 
 <span class="n">lambda_0</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">Tsobserved</span><span class="o">**</span><span class="mi">3</span>
 
-<span class="n">DeltaR</span> <span class="o">=</span> <span class="mf">4.</span>  <span class="c1"># Radiative forcing in W/m2</span>
-<span class="n">DeltaT0</span> <span class="o">=</span> <span class="n">DeltaR</span> <span class="o">/</span> <span class="n">lambda_0</span>
+<span class="n">DeltaR_test</span> <span class="o">=</span> <span class="mf">4.</span>  <span class="c1"># Radiative forcing in W/m2</span>
+<span class="n">DeltaT0</span> <span class="o">=</span> <span class="n">DeltaR_test</span> <span class="o">/</span> <span class="n">lambda_0</span>
 <span class="nb">print</span><span class="p">(</span> <span class="s1">&#39;The Equilibrium Climate Sensitivity in the absence of feedback is </span><span class="si">{:.1f}</span><span class="s1"> K.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">DeltaT0</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -610,6 +619,10 @@ None
 <span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">OLR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rcm_2xCO2_eq.ASR - rcm.ASR&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2_eq</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">ASR</span><span class="p">)</span>
+
+<span class="n">lambda0</span> <span class="o">=</span> <span class="n">DeltaR</span> <span class="o">/</span> <span class="n">ECS_nofeedback</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lambda0&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lambda0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -626,11 +639,188 @@ rcm_2xCO2_eq.OLR - rcm.OLR
 [0.05080282]
 rcm_2xCO2_eq.ASR - rcm.ASR
 [0.05080282]
+lambda0
+[3.29913401]
 </pre></div>
 </div>
 <img alt="../_images/f79f0037516e3c650de86b57a0361cf51633228959aef76d3eee986e581162fc.png" src="../_images/f79f0037516e3c650de86b57a0361cf51633228959aef76d3eee986e581162fc.png" />
 </div>
 </div>
+</section>
+<section id="climate-feedback">
+<h2>Climate feedback<a class="headerlink" href="#climate-feedback" title="Permalink to this heading">#</a></h2>
+<p>I guess that the feedback concept is inherited from electronic engineering.
+For example, Professor Gu-Yeon Wei’s lecture 18 introduced the feedback concept <a class="reference external" href="https://in.ncu.edu.tw/~ncume_ee/harvard-es154/lect_18_feedback.pdf">(here)</a>:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/feedback0.png"><img alt="../_images/feedback0.png" src="../_images/feedback0.png" style="width: 522.0px; height: 195.0px;" /></a>
+</figure>
+<p>In climate science, we can think of “Source” as forcing or input added to the system, A as the whole process in the system, <span class="math notranslate nohighlight">\(\beta\)</span> (gain) as the amplifier or deamplifier, and the load is the output.</p>
+<p>We use <span class="math notranslate nohighlight">\(f\)</span> to quantify the effect and strength of <span class="math notranslate nohighlight">\(\beta\)</span> (gain). If it is positive (<span class="math notranslate nohighlight">\(f&gt;0\)</span>), we call it amplifying feedback. If it is negative (<span class="math notranslate nohighlight">\(f&lt;0\)</span>), we call it dampling feedback.</p>
+<p>Can you give examples for positive and negative feedbacks in the atmosphere or climate system?</p>
+<p>In Arctic climate system, the feedbacks could be complex. In <a class="reference external" href="https://www.nature.com/articles/s41467-018-04173-0">Goosse et al. (2018)</a>, they summarized some feedbacks in the Arctic:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/arctic_feedback.png"><img alt="../_images/arctic_feedback.png" src="../_images/arctic_feedback.png" style="width: 600.3px; height: 436.5px;" /></a>
+</figure>
+<p>Let’s work on how to quantify the effect of feedbacks. We strat with the temperature change considered in a system without feedback:</p>
+<div class="math notranslate nohighlight" id="equation-my-label68">
+<span class="eqno">(68)<a class="headerlink" href="#equation-my-label68" title="Permalink to this equation">#</a></span>\[\Delta T_{0} = \frac{\Delta R}{\lambda_{0}}\]</div>
+<p>We assume that a positive feedback (e.g., water vapor feedback) is included and taking action. So its effect is to “enhance” the temperature change positively with a fraction of <span class="math notranslate nohighlight">\(f\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-my-label69">
+<span class="eqno">(69)<a class="headerlink" href="#equation-my-label69" title="Permalink to this equation">#</a></span>\[f\lambda_{0}\Delta T_{0}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="math notranslate nohighlight" id="equation-my-label70">
+<span class="eqno">(70)<a class="headerlink" href="#equation-my-label70" title="Permalink to this equation">#</a></span>\[\mbox{why  } -\infty &lt; f \le 1 \mbox{ ???}\]</div>
+</div>
+<p>With infinity loops, we take the sume of each feedback effect:</p>
+<div class="math notranslate nohighlight" id="equation-my-label71">
+<span class="eqno">(71)<a class="headerlink" href="#equation-my-label71" title="Permalink to this equation">#</a></span>\[f\lambda_{0}\Delta T_{0} + f^{2}\lambda_{0}\Delta T_{0} + \cdots = (f+f^{2}+\cdots)\lambda_{0}\Delta T_{0} = \lambda_{0}\Delta T_{0}\sum_{n=1}^{\infty}f^{n}\]</div>
+<p>Sum the original response to forcing <span class="math notranslate nohighlight">\(\Delta R = \lambda_{0}\Delta T_{0}\)</span>,</p>
+<div class="math notranslate nohighlight" id="equation-my-label72">
+<span class="eqno">(72)<a class="headerlink" href="#equation-my-label72" title="Permalink to this equation">#</a></span>\[\lambda_{0}\Delta T_{0} + \lambda_{0}\Delta T_{0}\sum_{n=1}^{\infty}f^{n} = \lambda_{0}\Delta T_{0}\sum_{n=0}^{\infty}f^{n} = \frac{1}{1-f}\lambda_{0}\Delta T_{0}\]</div>
+<p>So the final response is</p>
+<div class="math notranslate nohighlight" id="equation-my-label73">
+<span class="eqno">(73)<a class="headerlink" href="#equation-my-label73" title="Permalink to this equation">#</a></span>\[\lambda_{0}\Delta T = \frac{1}{1-f}\lambda_{0}\Delta T_{0}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label74">
+<span class="eqno">(74)<a class="headerlink" href="#equation-my-label74" title="Permalink to this equation">#</a></span>\[\rightarrow \Delta T = \frac{1}{1-f}\Delta T_{0}\]</div>
+<p>We define the gain as:</p>
+<div class="math notranslate nohighlight" id="equation-my-label75">
+<span class="eqno">(75)<a class="headerlink" href="#equation-my-label75" title="Permalink to this equation">#</a></span>\[g = \frac{1}{1-f} = \frac{\Delta T}{\Delta T_{0}}\]</div>
+<p>What does this mean? How about a negative feedback?</p>
+<p>If the system has N individual feedbacks, the total effect can be summed:</p>
+<div class="math notranslate nohighlight" id="equation-my-label76">
+<span class="eqno">(76)<a class="headerlink" href="#equation-my-label76" title="Permalink to this equation">#</a></span>\[f = f_{1} + f_{2} + \cdots f_{N} = \sum_{i=1}^{N}f_{i}\]</div>
+<p>The ECS now becomes:</p>
+<div class="math notranslate nohighlight" id="equation-my-label77">
+<span class="eqno">(77)<a class="headerlink" href="#equation-my-label77" title="Permalink to this equation">#</a></span>\[\Delta T_{2xCO2} = \frac{1}{1-\sum_{i=1}^{N}f_{i}}\Delta T_{0} = \frac{1}{1-\sum_{i=1}^{N}f_{i}}\frac{\Delta R}{\lambda_{0}}\]</div>
+<p>We can define feedback parameter in the unit of W/m<span class="math notranslate nohighlight">\(^2\)</span>/K as:</p>
+<div class="math notranslate nohighlight" id="equation-my-label78">
+<span class="eqno">(78)<a class="headerlink" href="#equation-my-label78" title="Permalink to this equation">#</a></span>\[\lambda_{i} = f_{i}\lambda_{0}\]</div>
+<p>Then:</p>
+<div class="math notranslate nohighlight" id="equation-my-label79">
+<span class="eqno">(79)<a class="headerlink" href="#equation-my-label79" title="Permalink to this equation">#</a></span>\[\Delta T_{2xCO2} = \frac{\Delta R}{\lambda_{0}-\sum_{i=1}^{N}\lambda_{i}}\]</div>
+<p>So the total feedback (parameter) could be decompose into:</p>
+<div class="math notranslate nohighlight" id="equation-my-label80">
+<span class="eqno">(80)<a class="headerlink" href="#equation-my-label80" title="Permalink to this equation">#</a></span>\[\lambda = \lambda_{0} - \sum_{i=1}^{N}\lambda_{i}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span class="math notranslate nohighlight">\(\lambda_{0}=3.3\)</span> W/m<span class="math notranslate nohighlight">\(^2\)</span>/K is the Planck feedback parameter. This is not a real feedback (right?), and simply as a consequence of a warmer world emits more longwave radiation than a colder world.</p>
+</div>
+<p>This formulation is very useful, becasue we can qunatitatively compare the importance of each feedback. Below is an example from my paper:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/my_feedback0.png"><img alt="../_images/my_feedback0.png" src="../_images/my_feedback0.png" style="width: 418.59999999999997px; height: 296.79999999999995px;" /></a>
+</figure>
+<p>Now let’s add a water vapor feedback into our RCE model and calculate ECS and feedback parameter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#  actual specific humidity</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">rcm</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">specific_humidity</span>
+<span class="c1">#  saturation specific humidity (a function of temperature and pressure)</span>
+<span class="n">qsat</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">thermo</span><span class="o">.</span><span class="n">qsat</span><span class="p">(</span><span class="n">rcm</span><span class="o">.</span><span class="n">Tatm</span><span class="p">,</span> <span class="n">rcm</span><span class="o">.</span><span class="n">lev</span><span class="p">)</span>
+<span class="c1">#  Relative humidity</span>
+<span class="n">rh</span> <span class="o">=</span> <span class="n">q</span><span class="o">/</span><span class="n">qsat</span>
+
+<span class="c1">#  Plot relative humidity in percent</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">q</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="n">rcm</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Pressure (hPa)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Specific humidity (g/kg)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twiny</span><span class="p">()</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rh</span><span class="o">*</span><span class="mf">100.</span><span class="p">,</span> <span class="n">rcm</span><span class="o">.</span><span class="n">lev</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Relative humidity (%)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/044bfe8bbe4196079b5a70bd33d23e90acd64a079ad5824672ad3f6e192eafe4.png" src="../_images/044bfe8bbe4196079b5a70bd33d23e90acd64a079ad5824672ad3f6e192eafe4.png" />
+</div>
+</div>
+<p>We consider the relative humidity somewhat fixed, while saturation specific humidity varied with temperature changes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rcm_2xCO2_h2o</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">process_like</span><span class="p">(</span><span class="n">rcm_2xCO2</span><span class="p">)</span>
+<span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;RCE Model (2xCO2 equilibrium with H2O feedback)&#39;</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span>
+    <span class="c1"># At every timestep</span>
+    <span class="c1"># we calculate the new saturation specific humidity for the new temperature</span>
+    <span class="c1">#  and change the water vapor in the radiation model</span>
+    <span class="c1">#  so that relative humidity is always the same</span>
+    <span class="n">qsat</span> <span class="o">=</span> <span class="n">climlab</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">thermo</span><span class="o">.</span><span class="n">qsat</span><span class="p">(</span><span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">Tatm</span><span class="p">,</span> <span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">lev</span><span class="p">)</span>
+    <span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">subprocess</span><span class="p">[</span><span class="s1">&#39;Radiation&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">specific_humidity</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">rh</span> <span class="o">*</span> <span class="n">qsat</span>
+    <span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">step_forward</span><span class="p">()</span>
+
+<span class="c1"># Check for energy balance</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">ASR</span> <span class="o">-</span> <span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">OLR</span><span class="p">)</span>
+
+<span class="n">skew</span> <span class="o">=</span> <span class="n">make_skewT</span><span class="p">()</span>
+<span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">rcm</span><span class="p">)</span>
+<span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">rcm_2xCO2_strat</span><span class="p">)</span>
+<span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">rcm_2xCO2_eq</span><span class="p">)</span>
+<span class="n">add_profile</span><span class="p">(</span><span class="n">skew</span><span class="p">,</span> <span class="n">rcm_2xCO2_h2o</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-1.73180638e-07]
+</pre></div>
+</div>
+<img alt="../_images/eeacdc5ba4aa62524c3741a8a290fa810acd6dfad06ec92684a5ee219f898a88.png" src="../_images/eeacdc5ba4aa62524c3741a8a290fa810acd6dfad06ec92684a5ee219f898a88.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ECS</span> <span class="o">=</span> <span class="n">rcm_2xCO2_h2o</span><span class="o">.</span><span class="n">Ts</span> <span class="o">-</span> <span class="n">rcm</span><span class="o">.</span><span class="n">Ts</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;ECS&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ECS</span><span class="p">)</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">ECS</span> <span class="o">/</span> <span class="n">ECS_nofeedback</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gain&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+
+<span class="n">lambda_net</span> <span class="o">=</span> <span class="n">DeltaR</span> <span class="o">/</span> <span class="n">ECS</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lambda_net&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lambda_net</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lambda0&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lambda0</span><span class="p">)</span>
+
+<span class="n">lambda_h2o</span> <span class="o">=</span> <span class="n">lambda0</span> <span class="o">-</span> <span class="n">lambda_net</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lambda_h2o&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lambda_h2o</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ECS
+[2.98902357]
+gain
+[2.29951722]
+lambda_net
+[1.43470724]
+lambda0
+[3.29913401]
+lambda_h2o
+[1.86442677]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="math notranslate nohighlight" id="equation-my-label81">
+<span class="eqno">(81)<a class="headerlink" href="#equation-my-label81" title="Permalink to this equation">#</a></span>\[\lambda_{H2O} = \lambda_{0} - \lambda = 3.3 - 1.43 \approx 1.87\]</div>
+<p>“For every 1 degree of surface warming, the increased water vapor greenhouse effect provides an additional 1.86 W m<span class="math notranslate nohighlight">\(^{-2}\)</span> of radiative forcing.”</p>
+<p><a class="reference external" href="https://www.ipcc.ch/report/ar5/wg1/">Flato et al. (2013)</a> in IPCC AR5 reported the climate feedbacks:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/flato_feedbacks.png"><img alt="../_images/flato_feedbacks.png" src="../_images/flato_feedbacks.png" style="width: 808.0px; height: 445.0px;" /></a>
+</figure>
+<p><a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019RG000678">Sherwood et al. (2020)</a> summarize the climate feedbacks:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/sherwood_feedbacks.jpg"><img alt="../_images/sherwood_feedbacks.jpg" src="../_images/sherwood_feedbacks.jpg" style="width: 762.0px; height: 417.20000000000005px;" /></a>
+</figure>
 </section>
 <section id="homework-assignment-4-due-xxx">
 <h2>Homework assignment 4 (due xxx)<a class="headerlink" href="#homework-assignment-4-due-xxx" title="Permalink to this heading">#</a></h2>
@@ -708,6 +898,7 @@ rcm_2xCO2_eq.ASR - rcm.ASR
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity-ecs-without-feedback">Equilibrium climate sensitivity (ECS) without feedback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-feedback">Climate feedback</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-4-due-xxx">Homework assignment 4 (due xxx)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-project-4">Final project 4</a></li>
 </ul>
