@@ -460,18 +460,6 @@ print(lambda_h2o)
 :scale: 40%
 ```
 
-## Homework assignment 4 (due xxx)
-1. In the pure radiative model, can you remove the effect of ozone?
-2. In the pure radiative model, can you remove the effects of ozone and water vapor?
-3. In the RCE model, chosse an initial condition with temperature reaching radiative equilibrium.
-4. In the RCE model, chosse an isothermal initial condition with temperature 360 K and 170 K. Can you plot the temperature evolution at surface, 800 hPa, 500 hPa, 200 hPa, and 100 hPa, with time? 
-
-## Final project 4
-The key parameter 'adj_lapse_rate' determines the RCE equilibrium, but setting it as a constant may be somewhat idealized. Can you replace it with:
-- adj_lapse_rate = 9.8. This is the dry adiabatic lapse rate.
-- adj_lapse_rate = 'pseudoadiabat'. This follows the blue moist adiabats on the skew-T diagrams.
-- more realistic lapse-rate from observations? For example from sounding?
-
 
 
 
