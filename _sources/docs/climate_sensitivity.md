@@ -460,6 +460,68 @@ print(lambda_h2o)
 :scale: 40%
 ```
 
+## The physical model - putting together
+
+We review Section 2.2 of [Sherwood et al. (2020)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019RG000678) to put everything together. This is the conventional model for feedback-forcing theory.
+
+```{math}
+:label: my_label82
+\Delta N = \Delta F + \Delta R + V,
+``` 
+where $\Delta N$ is the net downward radiation imbalance at TOA, $\Delta F$ is the radiative forcing, and $\Delta R$ is the radiative response due to direct or indirect changes in temperature, and $V$ is the unrelated processes.
+
+Assume that the radiative response $\Delta R$ is proportional to first order of the forced change in global mean surface air temperature ($\Delta T_s$, using Taylor expansion), we can get:
+
+```{math}
+:label: my_label83
+\Delta N = \Delta F + \lambda\Delta T_{s} + V.
+```
+
+```{note}
+What is the sign of $\lambda$? Can the system reach to an equilibrium state if $\lambda$ is positive?
+```
+
+Consider the climate system reaches an equilibrium state over a sufficient long time, so we can neglect $\Delta N$ and $V$.
+
+```{math}
+:label: my_label84
+\Delta T_{s} = -\frac{\Delta F}{\lambda}.
+```
+
+So the climate sensitivity of doubling CO2 can be expressed as below:
+
+```{math}
+:label: my_label85
+S_{2xCO2} = -\frac{\Delta F_{2xCO2}}{\lambda}
+```
+
+The feedback $\lambda$ can be decomposed into each feedback process:
+```{math}
+:label: my_label86
+\lambda = \sum_{i}^{6?} {\lambda_{i}}
+```
+
+- Feebacks can change strength in different climate state --> state dependence $\Delta \lambda_{state}$
+- $\Delta N$ can not only depend on global-mean surface air temperature but also the geographic distribution or pattern --> pattern effect $\Delta \lambda_{pattern}$
+
+We can modify the model as:
+```{math}
+:label: my_label87
+\Delta N = \Delta F + (\lambda - \Delta \lambda)\Delta T_{s},
+```
+where
+```{math}
+:label: my_label88
+\Delta \lambda = \Delta \lambda_{state} + \Delta \lambda_{pattern} = \frac{\partial \lambda}{\partial T_{s}}\Delta T_{s} + \frac{\partial \lambda}{\partial T_{s}^{'}(x)}\Delta T_{s}^{'}(x)
+```
+
+How to calculate $\Delta \lambda_{state}$ and $\Delta \lambda_{pattern}$ is another long story.
+
+## Radiative kernel analysis
+
+
+
+
 
 
 
