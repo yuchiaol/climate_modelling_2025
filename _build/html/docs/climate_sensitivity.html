@@ -314,6 +314,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity-ecs-without-feedback">Equilibrium climate sensitivity (ECS) without feedback</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-feedback">Climate feedback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-physical-model-putting-together">The physical model - putting together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-kernel-analysis">Radiative kernel analysis</a></li>
 </ul>
             </nav>
         </div>
@@ -820,6 +822,43 @@ lambda_h2o
 <a class="reference internal image-reference" href="../_images/sherwood_feedbacks.jpg"><img alt="../_images/sherwood_feedbacks.jpg" src="../_images/sherwood_feedbacks.jpg" style="width: 762.0px; height: 417.20000000000005px;" /></a>
 </figure>
 </section>
+<section id="the-physical-model-putting-together">
+<h2>The physical model - putting together<a class="headerlink" href="#the-physical-model-putting-together" title="Permalink to this heading">#</a></h2>
+<p>We review Section 2.2 of <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019RG000678">Sherwood et al. (2020)</a> to put everything together. This is the conventional model for feedback-forcing theory.</p>
+<div class="math notranslate nohighlight" id="equation-my-label82">
+<span class="eqno">(82)<a class="headerlink" href="#equation-my-label82" title="Permalink to this equation">#</a></span>\[\Delta N = \Delta F + \Delta R + V,\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta N\)</span> is the net downward radiation imbalance at TOA, <span class="math notranslate nohighlight">\(\Delta F\)</span> is the radiative forcing, and <span class="math notranslate nohighlight">\(\Delta R\)</span> is the radiative response due to direct or indirect changes in temperature, and <span class="math notranslate nohighlight">\(V\)</span> is the unrelated processes.</p>
+<p>Assume that the radiative response <span class="math notranslate nohighlight">\(\Delta R\)</span> is proportional to first order of the forced change in global mean surface air temperature (<span class="math notranslate nohighlight">\(\Delta T_s\)</span>, using Taylor expansion), we can get:</p>
+<div class="math notranslate nohighlight" id="equation-my-label83">
+<span class="eqno">(83)<a class="headerlink" href="#equation-my-label83" title="Permalink to this equation">#</a></span>\[\Delta N = \Delta F + \lambda\Delta T_{s} + V.\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>What is the sign of <span class="math notranslate nohighlight">\(\lambda\)</span>? Can the system reach to an equilibrium state if <span class="math notranslate nohighlight">\(\lambda\)</span> is positive?</p>
+</div>
+<p>Consider the climate system reaches an equilibrium state over a sufficient long time, so we can neglect <span class="math notranslate nohighlight">\(\Delta N\)</span> and <span class="math notranslate nohighlight">\(V\)</span>.</p>
+<div class="math notranslate nohighlight" id="equation-my-label84">
+<span class="eqno">(84)<a class="headerlink" href="#equation-my-label84" title="Permalink to this equation">#</a></span>\[\Delta T_{s} = -\frac{\Delta F}{\lambda}.\]</div>
+<p>So the climate sensitivity of doubling CO2 can be expressed as below:</p>
+<div class="math notranslate nohighlight" id="equation-my-label85">
+<span class="eqno">(85)<a class="headerlink" href="#equation-my-label85" title="Permalink to this equation">#</a></span>\[S_{2xCO2} = -\frac{\Delta F_{2xCO2}}{\lambda}\]</div>
+<p>The feedback <span class="math notranslate nohighlight">\(\lambda\)</span> can be decomposed into each feedback process:</p>
+<div class="math notranslate nohighlight" id="equation-my-label86">
+<span class="eqno">(86)<a class="headerlink" href="#equation-my-label86" title="Permalink to this equation">#</a></span>\[\lambda = \sum_{i}^{6?} {\lambda_{i}}\]</div>
+<ul class="simple">
+<li><p>Feebacks can change strength in different climate state –&gt; state dependence <span class="math notranslate nohighlight">\(\Delta \lambda_{state}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\Delta N\)</span> can not only depend on global-mean surface air temperature but also the geographic distribution or pattern –&gt; pattern effect <span class="math notranslate nohighlight">\(\Delta \lambda_{pattern}\)</span></p></li>
+</ul>
+<p>We can modify the model as:</p>
+<div class="math notranslate nohighlight" id="equation-my-label87">
+<span class="eqno">(87)<a class="headerlink" href="#equation-my-label87" title="Permalink to this equation">#</a></span>\[\Delta N = \Delta F + (\lambda - \Delta \lambda)\Delta T_{s},\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight" id="equation-my-label88">
+<span class="eqno">(88)<a class="headerlink" href="#equation-my-label88" title="Permalink to this equation">#</a></span>\[\Delta \lambda = \Delta \lambda_{state} + \Delta \lambda_{pattern} = \frac{\partial \lambda}{\partial T_{s}}\Delta T_{s} + \frac{\partial \lambda}{\partial T_{s}^{'}(x)}\Delta T_{s}^{'}(x)\]</div>
+<p>How to calculate <span class="math notranslate nohighlight">\(\Delta \lambda_{state}\)</span> and <span class="math notranslate nohighlight">\(\Delta \lambda_{pattern}\)</span> is another long story.</p>
+</section>
+<section id="radiative-kernel-analysis">
+<h2>Radiative kernel analysis<a class="headerlink" href="#radiative-kernel-analysis" title="Permalink to this heading">#</a></h2>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -879,6 +918,8 @@ lambda_h2o
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-forcing">Radiative forcing</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equilibrium-climate-sensitivity-ecs-without-feedback">Equilibrium climate sensitivity (ECS) without feedback</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-feedback">Climate feedback</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-physical-model-putting-together">The physical model - putting together</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radiative-kernel-analysis">Radiative kernel analysis</a></li>
 </ul>
   </nav></div>
 
