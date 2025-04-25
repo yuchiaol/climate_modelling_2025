@@ -6,3 +6,4 @@ sections:
 - file: docs/layer_model
 - file: docs/rce_model
 - file: docs/climate_sensitivity
+- file: docs/rae_model
