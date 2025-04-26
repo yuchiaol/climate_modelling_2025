@@ -377,7 +377,7 @@ document.write(`
 </section>
 <section id="two-layer-rae-model">
 <h2>Two-layer RAE model<a class="headerlink" href="#two-layer-rae-model" title="Permalink to this heading">#</a></h2>
-<p>Let’s play around with a simpler model to emulate RAE. <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889">Payne et al. (2015)</a> proposed a two-layer model to characterize RCE equilibrium. I found this model very intersting and informative. The model looks like below:</p>
+<p>Let’s play around with a simpler model to emulate RAE. <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889">Payne et al. (2015)</a> proposed a two-layer model to characterize RCE and RAE. I found this model very intersting and informative. The model looks like below:</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../_images/rae_two_layer.png"><img alt="../_images/rae_two_layer.png" src="../_images/rae_two_layer.png" style="width: 808.0px; height: 451.0px;" /></a>
 </figure>
@@ -403,14 +403,81 @@ document.write(`
 <span class="eqno">(96)<a class="headerlink" href="#equation-my-label96" title="Permalink to this equation">#</a></span>\[\sigma T_{s}^{4} = \frac{2F_{S}+F_{A}}{(2-\epsilon)}\]</div>
 <div class="math notranslate nohighlight" id="equation-my-label97">
 <span class="eqno">(97)<a class="headerlink" href="#equation-my-label97" title="Permalink to this equation">#</a></span>\[\sigma T_{a}^{4} = \frac{\epsilon F_{S} + F_{A}}{\epsilon(2-\epsilon)}\]</div>
+<p>Now we wouild like to test the sensitivity to emissivity. We take derivative with respect to <span class="math notranslate nohighlight">\(\epsilon\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-my-label98">
+<span class="eqno">(98)<a class="headerlink" href="#equation-my-label98" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\frac{d\sigma T_{s}^{4}}{d\epsilon} &amp;=&amp; \frac{d\frac{2F_{S}+F_{A}}{(2-\epsilon)}}{d\epsilon} \\
+\rightarrow 4\sigma T_{s}^{3} \frac{dT_{s}}{d\epsilon} &amp;=&amp; (2F_{S}+F_{A})(2-\epsilon)^{-2} \\
+\rightarrow 4\sigma T_{s}^{4} \frac{dT_{s}}{d\epsilon} &amp;=&amp; (2F_{S}+F_{A})(2-\epsilon)^{-2}T_{s} \\
+\rightarrow 4\frac{2F_{S}+F_{A}}{(2-\epsilon)}\frac{dT_{s}}{d\epsilon} &amp;=&amp; (2F_{S}+F_{A})(2-\epsilon)^{-2}T_{s} \\
+\rightarrow \frac{dT_{s}}{d\epsilon} &amp;=&amp;  \frac{T_{s}}{4(2-\epsilon)}
+\end{eqnarray}\end{split}\]</div>
+<p>So for small pertubed <span class="math notranslate nohighlight">\(\delta T_{s}\)</span> and <span class="math notranslate nohighlight">\(\delta \epsilon\)</span>, we can have:</p>
+<div class="math notranslate nohighlight" id="equation-my-label99">
+<span class="eqno">(99)<a class="headerlink" href="#equation-my-label99" title="Permalink to this equation">#</a></span>\[\delta T_{s} = \frac{T_{s}}{4(2-\epsilon)}\delta \epsilon\]</div>
+<p>New we test the sensitivity to forcings, which are <span class="math notranslate nohighlight">\(F_{A}, F_{S}\)</span> and <span class="math notranslate nohighlight">\(F_{R}\)</span>, and feedbacks. We define <span class="math notranslate nohighlight">\(F_{R}\)</span> as the top-of-atmosphere radiative fluxes (forcing):</p>
+<div class="math notranslate nohighlight" id="equation-my-label100">
+<span class="eqno">(100)<a class="headerlink" href="#equation-my-label100" title="Permalink to this equation">#</a></span>\[F_{R} = -((1-\epsilon)\sigma T_{s}^{4}+\epsilon\sigma T_{a}^{4})\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Plank feedback can be expressed as:</p>
+<div class="math notranslate nohighlight" id="equation-my-label101">
+<span class="eqno">(101)<a class="headerlink" href="#equation-my-label101" title="Permalink to this equation">#</a></span>\[\begin{split}\delta F_{R} = -4\sigma ((1-\epsilon)T_{s}^{3} + \epsilon T_{a}^{3}) \delta T_{uniform} \\
+\rightarrow \frac{\delta F_{R}}{\delta T_{uniform}} = -4\sigma ((1-\epsilon)T_{s}^{3} + \epsilon T_{a}^{3}) = \lambda_{PL}\end{split}\]</div>
+</div>
+<p>For forcing <span class="math notranslate nohighlight">\(F_R\)</span> due to small change in atmospheric emissivity:</p>
+<div class="math notranslate nohighlight" id="equation-my-label102">
+<span class="eqno">(102)<a class="headerlink" href="#equation-my-label102" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\frac{dF_{R}}{d\epsilon} &amp;=&amp; \sigma T_{s}^{4} - \sigma T_{a}^{4} \\
+\rightarrow \delta F_{R} &amp;=&amp; (\sigma T_{s}^{4} - \sigma T_{a}^{4})\delta \epsilon \\
+&amp;=&amp; (\frac{2F_{S}+F_{A}}{(2-\epsilon)} - \frac{\epsilon F_{S} + F_{A}}{\epsilon(2-\epsilon)})\delta \epsilon \\
+&amp;=&amp; \frac{2\epsilon F_{S}+\epsilon F_{A}-\epsilon F_{S} - F_{A}}{\epsilon(2-\epsilon)} \delta \epsilon \\
+&amp;=&amp; \frac{\epsilon F_{S}+(\epsilon-1)F_{A}}{\epsilon(2-\epsilon)} \delta \epsilon \\
+&amp;=&amp;  (\sigma T_{s}^{4} - \frac{1}{\epsilon (2-\epsilon)}(\frac{\epsilon(2-\epsilon)\sigma T_{s}^{4} - F_A{}}{2}+F_{A}))\delta \epsilon\\
+&amp;=&amp; (\frac{\sigma T_{s}^{4}}{2}-\frac{F_{A}}{(2-\epsilon)}(\frac{1}{\epsilon}-\frac{1}{2}))\delta \epsilon
+\end{eqnarray}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label103">
+<span class="eqno">(103)<a class="headerlink" href="#equation-my-label103" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\rightarrow \frac{\delta T_{s}}{\delta F_R{}} &amp;=&amp; \frac{1}{(\frac{\sigma T_{s}^{4}}{2}-\frac{F_{A}}{(2-\epsilon)}(\frac{1}{\epsilon}-\frac{1}{2}))\delta \epsilon} \times \frac{T_s}{4(2-\epsilon)}\delta \epsilon\\
+&amp;=&amp; \frac{1}{4\sigma T_{s}^{3}(1-\frac{\epsilon}{2})-\frac{4F_A}{T_s}(\frac{1}{\epsilon}-\frac{1}{2})}
+\end{eqnarray}\end{split}\]</div>
+<p>For forcing <span class="math notranslate nohighlight">\(F_{S}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-my-label105">
+<span class="eqno">(104)<a class="headerlink" href="#equation-my-label105" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+\frac{dF_{S}}{dT_{s}} &amp;=&amp; \frac{4(2-\epsilon)\sigma T_{s}^{3}}{2}
+\end{eqnarray}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label106">
+<span class="eqno">(105)<a class="headerlink" href="#equation-my-label106" title="Permalink to this equation">#</a></span>\[\rightarrow \frac{\delta T_{s}}{\delta F_{S}} =  \frac{1}{4\sigma T_{s}^{3}(1-\frac{\epsilon}{2})}\]</div>
+<p>For forcing <span class="math notranslate nohighlight">\(F_{A}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-my-label107">
+<span class="eqno">(106)<a class="headerlink" href="#equation-my-label107" title="Permalink to this equation">#</a></span>\[\begin{eqnarray}
+\frac{dF_{A}}{dT_{s}} &amp;=&amp; \frac{4(2-\epsilon)\sigma T_{s}^{3}}{1}
+\end{eqnarray}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label108">
+<span class="eqno">(107)<a class="headerlink" href="#equation-my-label108" title="Permalink to this equation">#</a></span>\[\rightarrow \frac{\delta T_{s}}{\delta F_{A}} =  \frac{1}{8\sigma T_{s}^{3}(1-\frac{\epsilon}{2})}\]</div>
+<p>Now consider feedback parameter <span class="math notranslate nohighlight">\(\lambda = -\frac{\delta F}{\delta T_s}\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-my-label109">
+<span class="eqno">(108)<a class="headerlink" href="#equation-my-label109" title="Permalink to this equation">#</a></span>\[\lambda(F_{S}) = -4\sigma T_{s}^{3}(1-\frac{\epsilon}{2}) \]</div>
+<div class="math notranslate nohighlight" id="equation-my-label110">
+<span class="eqno">(109)<a class="headerlink" href="#equation-my-label110" title="Permalink to this equation">#</a></span>\[\lambda(F_{A}) = -8\sigma T_{s}^{3}(1-\frac{\epsilon}{2})\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label111">
+<span class="eqno">(110)<a class="headerlink" href="#equation-my-label111" title="Permalink to this equation">#</a></span>\[\lambda(F_{R}) = -(4\sigma T_{s}^{3}(1-\frac{\epsilon}{2})-\frac{4F_A}{T_s}(\frac{1}{\epsilon}-\frac{1}{2})))\]</div>
+<p>Consider the lapse-rate feedback is the residual of total feedback minus Planck feedback:</p>
+<div class="math notranslate nohighlight" id="equation-my-label112">
+<span class="eqno">(111)<a class="headerlink" href="#equation-my-label112" title="Permalink to this equation">#</a></span>\[\lambda_{LR}(F_{S}) = -4\sigma T_{s}^{3}(1-\frac{\epsilon}{2}) + 4\sigma(1-\epsilon)T_{s}^{3} + 4\sigma\epsilon T_a{}^{3} = 4\sigma\epsilon (T_{a}^{3}-\frac{T_{s}^{3}}{2})\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label113">
+<span class="eqno">(112)<a class="headerlink" href="#equation-my-label113" title="Permalink to this equation">#</a></span>\[\lambda_{LR}(F_{A}) = -8\sigma T_{s}^{3}(1-\frac{\epsilon}{2}) + 4\sigma(1-\epsilon)T_{s}^{3} + 4\sigma\epsilon T_a{}^{3} = 4\sigma (\epsilon T_{a}^{3}-T_{s}^{3})\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label114">
+<span class="eqno">(113)<a class="headerlink" href="#equation-my-label114" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\lambda_{LR}(F_{R}) &amp;=&amp; -(4\sigma T_{s}^{3}(1-\frac{\epsilon}{2})-\frac{4F_A}{T_s}(\frac{1}{\epsilon}-\frac{1}{2}))) + 4\sigma(1-\epsilon)T_{s}^{3} + 4\sigma\epsilon T_a{}^{3} \\
+&amp;=&amp; 4\sigma\epsilon (T_{a}^{3}-\frac{T_{s}^{3}}{2}) + \frac{4F_{A}}{T_s}(\frac{1}{\epsilon}-\frac{1}{2})
+\end{eqnarray}\end{split}\]</div>
+<p>Are the lapse-rate feedbacks positive or negative? What determines their sign?</p>
 </section>
 <section id="homework-assignment-x-due-xxx">
 <h2>Homework assignment X (due xxx)<a class="headerlink" href="#homework-assignment-x-due-xxx" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>In the pure radiative model, can you remove the effect of ozone?</p></li>
-<li><p>In the pure radiative model, can you remove the effects of ozone and water vapor?</p></li>
-<li><p>In the RCE model, chosse an initial condition with temperature reaching radiative equilibrium.</p></li>
-<li><p>In the RCE model, chosse an isothermal initial condition with temperature 360 K and 170 K. Can you plot the temperature evolution at surface, 800 hPa, 500 hPa, 200 hPa, and 100 hPa, with time?</p></li>
+<li><p>Based on Equations (96) and (97), can you make a plot for <span class="math notranslate nohighlight">\(T_s\)</span> and <span class="math notranslate nohighlight">\(T_a\)</span> as a function of emissivity <span class="math notranslate nohighlight">\(\epsilon\)</span>?</p></li>
 </ol>
 </section>
 </section>

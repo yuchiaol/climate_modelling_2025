@@ -74,7 +74,7 @@ We also see strong seasonality of $R_1$:
 
 ## Two-layer RAE model
 
-Let's play around with a simpler model to emulate RAE. [Payne et al. (2015)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889) proposed a two-layer model to characterize RCE equilibrium. I found this model very intersting and informative. The model looks like below:
+Let's play around with a simpler model to emulate RAE. [Payne et al. (2015)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889) proposed a two-layer model to characterize RCE and RAE. I found this model very intersting and informative. The model looks like below:
 
 ```{figure} /_static/lecture_specific/lecture1_figures/rae_two_layer.png
 :scale: 50%
@@ -119,14 +119,124 @@ We can solve for $T_s$ and $T_a$:
 \sigma T_{a}^{4} = \frac{\epsilon F_{S} + F_{A}}{\epsilon(2-\epsilon)}
 ```
 
+Now we wouild like to test the sensitivity to emissivity. We take derivative with respect to $\epsilon$:
+```{math}
+:label: my_label98
+\begin{eqnarray}
+\frac{d\sigma T_{s}^{4}}{d\epsilon} &=& \frac{d\frac{2F_{S}+F_{A}}{(2-\epsilon)}}{d\epsilon} \\
+\rightarrow 4\sigma T_{s}^{3} \frac{dT_{s}}{d\epsilon} &=& (2F_{S}+F_{A})(2-\epsilon)^{-2} \\
+\rightarrow 4\sigma T_{s}^{4} \frac{dT_{s}}{d\epsilon} &=& (2F_{S}+F_{A})(2-\epsilon)^{-2}T_{s} \\
+\rightarrow 4\frac{2F_{S}+F_{A}}{(2-\epsilon)}\frac{dT_{s}}{d\epsilon} &=& (2F_{S}+F_{A})(2-\epsilon)^{-2}T_{s} \\
+\rightarrow \frac{dT_{s}}{d\epsilon} &=&  \frac{T_{s}}{4(2-\epsilon)}
+\end{eqnarray}
+```
 
+So for small pertubed $\delta T_{s}$ and $\delta \epsilon$, we can have:
+```{math}
+:label: my_label99
+\delta T_{s} = \frac{T_{s}}{4(2-\epsilon)}\delta \epsilon
+```
+
+New we test the sensitivity to forcings, which are $F_{A}, F_{S}$ and $F_{R}$, and feedbacks. We define $F_{R}$ as the top-of-atmosphere radiative fluxes (forcing):
+```{math}
+:label: my_label100
+F_{R} = -((1-\epsilon)\sigma T_{s}^{4}+\epsilon\sigma T_{a}^{4})
+```
+
+```{note}
+The Plank feedback can be expressed as:
+```{math}
+:label: my_label101
+\delta F_{R} = -4\sigma ((1-\epsilon)T_{s}^{3} + \epsilon T_{a}^{3}) \delta T_{uniform} \\
+\rightarrow \frac{\delta F_{R}}{\delta T_{uniform}} = -4\sigma ((1-\epsilon)T_{s}^{3} + \epsilon T_{a}^{3}) = \lambda_{PL}
+```
+
+For forcing $F_R$ due to small change in atmospheric emissivity:
+```{math}
+:label: my_label102
+\begin{eqnarray}
+\frac{dF_{R}}{d\epsilon} &=& \sigma T_{s}^{4} - \sigma T_{a}^{4} \\
+\rightarrow \delta F_{R} &=& (\sigma T_{s}^{4} - \sigma T_{a}^{4})\delta \epsilon \\
+&=& (\frac{2F_{S}+F_{A}}{(2-\epsilon)} - \frac{\epsilon F_{S} + F_{A}}{\epsilon(2-\epsilon)})\delta \epsilon \\
+&=& \frac{2\epsilon F_{S}+\epsilon F_{A}-\epsilon F_{S} - F_{A}}{\epsilon(2-\epsilon)} \delta \epsilon \\
+&=& \frac{\epsilon F_{S}+(\epsilon-1)F_{A}}{\epsilon(2-\epsilon)} \delta \epsilon \\
+&=&  (\sigma T_{s}^{4} - \frac{1}{\epsilon (2-\epsilon)}(\frac{\epsilon(2-\epsilon)\sigma T_{s}^{4} - F_A{}}{2}+F_{A}))\delta \epsilon\\
+&=& (\frac{\sigma T_{s}^{4}}{2}-\frac{F_{A}}{(2-\epsilon)}(\frac{1}{\epsilon}-\frac{1}{2}))\delta \epsilon
+\end{eqnarray}
+```
+
+```{math}
+:label: my_label103
+\begin{eqnarray}
+\rightarrow \frac{\delta T_{s}}{\delta F_R{}} &=& \frac{1}{(\frac{\sigma T_{s}^{4}}{2}-\frac{F_{A}}{(2-\epsilon)}(\frac{1}{\epsilon}-\frac{1}{2}))\delta \epsilon} \times \frac{T_s}{4(2-\epsilon)}\delta \epsilon\\
+&=& \frac{1}{4\sigma T_{s}^{3}(1-\frac{\epsilon}{2})-\frac{4F_A}{T_s}(\frac{1}{\epsilon}-\frac{1}{2})}
+\end{eqnarray}
+```
+
+For forcing $F_{S}$:
+```{math}
+:label: my_label105
+\begin{eqnarray}
+\frac{dF_{S}}{dT_{s}} &=& \frac{4(2-\epsilon)\sigma T_{s}^{3}}{2}
+\end{eqnarray}
+```
+```{math}
+:label: my_label106
+\rightarrow \frac{\delta T_{s}}{\delta F_{S}} =  \frac{1}{4\sigma T_{s}^{3}(1-\frac{\epsilon}{2})}
+```
+
+For forcing $F_{A}$:
+```{math}
+:label: my_label107
+\begin{eqnarray}
+\frac{dF_{A}}{dT_{s}} &=& \frac{4(2-\epsilon)\sigma T_{s}^{3}}{1}
+\end{eqnarray}
+```
+```{math}
+:label: my_label108
+\rightarrow \frac{\delta T_{s}}{\delta F_{A}} =  \frac{1}{8\sigma T_{s}^{3}(1-\frac{\epsilon}{2})}
+```
+
+Now consider feedback parameter $\lambda = -\frac{\delta F}{\delta T_s}$:
+
+```{math}
+:label: my_label109
+\lambda(F_{S}) = -4\sigma T_{s}^{3}(1-\frac{\epsilon}{2}) 
+```
+
+```{math}
+:label: my_label110
+\lambda(F_{A}) = -8\sigma T_{s}^{3}(1-\frac{\epsilon}{2})
+```
+
+```{math}
+:label: my_label111
+\lambda(F_{R}) = -(4\sigma T_{s}^{3}(1-\frac{\epsilon}{2})-\frac{4F_A}{T_s}(\frac{1}{\epsilon}-\frac{1}{2})))
+```
+
+Consider the lapse-rate feedback is the residual of total feedback minus Planck feedback:
+```{math}
+:label: my_label112
+\lambda_{LR}(F_{S}) = -4\sigma T_{s}^{3}(1-\frac{\epsilon}{2}) + 4\sigma(1-\epsilon)T_{s}^{3} + 4\sigma\epsilon T_a{}^{3} = 4\sigma\epsilon (T_{a}^{3}-\frac{T_{s}^{3}}{2})
+```
+
+```{math}
+:label: my_label113
+\lambda_{LR}(F_{A}) = -8\sigma T_{s}^{3}(1-\frac{\epsilon}{2}) + 4\sigma(1-\epsilon)T_{s}^{3} + 4\sigma\epsilon T_a{}^{3} = 4\sigma (\epsilon T_{a}^{3}-T_{s}^{3})
+```
+
+```{math}
+:label: my_label114
+\begin{eqnarray}
+\lambda_{LR}(F_{R}) &=& -(4\sigma T_{s}^{3}(1-\frac{\epsilon}{2})-\frac{4F_A}{T_s}(\frac{1}{\epsilon}-\frac{1}{2}))) + 4\sigma(1-\epsilon)T_{s}^{3} + 4\sigma\epsilon T_a{}^{3} \\
+&=& 4\sigma\epsilon (T_{a}^{3}-\frac{T_{s}^{3}}{2}) + \frac{4F_{A}}{T_s}(\frac{1}{\epsilon}-\frac{1}{2})
+\end{eqnarray}
+```
+
+Are the lapse-rate feedbacks positive or negative? What determines their sign?
 
 ## Homework assignment X (due xxx)
-1. In the pure radiative model, can you remove the effect of ozone?
-2. In the pure radiative model, can you remove the effects of ozone and water vapor?
-3. In the RCE model, chosse an initial condition with temperature reaching radiative equilibrium.
-4. In the RCE model, chosse an isothermal initial condition with temperature 360 K and 170 K. Can you plot the temperature evolution at surface, 800 hPa, 500 hPa, 200 hPa, and 100 hPa, with time? 
-
+1. Based on Equations (96) and (97), can you make a plot for $T_s$ and $T_a$ as a function of emissivity $\epsilon$?
 
 
 
