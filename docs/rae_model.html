@@ -377,6 +377,32 @@ document.write(`
 </section>
 <section id="two-layer-rae-model">
 <h2>Two-layer RAE model<a class="headerlink" href="#two-layer-rae-model" title="Permalink to this heading">#</a></h2>
+<p>Let’s play around with a simpler model to emulate RAE. <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889">Payne et al. (2015)</a> proposed a two-layer model to characterize RCE equilibrium. I found this model very intersting and informative. The model looks like below:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/rae_two_layer.png"><img alt="../_images/rae_two_layer.png" src="../_images/rae_two_layer.png" style="width: 808.0px; height: 451.0px;" /></a>
+</figure>
+<p>The surface represents 1000 hPa and the atmosphere represents 500 hPa. <span class="math notranslate nohighlight">\(F_{S}\)</span> is the shorwave radiation absorbed by the surface, <span class="math notranslate nohighlight">\(F_A{}\)</span> is the sum of atmospheric heat rransport and shortwave radiation absorbed by the atmosphere, <span class="math notranslate nohighlight">\(F_{C}\)</span> is the convective heat transport.</p>
+<p>Energy balance for</p>
+<ul class="simple">
+<li><p>the surface: <span class="math notranslate nohighlight">\(F_{S} + \epsilon \sigma T_{a}^{4} = F_{C} + \sigma T_{s}^{4}\)</span></p></li>
+<li><p>the atmosphere: <span class="math notranslate nohighlight">\(F_{A} + F_{C} + \epsilon \sigma T_{s}^{4} = 2\epsilon \sigma T_{a}^{4}\)</span></p></li>
+</ul>
+<p>To trigger the convection, we assume that <span class="math notranslate nohighlight">\(T_{s} - T_{a}\)</span> have to exceed a critical lapse rate <span class="math notranslate nohighlight">\(\Delta_{T}\)</span> defined as:</p>
+<div class="math notranslate nohighlight" id="equation-my-label92">
+<span class="eqno">(92)<a class="headerlink" href="#equation-my-label92" title="Permalink to this equation">#</a></span>\[\Delta_{T} = T_{s} - T_{a}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label93">
+<span class="eqno">(93)<a class="headerlink" href="#equation-my-label93" title="Permalink to this equation">#</a></span>\[\frac{d\Delta_{T}}{dT_{s}} = -0.6 \mbox{ K/K}\]</div>
+<p>So we can relate <span class="math notranslate nohighlight">\(\Delta_T\)</span> to <span class="math notranslate nohighlight">\(T_s\)</span> or derive <span class="math notranslate nohighlight">\(\Delta_T\)</span> as a function of <span class="math notranslate nohighlight">\(T_s\)</span>. Does this make sense? How does this relate to RCE?</p>
+<p>In high-latitude, as discussed above, we assume convective heat transport is very weak, that is <span class="math notranslate nohighlight">\(F_{C}=0\)</span>. So the energy balance eqaution becomes:</p>
+<div class="math notranslate nohighlight" id="equation-my-label94">
+<span class="eqno">(94)<a class="headerlink" href="#equation-my-label94" title="Permalink to this equation">#</a></span>\[F_{S} + \epsilon \sigma T_{a}^{4} = \sigma T_{s}^{4}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label95">
+<span class="eqno">(95)<a class="headerlink" href="#equation-my-label95" title="Permalink to this equation">#</a></span>\[F_{A} + \epsilon \sigma T_{s}^{4} = 2\epsilon \sigma T_{a}^{4}\]</div>
+<p>We can solve for <span class="math notranslate nohighlight">\(T_s\)</span> and <span class="math notranslate nohighlight">\(T_a\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-my-label96">
+<span class="eqno">(96)<a class="headerlink" href="#equation-my-label96" title="Permalink to this equation">#</a></span>\[\sigma T_{s}^{4} = \frac{2F_{S}+F_{A}}{(2-\epsilon)}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label97">
+<span class="eqno">(97)<a class="headerlink" href="#equation-my-label97" title="Permalink to this equation">#</a></span>\[\sigma T_{a}^{4} = \frac{\epsilon F_{S} + F_{A}}{\epsilon(2-\epsilon)}\]</div>
 </section>
 <section id="homework-assignment-x-due-xxx">
 <h2>Homework assignment X (due xxx)<a class="headerlink" href="#homework-assignment-x-due-xxx" title="Permalink to this heading">#</a></h2>
