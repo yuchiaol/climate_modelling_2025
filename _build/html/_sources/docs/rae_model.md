@@ -74,6 +74,51 @@ We also see strong seasonality of $R_1$:
 
 ## Two-layer RAE model
 
+Let's play around with a simpler model to emulate RAE. [Payne et al. (2015)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889) proposed a two-layer model to characterize RCE equilibrium. I found this model very intersting and informative. The model looks like below:
+
+```{figure} /_static/lecture_specific/lecture1_figures/rae_two_layer.png
+:scale: 50%
+```
+
+The surface represents 1000 hPa and the atmosphere represents 500 hPa. $F_{S}$ is the shorwave radiation absorbed by the surface, $F_A{}$ is the sum of atmospheric heat rransport and shortwave radiation absorbed by the atmosphere, $F_{C}$ is the convective heat transport.
+
+Energy balance for 
+- the surface: $F_{S} + \epsilon \sigma T_{a}^{4} = F_{C} + \sigma T_{s}^{4}$
+- the atmosphere: $F_{A} + F_{C} + \epsilon \sigma T_{s}^{4} = 2\epsilon \sigma T_{a}^{4}$
+
+To trigger the convection, we assume that $T_{s} - T_{a}$ have to exceed a critical lapse rate $\Delta_{T}$ defined as:
+```{math}
+:label: my_label92
+\Delta_{T} = T_{s} - T_{a}
+```
+
+```{math}
+:label: my_label93
+\frac{d\Delta_{T}}{dT_{s}} = -0.6 \mbox{ K/K}
+```
+
+So we can relate $\Delta_T$ to $T_s$ or derive $\Delta_T$ as a function of $T_s$. Does this make sense? How does this relate to RCE?
+
+In high-latitude, as discussed above, we assume convective heat transport is very weak, that is $F_{C}=0$. So the energy balance eqaution becomes:
+```{math}
+:label: my_label94
+F_{S} + \epsilon \sigma T_{a}^{4} = \sigma T_{s}^{4}
+```
+```{math}
+:label: my_label95
+F_{A} + \epsilon \sigma T_{s}^{4} = 2\epsilon \sigma T_{a}^{4}
+```
+
+We can solve for $T_s$ and $T_a$:
+```{math}
+:label: my_label96
+\sigma T_{s}^{4} = \frac{2F_{S}+F_{A}}{(2-\epsilon)}
+```
+```{math}
+:label: my_label97
+\sigma T_{a}^{4} = \frac{\epsilon F_{S} + F_{A}}{\epsilon(2-\epsilon)}
+```
+
 
 
 ## Homework assignment X (due xxx)
