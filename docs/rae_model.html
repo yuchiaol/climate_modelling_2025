@@ -314,6 +314,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-regimes">Climate regimes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-layer-rae-model">Two-layer RAE model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-layer-rce-model">Two-layer RCE model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polar-amplification-factor">Polar amplification factor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-x-due-xxx">Homework assignment X (due xxx)</a></li>
 </ul>
             </nav>
@@ -366,7 +368,7 @@ document.write(`
 <li><p>RAE regime: the <span class="math notranslate nohighlight">\(R_a\)</span> is balanced by advection, so <span class="math notranslate nohighlight">\(R_2\)</span> is small or <span class="math notranslate nohighlight">\(R_1\)</span> is large . (<span class="math notranslate nohighlight">\(R_{1}&gt;0.9\)</span>)</p></li>
 <li><p>RCAE regime: <span class="math notranslate nohighlight">\(R_1\)</span> is moderate, but complicated!!! (<span class="math notranslate nohighlight">\(0.1&lt;R_{1}&lt;0.9\)</span>)</p></li>
 </ul>
-<p>The figure from <a class="reference external" href="https://journals.ametsoc.org/view/journals/clim/35/3/JCLI-D-21-0440.1.xml">Miyawaki et al. (2022)</a>below shows the <span class="math notranslate nohighlight">\(R_1\)</span> as a function of latitude with climate regime colored.</p>
+<p>The figure from <a class="reference external" href="https://journals.ametsoc.org/view/journals/clim/35/3/JCLI-D-21-0440.1.xml">Miyawaki et al. (2022)</a> below shows the <span class="math notranslate nohighlight">\(R_1\)</span> as a function of latitude with climate regime colored.</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../_images/miyawaki_2022_figure2a.png"><img alt="../_images/miyawaki_2022_figure2a.png" src="../_images/miyawaki_2022_figure2a.png" style="width: 667.8px; height: 310.09999999999997px;" /></a>
 </figure>
@@ -377,7 +379,7 @@ document.write(`
 </section>
 <section id="two-layer-rae-model">
 <h2>Two-layer RAE model<a class="headerlink" href="#two-layer-rae-model" title="Permalink to this heading">#</a></h2>
-<p>Let’s play around with a simpler model to emulate RAE. <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889">Payne et al. (2015)</a> proposed a two-layer model to characterize RCE and RAE. I found this model very intersting and informative. The model looks like below:</p>
+<p>Let us play around with a simpler model to emulate RAE. <a class="reference external" href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889">Payne et al. (2015)</a> proposed a two-layer model to characterize RCE and RAE. I found this model very intersting and informative. The model looks like below:</p>
 <figure class="align-default">
 <a class="reference internal image-reference" href="../_images/rae_two_layer.png"><img alt="../_images/rae_two_layer.png" src="../_images/rae_two_layer.png" style="width: 808.0px; height: 451.0px;" /></a>
 </figure>
@@ -474,6 +476,40 @@ document.write(`
 \end{eqnarray}\end{split}\]</div>
 <p>Are the lapse-rate feedbacks positive or negative? What determines their sign?</p>
 </section>
+<section id="two-layer-rce-model">
+<h2>Two-layer RCE model<a class="headerlink" href="#two-layer-rce-model" title="Permalink to this heading">#</a></h2>
+<p>Similarly, we can construct a two-layer RCE model. Because convection (<span class="math notranslate nohighlight">\(F_C\)</span>) is critical in lower latitudes, we need to activate the conective heat flux. The governing equation can be written as:</p>
+<div class="math notranslate nohighlight" id="equation-my-label115">
+<span class="eqno">(114)<a class="headerlink" href="#equation-my-label115" title="Permalink to this equation">#</a></span>\[F_{S} + F_{A} = (1-\epsilon)\sigma T_{s}^{4} + \epsilon \sigma (T_{s}-\Delta_T)^{4}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label116">
+<span class="eqno">(115)<a class="headerlink" href="#equation-my-label116" title="Permalink to this equation">#</a></span>\[T_{a} = T_{s} - \Delta_T, \mbox{ where  } \frac{d\Delta_T}{dT_{s}}=\gamma = 0.6.\]</div>
+<p>Take derivative w.r.t. <span class="math notranslate nohighlight">\(T_s\)</span> with <span class="math notranslate nohighlight">\(F_S\)</span> and <span class="math notranslate nohighlight">\(F_A\)</span> held constant:</p>
+<div class="math notranslate nohighlight" id="equation-my-label117">
+<span class="eqno">(116)<a class="headerlink" href="#equation-my-label117" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+&amp;0&amp; = 4(1-\epsilon)\sigma T_{s}^{3} - \sigma T_{s}^{4}\frac{d\epsilon}{dT_s} + 4\epsilon \sigma(T_{s}-\Delta_T)^{3}(1-\frac{d\Delta_T}{dT_s}) + \sigma (T_{s}-\Delta_T)^{4}\frac{d\epsilon}{dT_s}\\
+&amp;\rightarrow&amp; \frac{d\epsilon}{dT_s}(\sigma T_{s}^{4}-\sigma(T_{s}-\Delta_T)^{4}) = 4(1-\epsilon)\sigma T_{s}^{3} + 4\epsilon\sigma (T_{s}-\Delta_T)^{3}\times (1-\gamma)\\
+&amp;\rightarrow&amp; \frac{d\epsilon}{dT_s} = \frac{4(1-\epsilon)T_{s}^{3}+4\epsilon(1-\gamma)(T_{s}-\Delta_T)^{3}}{T_{s}^{4}-(T_{s}-\Delta_{T})^{4}}\\
+&amp;\rightarrow&amp; \delta T_{s} = \frac{T_{s}^{4}-(T_{s}-\Delta_{T})^{4}}{4(1-\epsilon)T_{s}^{3}+4\epsilon(1-\gamma)(T_{s}-\Delta_T)^{3}}\delta \epsilon
+\end{eqnarray}\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-my-label118">
+<span class="eqno">(117)<a class="headerlink" href="#equation-my-label118" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\frac{dF_S}{dT_s} = \frac{dF_A}{dT_s} = 4(1-\epsilon)\sigma T_{s}^{3} + 4\epsilon\sigma (1-\gamma)(T_{s}-\Delta_T)^{3}\\
+\rightarrow \frac{\delta T_s}{\delta F_S} = \frac{\delta T_s}{\delta F_A} = \frac{1}{4(1-\epsilon)\sigma T_{s}^{3} + 4\epsilon\sigma (1-\gamma)(T_{s}-\Delta_T)^{3}}
+\end{eqnarray}\end{split}\]</div>
+<p>Actually, we can derive:</p>
+<div class="math notranslate nohighlight" id="equation-my-label119">
+<span class="eqno">(118)<a class="headerlink" href="#equation-my-label119" title="Permalink to this equation">#</a></span>\[\frac{\delta T_s}{\delta F_S} = \frac{\delta T_s}{\delta F_A} = \frac{\delta T_s}{\delta F_R}\]</div>
+<p>For feedback parameter:</p>
+<div class="math notranslate nohighlight" id="equation-my-label120">
+<span class="eqno">(119)<a class="headerlink" href="#equation-my-label120" title="Permalink to this equation">#</a></span>\[\begin{split}\begin{eqnarray}
+\lambda &amp;=&amp; -1 \times (4(1-\epsilon)\sigma T_{s}^{3} + 4\epsilon\sigma (1-\gamma)(T_{s}-\Delta_T)^{3}) \\
+&amp;=&amp; \underbrace{-4\sigma((1-\epsilon)T_{s}^{3}+\epsilon(T_{s}-\Delta_T)^{3})}_{\lambda_{PL}} + \underbrace{4\sigma\epsilon\gamma(T_{s}-\Delta_T)^{3}}_{\lambda_{LR}}
+\end{eqnarray}\end{split}\]</div>
+</section>
+<section id="polar-amplification-factor">
+<h2>Polar amplification factor<a class="headerlink" href="#polar-amplification-factor" title="Permalink to this heading">#</a></h2>
+<p>We can calculate the polar amplification factor.</p>
+</section>
 <section id="homework-assignment-x-due-xxx">
 <h2>Homework assignment X (due xxx)<a class="headerlink" href="#homework-assignment-x-due-xxx" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple">
@@ -538,6 +574,8 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#climate-regimes">Climate regimes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-layer-rae-model">Two-layer RAE model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-layer-rce-model">Two-layer RCE model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#polar-amplification-factor">Polar amplification factor</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework-assignment-x-due-xxx">Homework assignment X (due xxx)</a></li>
 </ul>
   </nav></div>
