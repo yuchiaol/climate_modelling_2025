@@ -520,8 +520,8 @@ How to calculate $\Delta \lambda_{state}$ and $\Delta \lambda_{pattern}$ is anot
 ## Radiative kernel analysis
 
 
-
-
+## Homework assignment X (due xxx)
+1. Please change adj_lapse_rate = 9.8. This is the dry adiabatic lapse rate. Calculate the water feedback parameter in this scenario.
 
 
 

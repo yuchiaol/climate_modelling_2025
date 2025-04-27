@@ -61,7 +61,7 @@ where $R_1$ and $R_2$ are two key nondimensional variables.
 - RAE regime: the $R_a$ is balanced by advection, so $R_2$ is small or $R_1$ is large . ($R_{1}>0.9$)
 - RCAE regime: $R_1$ is moderate, but complicated!!! ($0.1<R_{1}<0.9$)
 
-The figure from [Miyawaki et al. (2022)](https://journals.ametsoc.org/view/journals/clim/35/3/JCLI-D-21-0440.1.xml)below shows the $R_1$ as a function of latitude with climate regime colored.
+The figure from [Miyawaki et al. (2022)](https://journals.ametsoc.org/view/journals/clim/35/3/JCLI-D-21-0440.1.xml) below shows the $R_1$ as a function of latitude with climate regime colored.
 
 ```{figure} /_static/lecture_specific/lecture1_figures/miyawaki_2022_figure2a.png
 :scale: 70%
@@ -74,7 +74,7 @@ We also see strong seasonality of $R_1$:
 
 ## Two-layer RAE model
 
-Let's play around with a simpler model to emulate RAE. [Payne et al. (2015)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889) proposed a two-layer model to characterize RCE and RAE. I found this model very intersting and informative. The model looks like below:
+Let us play around with a simpler model to emulate RAE. [Payne et al. (2015)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1002/2015GL065889) proposed a two-layer model to characterize RCE and RAE. I found this model very intersting and informative. The model looks like below:
 
 ```{figure} /_static/lecture_specific/lecture1_figures/rae_two_layer.png
 :scale: 50%
@@ -234,6 +234,55 @@ Consider the lapse-rate feedback is the residual of total feedback minus Planck 
 ```
 
 Are the lapse-rate feedbacks positive or negative? What determines their sign?
+
+## Two-layer RCE model
+Similarly, we can construct a two-layer RCE model. Because convection ($F_C$) is critical in lower latitudes, we need to activate the conective heat flux. The governing equation can be written as:
+```{math}
+:label: my_label115
+F_{S} + F_{A} = (1-\epsilon)\sigma T_{s}^{4} + \epsilon \sigma (T_{s}-\Delta_T)^{4}
+```
+```{math}
+:label: my_label116
+T_{a} = T_{s} - \Delta_T, \mbox{ where  } \frac{d\Delta_T}{dT_{s}}=\gamma = 0.6.
+```
+
+Take derivative w.r.t. $T_s$ with $F_S$ and $F_A$ held constant:
+```{math}
+:label: my_label117
+\begin{eqnarray}
+&0& = 4(1-\epsilon)\sigma T_{s}^{3} - \sigma T_{s}^{4}\frac{d\epsilon}{dT_s} + 4\epsilon \sigma(T_{s}-\Delta_T)^{3}(1-\frac{d\Delta_T}{dT_s}) + \sigma (T_{s}-\Delta_T)^{4}\frac{d\epsilon}{dT_s}\\
+&\rightarrow& \frac{d\epsilon}{dT_s}(\sigma T_{s}^{4}-\sigma(T_{s}-\Delta_T)^{4}) = 4(1-\epsilon)\sigma T_{s}^{3} + 4\epsilon\sigma (T_{s}-\Delta_T)^{3}\times (1-\gamma)\\
+&\rightarrow& \frac{d\epsilon}{dT_s} = \frac{4(1-\epsilon)T_{s}^{3}+4\epsilon(1-\gamma)(T_{s}-\Delta_T)^{3}}{T_{s}^{4}-(T_{s}-\Delta_{T})^{4}}\\
+&\rightarrow& \delta T_{s} = \frac{T_{s}^{4}-(T_{s}-\Delta_{T})^{4}}{4(1-\epsilon)T_{s}^{3}+4\epsilon(1-\gamma)(T_{s}-\Delta_T)^{3}}\delta \epsilon
+\end{eqnarray}
+```
+
+```{math}
+:label: my_label118
+\begin{eqnarray}
+\frac{dF_S}{dT_s} = \frac{dF_A}{dT_s} = 4(1-\epsilon)\sigma T_{s}^{3} + 4\epsilon\sigma (1-\gamma)(T_{s}-\Delta_T)^{3}\\
+\rightarrow \frac{\delta T_s}{\delta F_S} = \frac{\delta T_s}{\delta F_A} = \frac{1}{4(1-\epsilon)\sigma T_{s}^{3} + 4\epsilon\sigma (1-\gamma)(T_{s}-\Delta_T)^{3}}
+\end{eqnarray}
+```
+
+Actually, we can derive:
+```{math}
+:label: my_label119
+\frac{\delta T_s}{\delta F_S} = \frac{\delta T_s}{\delta F_A} = \frac{\delta T_s}{\delta F_R}
+```
+
+For feedback parameter:
+```{math}
+:label: my_label120
+\begin{eqnarray}
+\lambda &=& -1 \times (4(1-\epsilon)\sigma T_{s}^{3} + 4\epsilon\sigma (1-\gamma)(T_{s}-\Delta_T)^{3}) \\
+&=& \underbrace{-4\sigma((1-\epsilon)T_{s}^{3}+\epsilon(T_{s}-\Delta_T)^{3})}_{\lambda_{PL}} + \underbrace{4\sigma\epsilon\gamma(T_{s}-\Delta_T)^{3}}_{\lambda_{LR}}
+\end{eqnarray}
+```
+
+## Polar amplification factor
+We can calculate the polar amplification factor.
+
 
 ## Homework assignment X (due xxx)
 1. Based on Equations (96) and (97), can you make a plot for $T_s$ and $T_a$ as a function of emissivity $\epsilon$?
